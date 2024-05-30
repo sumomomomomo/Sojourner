@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -644,11 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34475b534d32bd0479fc99c7a42385a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponent: {fileID: 2078080613}
-  lines:
-  - Good morning
-  - Good night
-  textSpeed: 0.1
+  textLabel: {fileID: 2078080613}
 --- !u!1 &1280475436
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +788,7 @@ GameObject:
   - component: {fileID: 1783580591}
   - component: {fileID: 1783580590}
   m_Layer: 5
-  m_Name: NPCInteractions
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -847,7 +843,7 @@ Canvas:
   m_GameObject: {fileID: 1783580589}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -892,7 +888,6 @@ GameObject:
   - component: {fileID: 2078080611}
   - component: {fileID: 2078080614}
   - component: {fileID: 2078080613}
-  - component: {fileID: 2078080612}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Dialogue Box
@@ -917,23 +912,8 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 250}
+  m_SizeDelta: {x: 1600, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2078080612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078080610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34475b534d32bd0479fc99c7a42385a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 0}
-  lines: []
-  textSpeed: 0
 --- !u!114 &2078080613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,7 +934,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'New Text
+
+    New Text
+
+    New Text'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1036,8 +1020,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1783580593}
   - {fileID: 1280475439}
   - {fileID: 518114474}
   - {fileID: 321787045}
-  - {fileID: 1783580593}
   - {fileID: 900589204}
