@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    [SerializeField] private DialogueUI dialogueUI;
+    public DialogueUI DialogueUI => dialogueUI;
+    public IInteractable Interactable { get; set; }
     public Rigidbody2D playerRb;
     public float speed;
     public float input; // keep track of which directional button
@@ -20,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
         else if (input > 0) 
         {
             spriteRenderer.flipX = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interactable?.Interact(this);
         }
     }
 
