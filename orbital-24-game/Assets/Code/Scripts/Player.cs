@@ -7,10 +7,10 @@ public class Player : MonoBehaviour
     [SerializeField] private DialogueUI dialogueUI;
     public DialogueUI DialogueUI => dialogueUI;
     public IInteractable Interactable { get; set; }
-    public Rigidbody2D playerRb;
-    public float speed;
-    public float input; // keep track of which directional button
-    public SpriteRenderer spriteRenderer;
+    [SerializeField] private Rigidbody2D playerRb;
+    [SerializeField] private float speed;
+    [SerializeField] private float input; // keep track of which directional button
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
     void Update()

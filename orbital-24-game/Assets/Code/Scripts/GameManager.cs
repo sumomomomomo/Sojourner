@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadNamedScene(sceneName));
     }
 
-    IEnumerator LoadNamedScene(string sceneName)
+    private IEnumerator LoadNamedScene(string sceneName)
     {
         yield return new WaitForSeconds(0.01f);
         SceneManager.LoadScene(sceneName);
