@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class SceneManager : MonoBehaviour
 {
-    private static GameManager instance;
+    private static SceneManager instance;
 
-    private GameManager() {}
+    private SceneManager() {}
 
-    public static GameManager Instance => instance;
+    public static SceneManager Instance => instance;
 
     private void Awake()
     {
@@ -25,6 +25,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadNamedScene(string sceneName)
     {
         yield return new WaitForSeconds(0.01f);
-        SceneManager.LoadScene(sceneName);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 }

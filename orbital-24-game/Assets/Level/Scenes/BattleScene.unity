@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 164782524}
   - component: {fileID: 164782523}
   m_Layer: 0
-  m_Name: Goblin Battle
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 509369454}
   - component: {fileID: 509369458}
   m_Layer: 0
-  m_Name: Man Soul
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
