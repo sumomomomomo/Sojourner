@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 473133369}
   - component: {fileID: 473133368}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: OverworldSceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,12 +370,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 473133369}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_TargetAssemblyTypeName: OverworldSceneManager, Assembly-CSharp
+        m_MethodName: LoadBattle
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 3103dec79c1f9594ebdd7b0faae02804, type: 2}
+          m_ObjectArgumentAssemblyTypeName: EnemyObject, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: BattleScene
@@ -393,6 +393,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722397c1baf90e34388ee6b185ecfd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleSceneName: BattleScene
+  enemyHP:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
 --- !u!4 &473133370
 Transform:
   m_ObjectHideFlags: 0
