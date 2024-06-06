@@ -6,12 +6,14 @@ using UnityEngine;
 [Serializable]
 public class IntReference
 {
-    public bool UseConstant = true;
-    public float ConstantValue;
-    public IntVariable Variable;
+    [SerializeField] private bool useConstant = true;
+    [SerializeField] private int constantValue;
+    [SerializeField] private IntVariable variable;
 
-    public float Value
+    public int Value
     {
-        get { return UseConstant ? ConstantValue : Variable.Value; }
+        get { return useConstant ? constantValue : variable.Value; }
+        set { variable.Value = value; }
     }
+
 }
