@@ -398,6 +398,26 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
+  enemyMaxHP:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 1cd12836d5b9a37448947fef2e4dfa81, type: 2}
+  boundWidth:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 54fc952aaab683141b7c48fc8f3a31af, type: 2}
+  boundHeight:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: d65aa8f5cdfb7ed4d9fe97224f06f25d, type: 2}
+  boundOriginXTranslation:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 1d90875857d7bb9439e757b86e40e7ad, type: 2}
+  boundOriginYTranslation:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: d755edfb1d4978946ace8dee02714a95, type: 2}
 --- !u!4 &473133370
 Transform:
   m_ObjectHideFlags: 0

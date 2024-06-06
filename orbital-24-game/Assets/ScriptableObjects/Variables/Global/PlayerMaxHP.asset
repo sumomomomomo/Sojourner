@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e2b6d82d256f8740ac5476ce1589f9c, type: 3}
-  m_Name: PlayerHP
+  m_Name: PlayerMaxHP
   m_EditorClassIdentifier: 
   value: 20
-  developerComments: Current Player HP
+  developerComments: Player's max HP
