@@ -29,12 +29,5 @@ public class BoundDrawer : MonoBehaviour
         leftWall.transform.localScale = new Vector3(boundThickness.Value, boundHeight.Value + boundThickness.Value, 1);
         rightWall.transform.localScale = new Vector3(boundThickness.Value, boundHeight.Value + boundThickness.Value, 1);
 
-        // update thickness
-        // change x scale of left,right walls, y scale of top,bottom walls
-
-        // boundObject.sizeDelta = new Vector2(boundWidth.Value, boundHeight.Value);
-        // boundObject.anchoredPosition = new Vector2(boundOriginXTranslation.Value, boundOriginYTranslation.Value);
-
-        // movableArea.sizeDelta = new Vector2(boundWidth.Value - borderThickness.Value * 2, boundHeight.Value - borderThickness.Value * 2);
     }
 }

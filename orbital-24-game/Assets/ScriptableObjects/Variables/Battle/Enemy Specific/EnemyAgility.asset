@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
-  m_Name: BoundHeight
+  m_Name: EnemyAgility
   m_EditorClassIdentifier: 
-  value: 5.03
-  developerComments: Height of player bounds
+  value: 5
+  developerComments: 
