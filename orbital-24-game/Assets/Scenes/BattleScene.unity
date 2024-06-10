@@ -634,7 +634,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3daeef7e87291bc4e93eab8f48886ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  playerSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: d2a05e2ae46f3fc4ebc031598bfeb28d, type: 2}
   rb: {fileID: 509369455}
   playerWallCollider: {fileID: 509369459}
 --- !u!50 &509369455
