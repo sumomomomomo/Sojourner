@@ -11,6 +11,7 @@ public class OverworldSceneManager : MonoBehaviour
 
     [SerializeField] private FloatReference boundWidth;
     [SerializeField] private FloatReference boundHeight;
+    [SerializeField] private FloatReference boundThickness;
     [SerializeField] private FloatReference boundOriginXTranslation;
     [SerializeField] private FloatReference boundOriginYTranslation;
     public void LoadBattle(EnemyObject enemyObject)
@@ -25,6 +26,7 @@ public class OverworldSceneManager : MonoBehaviour
         boundHeight.Value = 200;
         boundOriginXTranslation.Value = 0;
         boundOriginYTranslation.Value = 0;
+        boundThickness.Value = 20;
 
         // Fade to battle screen
         StartCoroutine(BattleSceneTransition(battleSceneName));

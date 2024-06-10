@@ -410,6 +410,10 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: d65aa8f5cdfb7ed4d9fe97224f06f25d, type: 2}
+  boundThickness:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: f83bf86b8b85f9445be47c0ccb3d8e69, type: 2}
   boundOriginXTranslation:
     useConstant: 0
     constantValue: 0

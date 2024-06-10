@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class IntReference
 {
-    [SerializeField] private bool useConstant = true;
+    [SerializeField] private bool useConstant = false;
     [SerializeField] private int constantValue;
     [SerializeField] private IntVariable variable;
 

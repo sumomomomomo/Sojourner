@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
   m_Name: BoundWidth
   m_EditorClassIdentifier: 
-  value: 593.2
+  value: 5.05
   developerComments: Width of player bounds

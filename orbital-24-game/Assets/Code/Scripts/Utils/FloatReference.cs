@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class FloatReference
 {
-    [SerializeField] private bool useConstant = true;
+    [SerializeField] private bool useConstant = false;
     [SerializeField] private float constantValue;
     [SerializeField] private FloatVariable variable;
 
