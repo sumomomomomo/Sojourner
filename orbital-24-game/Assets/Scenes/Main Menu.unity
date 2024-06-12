@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: ce065483c4a9aba43a5d253e60325a77, type: 2}
+      - m_Target: {fileID: 11400000, guid: d94e75263e0499548a25d35f157aec7d, type: 2}
         m_TargetAssemblyTypeName: GameEventObject, Assembly-CSharp
         m_MethodName: Raise
         m_Mode: 1
@@ -1224,6 +1224,7 @@ GameObject:
   - component: {fileID: 2075032783}
   - component: {fileID: 2075032784}
   - component: {fileID: 2075032785}
+  - component: {fileID: 2075032786}
   m_Layer: 0
   m_Name: MainMenuSceneManager
   m_TagString: Untagged
@@ -1286,6 +1287,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9309673eb01c194f922a0ab3b245894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2075032786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075032782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e50bd0f0c4c9614ea922d67090b2ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d94e75263e0499548a25d35f157aec7d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2089553497
 GameObject:
   m_ObjectHideFlags: 0
