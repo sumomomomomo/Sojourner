@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
 {
+    [SerializeField] private FloatReference minEnemyTurnTime;
     [SerializeField] private TMP_Text countdownTimer;
     [SerializeField] private FloatReference enemyAgility;
     [SerializeField] private FloatReference playerAgility;
     [SerializeField] private FloatReference timeLeftToNextTurn;
     [SerializeField] private BoolReference isPlayerTurn;
+    [SerializeField] private BattleStrategyTrackerObject currentStrategy;
 
     private float currTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
     {
@@ -18,7 +20,7 @@ public class TurnHandler : MonoBehaviour
         {
             return 5;
         }
-        return Math.Max(10, 10 + enemyAgility - playerAgility);
+        return Math.Max(minEnemyTurnTime.Value, 10 + enemyAgility - playerAgility);
     }
     void Start()
     {
@@ -42,7 +44,15 @@ public class TurnHandler : MonoBehaviour
 
     private void ChangeTurn()
     {
+        if (isPlayerTurn.Value)
+        {
+            currentStrategy.OnExecuteStrategy?.Invoke();
+        }
         isPlayerTurn.Value = !isPlayerTurn.Value;
         timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, isPlayerTurn.Value);
     }
+
+    // Hardcoded?
+
+
 }
