@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b740e9cc6001ea41924f357f648b12a, type: 3}
   m_Name: CurrentStrategy
   m_EditorClassIdentifier: 
-  strategy: {fileID: 11400000, guid: 3f8e7a99107bf5b49b68d5d49a6956b7, type: 2}
+  strategyOrder:
+  - {fileID: 11400000, guid: a353d6515cc4c55469b7a9e27feed514, type: 2}
+  - {fileID: 11400000, guid: 92cfeb2e44f9444478220644c847ec28, type: 2}
+  - {fileID: 11400000, guid: 7b8b5d28b1855544cbd82730c1a8eeae, type: 2}
+  - {fileID: 11400000, guid: 3f8e7a99107bf5b49b68d5d49a6956b7, type: 2}
+  selectedStrategy: {fileID: 11400000, guid: a353d6515cc4c55469b7a9e27feed514, type: 2}
+  strategyIndex: 0
