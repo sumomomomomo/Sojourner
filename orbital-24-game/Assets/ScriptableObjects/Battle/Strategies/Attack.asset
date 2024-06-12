@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
-  m_Name: TimeLeftForCurrentTurn
+  m_Script: {fileID: 11500000, guid: 40042a56080a44745a153b6c6b973376, type: 3}
+  m_Name: Attack
   m_EditorClassIdentifier: 
-  value: 9.0485935
-  developerComments: Number of seconds remaining for the current turn
+  strategyName: Attack

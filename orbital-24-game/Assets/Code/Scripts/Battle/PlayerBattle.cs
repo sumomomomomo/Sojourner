@@ -8,7 +8,6 @@ public class PlayerBattle : MonoBehaviour
 {
     [SerializeField] private FloatReference playerSpeed;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Collider2D playerWallCollider;
 
     void Start()
     {
