@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerDamageHandler : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class PlayerDamageHandler : MonoBehaviour
     [SerializeField] private IntReference playerBaseAtk;
     [SerializeField] private IntReference playerBaseDef;
     [SerializeField] private BoolReference isPlayerDefending;
-
+    [SerializeField] private BoolReference isPlayerInvulnerable;
+    [SerializeField] private UnityEvent onPlayerTakeDamage;
     [SerializeField] private IntReference enemyHP;
     [SerializeField] private IntReference enemyDef;
     [SerializeField] private IntReference enemyAtk;
@@ -19,11 +21,13 @@ public class PlayerDamageHandler : MonoBehaviour
         isPlayerDefending.Value = false;
     }
 
-    public void takeDamage()
+    public void takeDamage(int damageModifier)
     {
-        // TODO: bullet modifier
+        if (isPlayerInvulnerable.Value) return;
         int effDef = isPlayerDefending.Value ? playerBaseDef.Value * 2 : playerBaseDef.Value;
-        playerHP.Value -= Mathf.Max(1, enemyAtk.Value - effDef);
-        isPlayerDefending.Value = false;
+        playerHP.Value -= Mathf.Max(1, enemyAtk.Value * damageModifier - effDef);
+        onPlayerTakeDamage?.Invoke();
     }
+
+
 }
