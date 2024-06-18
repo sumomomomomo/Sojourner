@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
   m_Name: InvulnTimeWhenHit
   m_EditorClassIdentifier: 
-  value: 2
+  value: 1
   developerComments: Default amount of invuln time when player is hit, in seconds
