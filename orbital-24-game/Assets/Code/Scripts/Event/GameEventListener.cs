@@ -5,6 +5,7 @@ public class GameEventListener : MonoBehaviour
 {
     [SerializeField] private GameEventObject Event;
     [SerializeField] private UnityEvent Response;
+    [SerializeField] [TextArea] private string developerComments;
 
     private void OnEnable()
     { Event.RegisterListener(this); }
