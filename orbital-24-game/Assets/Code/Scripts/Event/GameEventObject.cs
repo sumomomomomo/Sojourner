@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GameEventObject : ScriptableObject
 {
+    [SerializeField] [TextArea] private string developerComments;
     private readonly List<GameEventListener> listeners = new();
 
     public void Raise()

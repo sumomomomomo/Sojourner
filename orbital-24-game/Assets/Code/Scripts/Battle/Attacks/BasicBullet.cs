@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BasicBullet : MonoBehaviour
 {
+    [SerializeField] private FloatReference damageModifier;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.TryGetComponent(out PlayerDamageHandler playerDamageHandler))
+        PlayerDamageTaker playerDamageHandler = other.GetComponentInChildren<PlayerDamageTaker>();
+        if (other.CompareTag("Player") && playerDamageHandler != null)
         {
-            playerDamageHandler.takeDamage(2);
+            playerDamageHandler.takeDamage(damageModifier.Value);
         }
     }
 
