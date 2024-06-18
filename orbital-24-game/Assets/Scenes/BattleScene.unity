@@ -246,11 +246,6 @@ MonoBehaviour:
         m_CallState: 2
   developerComments: OnPlayerTakeDamage raised by PlayerDamageTaker, when any bullet
     calls TakeDamge
---- !u!4 &49619115 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
-  m_PrefabInstance: {fileID: 6339754370791107426}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &101348433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,60 +1920,6 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 4cfd66b9d8b90e040879ab5677c6ecd4, type: 2}
---- !u!1 &1073336804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1073336806}
-  - component: {fileID: 1073336805}
-  m_Layer: 0
-  m_Name: KnifeAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!95 &1073336805
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073336804}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e346171724e12a0408c90d3b25ecf291, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!4 &1073336806
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073336804}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 530.7779, y: 272.88434, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 49619115}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1400295318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,68 +3238,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &6339754370791107426
+--- !u!1001 &1762315309751900396
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1073336806}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 603886883373168405, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: f73af526ca9137f4a8ed6d5cbbd9a6e0, type: 2}
-    - target: {fileID: 3604517417909770993, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
-      propertyPath: m_Name
-      value: Knife
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -530.71
+      value: 530.7779
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -272.65
+      value: 272.88434
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423494447011710612, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 4266415460110273587, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 603886883373168405, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+    - target: {fileID: 8244151387994412328, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
+      propertyPath: m_Name
+      value: KnifeAttack
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3368,5 +3304,5 @@ SceneRoots:
   - {fileID: 839984071}
   - {fileID: 1746862070}
   - {fileID: 164782524}
-  - {fileID: 1073336806}
+  - {fileID: 1762315309751900396}
   - {fileID: 266355630}
