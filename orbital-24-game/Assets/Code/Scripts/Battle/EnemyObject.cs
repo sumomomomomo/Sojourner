@@ -5,8 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Battle/EnemyObject")]
 public class EnemyObject : ScriptableObject
 {
+    [SerializeField] private string enemyName;
+    public string EnemyName => enemyName;
     [SerializeField] private int maxHP;
     public int MaxHP => maxHP;
-
-    // TODO enemy sprite, agility, attack patterns
+    [SerializeField] private GameObject enemyHandlerPrefab;
+    public GameObject EnemyHandlerPrefab => enemyHandlerPrefab;
 }

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51db3602bebaa3c4baefe6ee5a970d60, type: 3}
-  m_Name: Goblin
+  m_Script: {fileID: 11500000, guid: 37525715a3acdbe4ea66529868467afc, type: 3}
+  m_Name: CurrentEnemy
   m_EditorClassIdentifier: 
-  maxHP: 50
+  loadedEnemy: {fileID: 11400000, guid: 3103dec79c1f9594ebdd7b0faae02804, type: 2}
