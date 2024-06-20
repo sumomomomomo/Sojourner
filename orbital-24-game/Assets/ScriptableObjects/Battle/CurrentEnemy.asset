@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: CurrentEnemy
   m_EditorClassIdentifier: 
   loadedEnemy: {fileID: 11400000, guid: 3103dec79c1f9594ebdd7b0faae02804, type: 2}
+  developerComments: 'Overworld scene should set this to the desired enemy
+
+    EnemyLoader
+    will read this and instantiate everything'

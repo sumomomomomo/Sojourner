@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 031145d4354c59941b3e9451201116b1, type: 3}
-  m_Name: KnifeAttack
+  m_Name: MiniAttack
   m_EditorClassIdentifier: 
-  boundHeight: 5.03
+  boundHeight: 1.39
   boundWidth: 5.05
   boundOriginX: 0
-  boundOriginY: 0
+  boundOriginY: -1.64

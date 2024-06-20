@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: IsHidePlayerSprite
   m_EditorClassIdentifier: 
   value: 0
-  developerComments: When animating bounds between turns
+  developerComments: 'When animating bounds between turns
+
+    (Currently unused)'

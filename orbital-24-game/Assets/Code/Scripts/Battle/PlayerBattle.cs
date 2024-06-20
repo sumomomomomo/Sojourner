@@ -8,6 +8,7 @@ public class PlayerBattle : MonoBehaviour
 {
     [SerializeField] private FloatReference playerSpeed;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private BoolReference isFreezeTurn;
 
     void Start()
     {
@@ -17,14 +18,21 @@ public class PlayerBattle : MonoBehaviour
 
     void FixedUpdate()
     {
-        float currSpeed = playerSpeed.Value;
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isFreezeTurn.Value)
         {
-            currSpeed /= 2;
+            rb.velocity = new Vector2(0, 0);
         }
+        else
+        {
+            float currSpeed = playerSpeed.Value;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                currSpeed /= 2;
+            }
 
-        float horizontal = Input.GetAxisRaw("Horizontal") * currSpeed;
-        float vertical = Input.GetAxisRaw("Vertical") * currSpeed;
-        rb.velocity = new Vector2(horizontal, vertical);
+            float horizontal = Input.GetAxisRaw("Horizontal") * currSpeed;
+            float vertical = Input.GetAxisRaw("Vertical") * currSpeed;
+            rb.velocity = new Vector2(horizontal, vertical);
+        }
     }
 }

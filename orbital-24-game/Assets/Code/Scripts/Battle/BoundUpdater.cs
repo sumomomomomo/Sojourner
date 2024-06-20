@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoundUpdater : MonoBehaviour
@@ -9,9 +10,8 @@ public class BoundUpdater : MonoBehaviour
     [SerializeField] private FloatReference boundHeight;
     [SerializeField] private FloatReference boundOriginXTranslation;
     [SerializeField] private FloatReference boundOriginYTranslation;
-    [SerializeField] private BoolReference isHidePlayerSprite;
-    [SerializeField] private BoolReference isFreezeTurnTimer;
-
+    [SerializeField] private FloatReference boundUpdateAnimationTime;
+    [SerializeField] private BoolReference isFreezeTurn;
     public void UpdateBounds()
     {
         Debug.Log("Bounds updated");
@@ -35,17 +35,17 @@ public class BoundUpdater : MonoBehaviour
         float endBOXT = boundTargetInstructionsObject.PlayerBoundsTarget.BoundOriginX;
         float endBOYT = boundTargetInstructionsObject.PlayerBoundsTarget.BoundOriginY;
 
-        isHidePlayerSprite.Value = true;
-        isFreezeTurnTimer.Value = true;
+        float buat = boundUpdateAnimationTime.Value;
 
-        yield return CoroutineUtils.Lerp(0.5f, t=> {
+        isFreezeTurn.Value = true;
+
+        yield return CoroutineUtils.Lerp(buat, t=> {
             boundWidth.Value = Mathf.Lerp(startBw, endBw, t);
             boundHeight.Value = Mathf.Lerp(startBh, endBh, t);
             boundOriginXTranslation.Value = Mathf.Lerp(startBOXT, endBOXT, t);
             boundOriginYTranslation.Value = Mathf.Lerp(startBOYT, endBOYT, t);
         });
 
-        isHidePlayerSprite.Value = false;
-        isFreezeTurnTimer.Value = false;
+        isFreezeTurn.Value = false;
     }
 }

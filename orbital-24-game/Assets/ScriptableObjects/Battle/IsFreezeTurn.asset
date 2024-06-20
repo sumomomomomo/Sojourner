@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51db3602bebaa3c4baefe6ee5a970d60, type: 3}
-  m_Name: Goblin
+  m_Script: {fileID: 11500000, guid: 150ee35f0bca3c543a757ae48b31b7e6, type: 3}
+  m_Name: IsFreezeTurn
   m_EditorClassIdentifier: 
-  enemyName: Goblin
-  maxHP: 50
-  enemyHandlerPrefab: {fileID: 1749579563045832663, guid: 7ff4a706ff1b53846b355199ac33c09d, type: 3}
-  developerComments: Basic goblin
+  value: 0
+  developerComments: Turned off/on by player bound updater

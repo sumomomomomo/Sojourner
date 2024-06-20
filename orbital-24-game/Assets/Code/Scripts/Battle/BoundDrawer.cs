@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class BoundDrawer : MonoBehaviour
 {
+    [SerializeField] private GameObject playerBoundsGroup;
     [SerializeField] private GameObject topWall;
     [SerializeField] private GameObject bottomWall;
     [SerializeField] private GameObject leftWall;
@@ -13,9 +16,18 @@ public class BoundDrawer : MonoBehaviour
     [SerializeField] private FloatReference boundHeight;
     [SerializeField] private FloatReference boundOriginXTranslation;
     [SerializeField] private FloatReference boundOriginYTranslation;
+
+    [SerializeField] private PlayerBoundsTarget playerBoundsTargetEditor;
     void Update()
     {
-        this.transform.position = new Vector3(boundOriginXTranslation.Value, boundOriginYTranslation.Value, -1);
+        if (playerBoundsTargetEditor != null)
+        {
+            boundWidth.Value = playerBoundsTargetEditor.BoundWidth;
+            boundHeight.Value = playerBoundsTargetEditor.BoundHeight;
+            boundOriginXTranslation.Value = playerBoundsTargetEditor.BoundOriginX;
+            boundOriginYTranslation.Value = playerBoundsTargetEditor.BoundOriginY;
+        }
+        playerBoundsGroup.transform.position = new Vector3(boundOriginXTranslation.Value, boundOriginYTranslation.Value, -1);
 
         // update width
         leftWall.transform.localPosition = new Vector3(-(boundWidth.Value / 2), 0, 0);

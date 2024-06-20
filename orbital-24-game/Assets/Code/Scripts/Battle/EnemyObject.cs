@@ -11,4 +11,6 @@ public class EnemyObject : ScriptableObject
     public int MaxHP => maxHP;
     [SerializeField] private GameObject enemyHandlerPrefab;
     public GameObject EnemyHandlerPrefab => enemyHandlerPrefab;
+
+    [SerializeField] [TextArea] private string developerComments;
 }

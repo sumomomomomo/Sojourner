@@ -10,13 +10,12 @@ public class PlayerStrategyExecuter : MonoBehaviour
     [SerializeField] private GameEventObject onUpdateBounds;
     public void OnPlayerTurnStart()
     {
-        currentStrategy.OnExecuteStrategy?.Invoke();
         boundTargetInstructionsObject.PlayerBoundsTarget = playerBoundsTarget;
         onUpdateBounds.Raise();
     }
 
     public void OnPlayerTurnEnd()
     {
-
+        currentStrategy.OnExecuteStrategy?.Invoke();
     }
 }
