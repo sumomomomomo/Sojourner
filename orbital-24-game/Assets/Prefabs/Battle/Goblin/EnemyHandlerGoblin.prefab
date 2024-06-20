@@ -46,7 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e73dcce92e9d14ebf54fa442e0bbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knifeAttackPrefab: {fileID: 8244151387994412328, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
+  attackPatterns:
+  - attackPrefab: {fileID: 8244151387994412328, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: d8171dc38599f084e901a56681cc83ab, type: 2}
+  boundTargetInstructionsObject: {fileID: 11400000, guid: 084588809e942614bbb3572d288e6484, type: 2}
+  onUpdateBounds: {fileID: 11400000, guid: 4b31df5d38f1b6244b6410edb4e9cbc2, type: 2}
 --- !u!114 &7835583538842999150
 MonoBehaviour:
   m_ObjectHideFlags: 0

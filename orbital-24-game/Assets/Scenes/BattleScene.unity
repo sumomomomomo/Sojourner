@@ -184,6 +184,105 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   developerComments: OnRun raised by PlayerDamageTaker
+--- !u!1 &11858092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11858093}
+  - component: {fileID: 11858095}
+  - component: {fileID: 11858094}
+  m_Layer: 0
+  m_Name: BoundUpdater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11858093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11858092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 266355630}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11858094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11858092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e50bd0f0c4c9614ea922d67090b2ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4b31df5d38f1b6244b6410edb4e9cbc2, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11858095}
+        m_TargetAssemblyTypeName: BoundUpdater, Assembly-CSharp
+        m_MethodName: UpdateBounds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  developerComments: Listens for stuff that raises OnUpdateBounds
+--- !u!114 &11858095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11858092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca06666269a78b42892cb3ce42d0e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundTargetInstructionsObject: {fileID: 11400000, guid: 084588809e942614bbb3572d288e6484, type: 2}
+  boundWidth:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 54fc952aaab683141b7c48fc8f3a31af, type: 2}
+  boundHeight:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: d65aa8f5cdfb7ed4d9fe97224f06f25d, type: 2}
+  boundOriginXTranslation:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 1d90875857d7bb9439e757b86e40e7ad, type: 2}
+  boundOriginYTranslation:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: d755edfb1d4978946ace8dee02714a95, type: 2}
+  isHidePlayerSprite:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: e83a2cc9c22cd0747838b1e454b05ecb, type: 2}
+  isFreezeTurnTimer:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: c971f046454deb64a8a01146d718cedc, type: 2}
 --- !u!1 &12621156
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +695,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 266355630}
-  - component: {fileID: 266355631}
   m_Layer: 0
   m_Name: PlayerBounds
   m_TagString: Untagged
@@ -621,44 +719,10 @@ Transform:
   - {fileID: 1751715097}
   - {fileID: 1436820576}
   - {fileID: 2067505880}
+  - {fileID: 371544135}
+  - {fileID: 11858093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &266355631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266355629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3092b1857179ae418e0c91108f84f0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topWall: {fileID: 461050882}
-  bottomWall: {fileID: 2067505879}
-  leftWall: {fileID: 1751715096}
-  rightWall: {fileID: 1436820575}
-  boundThickness:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: f83bf86b8b85f9445be47c0ccb3d8e69, type: 2}
-  boundWidth:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 54fc952aaab683141b7c48fc8f3a31af, type: 2}
-  boundHeight:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: d65aa8f5cdfb7ed4d9fe97224f06f25d, type: 2}
-  boundOriginXTranslation:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 1d90875857d7bb9439e757b86e40e7ad, type: 2}
-  boundOriginYTranslation:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: d755edfb1d4978946ace8dee02714a95, type: 2}
 --- !u!1 &289466935
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +872,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strategyText: {fileID: 289466937}
   currentStrategy: {fileID: 11400000, guid: ccead713d5edaa243a68b48ba7999848, type: 2}
+--- !u!1 &371544134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371544135}
+  - component: {fileID: 371544136}
+  m_Layer: 0
+  m_Name: BoundDrawer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &371544135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371544134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 266355630}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371544136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371544134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3092b1857179ae418e0c91108f84f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topWall: {fileID: 461050882}
+  bottomWall: {fileID: 2067505879}
+  leftWall: {fileID: 1751715096}
+  rightWall: {fileID: 1436820575}
+  boundThickness:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: f83bf86b8b85f9445be47c0ccb3d8e69, type: 2}
+  boundWidth:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 54fc952aaab683141b7c48fc8f3a31af, type: 2}
+  boundHeight:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: d65aa8f5cdfb7ed4d9fe97224f06f25d, type: 2}
+  boundOriginXTranslation:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 1d90875857d7bb9439e757b86e40e7ad, type: 2}
+  boundOriginYTranslation:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: d755edfb1d4978946ace8dee02714a95, type: 2}
 --- !u!1 &398825990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1371,114 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   developerComments: OnDefend raised by PlayerDamageTaker
+--- !u!1 &490097836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490097837}
+  - component: {fileID: 490097840}
+  - component: {fileID: 490097839}
+  - component: {fileID: 490097838}
+  m_Layer: 0
+  m_Name: StrategyExecuter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &490097837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490097836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 509369457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &490097838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490097836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e50bd0f0c4c9614ea922d67090b2ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c2597c541d144684db38cb3a94721ab2, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 490097840}
+        m_TargetAssemblyTypeName: PlayerStrategyExecuter, Assembly-CSharp
+        m_MethodName: OnPlayerTurnEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  developerComments: Raised by TurnHandler
+--- !u!114 &490097839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490097836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e50bd0f0c4c9614ea922d67090b2ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c6255d7c0e0f9054986242eaab44b54a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 490097840}
+        m_TargetAssemblyTypeName: PlayerStrategyExecuter, Assembly-CSharp
+        m_MethodName: OnPlayerTurnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  developerComments: Raised by TurnHandler
+--- !u!114 &490097840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490097836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ceaa13afb4b524a9bd27eb4f5e735b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStrategy: {fileID: 11400000, guid: ccead713d5edaa243a68b48ba7999848, type: 2}
+  boundTargetInstructionsObject: {fileID: 11400000, guid: 084588809e942614bbb3572d288e6484, type: 2}
+  playerBoundsTarget: {fileID: 11400000, guid: 54c9c3bb0c9f03a4ba0263e2bfbf11a9, type: 2}
+  onUpdateBounds: {fileID: 11400000, guid: 4b31df5d38f1b6244b6410edb4e9cbc2, type: 2}
 --- !u!1 &509369453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1619,7 @@ Transform:
   - {fileID: 1400295319}
   - {fileID: 9505049}
   - {fileID: 12621157}
+  - {fileID: 490097837}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &509369459
@@ -1759,7 +2000,7 @@ GameObject:
   - component: {fileID: 839984069}
   - component: {fileID: 839984068}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Battle UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3161,9 +3402,14 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: f89aa55e90f341740982641e28251cf8, type: 2}
-  currentStrategy: {fileID: 11400000, guid: ccead713d5edaa243a68b48ba7999848, type: 2}
+  isFreezeTurnTimer:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: c971f046454deb64a8a01146d718cedc, type: 2}
   onEnemyTurnStart: {fileID: 11400000, guid: 7c9b29a6c23a10145b26e33e61b62fd7, type: 2}
   onEnemyTurnEnd: {fileID: 11400000, guid: 9b7376b893cbcc248b02593fb17e964a, type: 2}
+  onPlayerTurnStart: {fileID: 11400000, guid: c6255d7c0e0f9054986242eaab44b54a, type: 2}
+  onPlayerTurnEnd: {fileID: 11400000, guid: c2597c541d144684db38cb3a94721ab2, type: 2}
 --- !u!4 &1997370601
 Transform:
   m_ObjectHideFlags: 0

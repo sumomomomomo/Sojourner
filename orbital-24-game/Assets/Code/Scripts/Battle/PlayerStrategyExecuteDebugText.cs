@@ -16,6 +16,7 @@ public class PlayerStrategyExecuteDebugText : MonoBehaviour
 
     void Update()
     {
+        if (timeToDisappear <= 0) return;
         timeToDisappear -= Time.deltaTime;
         if (timeToDisappear <= 0)
         {

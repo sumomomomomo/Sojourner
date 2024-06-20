@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
-  m_Name: OriginYTranslation
+  m_Script: {fileID: 11500000, guid: 031145d4354c59941b3e9451201116b1, type: 3}
+  m_Name: KnifeAttack
   m_EditorClassIdentifier: 
-  value: -1.39
-  developerComments: This value is added to y coordinates of middle of the screen,
-    to change the origin of the player's bounding box
+  boundHeight: 5.03
+  boundWidth: 5.05
+  boundOriginX: 0
+  boundOriginY: 0

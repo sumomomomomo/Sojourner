@@ -12,10 +12,12 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] private FloatReference playerAgility;
     [SerializeField] private FloatReference timeLeftToNextTurn;
     [SerializeField] private BoolReference isPlayerTurn;
-    [SerializeField] private BattleStrategyTrackerObject currentStrategy;
+    [SerializeField] private BoolReference isFreezeTurnTimer;
 
     [SerializeField] private GameEventObject onEnemyTurnStart;
     [SerializeField] private GameEventObject onEnemyTurnEnd;
+    [SerializeField] private GameEventObject onPlayerTurnStart;
+    [SerializeField] private GameEventObject onPlayerTurnEnd;
 
     private float currTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
     {
@@ -31,15 +33,18 @@ public class TurnHandler : MonoBehaviour
         //isPlayerTurn.Value = false;
         //timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, false);
         isPlayerTurn.Value = true;
-        timeLeftToNextTurn.Value = 2;
+        timeLeftToNextTurn.Value = 1;
     }
 
     void Update()
     {
-        timeLeftToNextTurn.Value -= Time.deltaTime;
-        if (timeLeftToNextTurn.Value <= 0)
+        if (!isFreezeTurnTimer.Value)
         {
-            ChangeTurn();
+            timeLeftToNextTurn.Value -= Time.deltaTime;
+            if (timeLeftToNextTurn.Value <= 0)
+            {
+                ChangeTurn();
+            }
         }
     }
 
@@ -47,12 +52,13 @@ public class TurnHandler : MonoBehaviour
     {
         if (isPlayerTurn.Value) // player -> enemy
         {
+            onPlayerTurnEnd.Raise();
             onEnemyTurnStart.Raise();
         }
         else // enemy -> player
         {
             onEnemyTurnEnd.Raise();
-            currentStrategy.OnExecuteStrategy?.Invoke();
+            onPlayerTurnStart.Raise();
         }
         isPlayerTurn.Value = !isPlayerTurn.Value;
         timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, isPlayerTurn.Value);

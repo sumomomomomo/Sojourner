@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Goblin : MonoBehaviour, IEnemyHandler
 {
-    [SerializeField] private GameObject knifeAttackPrefab;
+    [SerializeField] private AttackPattern[] attackPatterns;
+    [SerializeField] private BoundTargetInstructionsObject boundTargetInstructionsObject;
+    [SerializeField] private GameEventObject onUpdateBounds;
     private readonly List<GameObject> instantiatedObjects = new();
     public void onEnemyTurnEnd()
     {
@@ -16,6 +18,9 @@ public class Goblin : MonoBehaviour, IEnemyHandler
 
     public void onEnemyTurnStart()
     {
-        instantiatedObjects.Add(Instantiate(knifeAttackPrefab));
+        AttackPattern chosenAttack = attackPatterns[0];
+        boundTargetInstructionsObject.PlayerBoundsTarget = chosenAttack.PlayerBoundsTarget;
+        onUpdateBounds.Raise();
+        instantiatedObjects.Add(Instantiate(chosenAttack.AttackPrefab));
     }
 }
