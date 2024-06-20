@@ -28,3 +28,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  playerTurnXCoordinate: 0.37
+  playerTurnYCoordinate: -1.45

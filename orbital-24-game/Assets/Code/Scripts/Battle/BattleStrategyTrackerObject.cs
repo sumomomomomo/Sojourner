@@ -19,11 +19,8 @@ public class BattleStrategyTrackerObject : ScriptableObject
         }
         else
         {
+            if (strategyIndex >= strategyOrder.Length - 1) return;
             strategyIndex++;
-            if (strategyIndex == strategyOrder.Length)
-            {
-                strategyIndex = 0;
-            }
             selectedStrategy = strategyOrder[strategyIndex];
         }
     }
@@ -36,12 +33,18 @@ public class BattleStrategyTrackerObject : ScriptableObject
         }
         else
         {
+            if (strategyIndex <= 0) return;
             strategyIndex--;
-            if (strategyIndex == -1)
-            {
-                strategyIndex = strategyOrder.Length - 1;
-            }
             selectedStrategy = strategyOrder[strategyIndex];
         }
+    }
+
+    public Vector2 GetPlayerTurnPosition()
+    {
+        if (selectedStrategy == null)
+        {
+            selectedStrategy = strategyOrder[0];
+        }
+        return new Vector2(selectedStrategy.PlayerTurnXCoordinate, selectedStrategy.PlayerTurnYCoordinate);
     }
 }

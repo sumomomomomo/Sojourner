@@ -8,4 +8,8 @@ public class BattleStrategyObject : ScriptableObject
     [SerializeField] private UnityEvent onExecuteStrategy;
     public string StrategyName => strategyName;
     public UnityEvent OnExecuteStrategy => onExecuteStrategy;
+    [SerializeField] private float playerTurnXCoordinate;
+    public float PlayerTurnXCoordinate => playerTurnXCoordinate;
+    [SerializeField] private float playerTurnYCoordinate;
+    public float PlayerTurnYCoordinate => playerTurnYCoordinate;
 }

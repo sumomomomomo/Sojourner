@@ -4,11 +4,12 @@ using System.Data.Common;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerBattle : MonoBehaviour
+public class PlayerMovementHandler : MonoBehaviour
 {
     [SerializeField] private FloatReference playerSpeed;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoolReference isFreezeTurn;
+    [SerializeField] private BoolReference isPlayerTurn;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class PlayerBattle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isFreezeTurn.Value)
+        if (isFreezeTurn.Value || isPlayerTurn.Value)
         {
             rb.velocity = new Vector2(0, 0);
         }

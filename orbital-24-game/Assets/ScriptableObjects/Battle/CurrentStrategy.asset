@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strategyOrder:
   - {fileID: 11400000, guid: a353d6515cc4c55469b7a9e27feed514, type: 2}
-  - {fileID: 11400000, guid: 92cfeb2e44f9444478220644c847ec28, type: 2}
   - {fileID: 11400000, guid: 7b8b5d28b1855544cbd82730c1a8eeae, type: 2}
+  - {fileID: 11400000, guid: 92cfeb2e44f9444478220644c847ec28, type: 2}
   - {fileID: 11400000, guid: 3f8e7a99107bf5b49b68d5d49a6956b7, type: 2}
-  selectedStrategy: {fileID: 11400000, guid: a353d6515cc4c55469b7a9e27feed514, type: 2}
-  strategyIndex: 0
+  selectedStrategy: {fileID: 11400000, guid: 7b8b5d28b1855544cbd82730c1a8eeae, type: 2}
+  strategyIndex: 1

@@ -5,12 +5,26 @@ using UnityEngine;
 public class BattleStrategyInputHandler : MonoBehaviour
 {
     [SerializeField] private BattleStrategyTrackerObject currentStrategy;
+    [SerializeField] private BoolVariable isPlayerTurn;
+    [SerializeField] private BoolVariable isFreezeTurn;
+    [SerializeField] private GameEventObject onForceChangeTurn;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isPlayerTurn.Value && !isFreezeTurn.Value)
         {
-            currentStrategy.ToNextStrategy();
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                currentStrategy.ToPreviousStrategy();
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                currentStrategy.ToNextStrategy();
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                onForceChangeTurn.Raise();
+            }
         }
     }
 }

@@ -19,6 +19,8 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] private GameEventObject onPlayerTurnStart;
     [SerializeField] private GameEventObject onPlayerTurnEnd;
 
+    [SerializeField] private int startingPlayerTurnTime = 1;
+
     private float currTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
     {
         if (isPlayerTurn)
@@ -33,7 +35,7 @@ public class TurnHandler : MonoBehaviour
         //isPlayerTurn.Value = false;
         //timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, false);
         isPlayerTurn.Value = true;
-        timeLeftToNextTurn.Value = 1;
+        timeLeftToNextTurn.Value = startingPlayerTurnTime;
     }
 
     void Update()
