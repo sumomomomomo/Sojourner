@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b28849729939a84a97eade61c315464, type: 3}
   m_Name: BoundTargetInstructions
   m_EditorClassIdentifier: 
-  playerBoundsTarget: {fileID: 0}
+  playerBoundsTarget: {fileID: 11400000, guid: d8171dc38599f084e901a56681cc83ab, type: 2}
