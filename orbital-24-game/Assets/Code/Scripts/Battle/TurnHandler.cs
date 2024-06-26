@@ -13,6 +13,7 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] private FloatReference timeLeftToNextTurn;
     [SerializeField] private BoolReference isPlayerTurn;
     [SerializeField] private BoolReference isFreezeTurn;
+    [SerializeField] private BoolReference isGameOver;
 
     [SerializeField] private GameEventObject onEnemyTurnStart;
     [SerializeField] private GameEventObject onEnemyTurnEnd;
@@ -38,7 +39,7 @@ public class TurnHandler : MonoBehaviour
 
     void Update()
     {
-        if (!isFreezeTurn.Value)
+        if (!isFreezeTurn.Value && !isGameOver.Value)
         {
             timeLeftToNextTurn.Value -= Time.deltaTime;
             if (timeLeftToNextTurn.Value <= 0)
@@ -64,7 +65,11 @@ public class TurnHandler : MonoBehaviour
         timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, isPlayerTurn.Value);
     }
 
-    // Hardcoded?
-
+    public void OnGameOver()
+    {
+        Debug.Log("OnGameOver");
+        onPlayerTurnEnd.Raise();
+        onEnemyTurnEnd.Raise();
+    }
 
 }
