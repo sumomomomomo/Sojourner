@@ -13,8 +13,12 @@ public class BattleStrategyWatcher : MonoBehaviour
     }
 
     private IEnumerator EnableStrategyTextsEnum()
-    {        
-        while (isFreezeTurn.Value) yield return new WaitForSeconds(0.01f);
+    {
+        while (isFreezeTurn.Value) 
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+
         for (int i = 0; i < strategyTexts.Length; i++)
         {
             strategyTexts[i].SetActive(true);
@@ -25,9 +29,14 @@ public class BattleStrategyWatcher : MonoBehaviour
     {
         StartCoroutine(DisableStrategyTextsEnum());
     }
+
     private IEnumerator DisableStrategyTextsEnum()
     {        
-        while (isFreezeTurn.Value) yield return new WaitForSeconds(0.01f);
+        while (isFreezeTurn.Value) 
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+
         for (int i = 0; i < strategyTexts.Length; i++)
         {
             strategyTexts[i].SetActive(false);

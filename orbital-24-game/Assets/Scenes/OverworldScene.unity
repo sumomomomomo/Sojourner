@@ -802,6 +802,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389735436}
   m_CullTransparentMesh: 1
+--- !u!1 &417728897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417728899}
+  - component: {fileID: 417728898}
+  m_Layer: 0
+  m_Name: BattleHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &417728898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417728897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe44d1029f8bb340a8d8140fcbc2fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oninitiateBattle: {fileID: 11400000, guid: 52cb88ffe43cfe24a98ebf780aa3d07b, type: 2}
+--- !u!4 &417728899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417728897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.19039792, y: -0.92320067, z: -0.10940151}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463686180
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,17 +1011,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50bd0f0c4c9614ea922d67090b2ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 61d7b2df8cbd83d45a38725a98428b12, type: 2}
+  Event: {fileID: 11400000, guid: 52cb88ffe43cfe24a98ebf780aa3d07b, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 473133369}
         m_TargetAssemblyTypeName: OverworldSceneManager, Assembly-CSharp
         m_MethodName: LoadBattle
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 3103dec79c1f9594ebdd7b0faae02804, type: 2}
-          m_ObjectArgumentAssemblyTypeName: EnemyObject, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: BattleScene
@@ -1004,26 +1049,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 1cd12836d5b9a37448947fef2e4dfa81, type: 2}
-  boundWidth:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 54fc952aaab683141b7c48fc8f3a31af, type: 2}
-  boundHeight:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: d65aa8f5cdfb7ed4d9fe97224f06f25d, type: 2}
-  boundThickness:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: f83bf86b8b85f9445be47c0ccb3d8e69, type: 2}
-  boundOriginXTranslation:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 1d90875857d7bb9439e757b86e40e7ad, type: 2}
-  boundOriginYTranslation:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: d755edfb1d4978946ace8dee02714a95, type: 2}
+  enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
 --- !u!4 &473133370
 Transform:
   m_ObjectHideFlags: 0
@@ -7661,3 +7687,4 @@ SceneRoots:
   - {fileID: 347625846}
   - {fileID: 1880032546}
   - {fileID: 2059042289}
+  - {fileID: 417728899}

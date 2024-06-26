@@ -12,6 +12,19 @@ public class BoundUpdater : MonoBehaviour
     [SerializeField] private FloatReference boundOriginYTranslation;
     [SerializeField] private FloatReference boundUpdateAnimationTime;
     [SerializeField] private BoolReference isFreezeTurn;
+
+    public void UpdateBoundsNoAnimation()
+    {
+        float endBw = boundTargetInstructionsObject.PlayerBoundsTarget.BoundWidth;
+        float endBh = boundTargetInstructionsObject.PlayerBoundsTarget.BoundHeight;
+        float endBOXT = boundTargetInstructionsObject.PlayerBoundsTarget.BoundOriginX;
+        float endBOYT = boundTargetInstructionsObject.PlayerBoundsTarget.BoundOriginY;
+
+        boundWidth.Value = endBw;
+        boundHeight.Value = endBh;
+        boundOriginXTranslation.Value = endBOXT;
+        boundOriginYTranslation.Value = endBOYT;
+    }
     public void UpdateBounds()
     {
         Debug.Log("Bounds updated");

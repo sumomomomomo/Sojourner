@@ -21,9 +21,21 @@ MonoBehaviour:
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 61d7b2df8cbd83d45a38725a98428b12, type: 2}
-          m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        - m_Target: {fileID: 11400000, guid: 52cb88ffe43cfe24a98ebf780aa3d07b, type: 2}
+          m_TargetAssemblyTypeName: GameEventObject, Assembly-CSharp
           m_MethodName: Raise
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 3103dec79c1f9594ebdd7b0faae02804, type: 2}
+          m_TargetAssemblyTypeName: EnemyObject, Assembly-CSharp
+          m_MethodName: SetEnemyLoadedTrackerObjectToThis
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
