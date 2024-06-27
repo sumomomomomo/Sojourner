@@ -27,7 +27,7 @@ public class BoundUpdater : MonoBehaviour
     }
     public void UpdateBounds()
     {
-        Debug.Log("Bounds updated");
+        //Debug.Log("Bounds updated");
         if (boundTargetInstructionsObject.PlayerBoundsTarget == null)
         {
             Debug.Log("Update bounds called but no target!");

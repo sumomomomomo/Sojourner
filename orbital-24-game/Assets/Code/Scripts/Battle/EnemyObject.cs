@@ -10,10 +10,10 @@ public class EnemyObject : ScriptableObject
     public string EnemyName => enemyName;
     [SerializeField] private int maxHP;
     public int MaxHP => maxHP;
-    [SerializeField] private GameObject enemyHandlerPrefab;
-    public GameObject EnemyHandlerPrefab => enemyHandlerPrefab;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
+    [SerializeField] private Object _enemyHandlerState;
+    public IEnemyHandlerState EnemyHandlerState => (IEnemyHandlerState) _enemyHandlerState;
     [SerializeField] [TextArea] private string developerComments;
 
     #if UNITY_EDITOR

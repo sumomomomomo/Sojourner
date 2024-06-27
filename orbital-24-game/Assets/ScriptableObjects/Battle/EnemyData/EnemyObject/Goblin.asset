@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51db3602bebaa3c4baefe6ee5a970d60, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: 
+  enemyName: Goblin
+  maxHP: 50
+  enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
+  hasEnemyLoadedTrackerObject: 1
+  _enemyHandlerState: {fileID: 11400000, guid: 78832d7dfb8f93d4d81a278982c49770, type: 2}
+  developerComments: Basic goblin

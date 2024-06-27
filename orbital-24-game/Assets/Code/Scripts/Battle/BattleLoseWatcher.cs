@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverWatcher : MonoBehaviour
+public class BattleLoseWatcher : MonoBehaviour
 {
     [SerializeField] private IntVariable playerHP;
-    [SerializeField] private BoolVariable isGameOver;
+    [SerializeField] private BoolVariable isBattleLose;
     [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private GameEventObject onGameOver;
+    [SerializeField] private GameEventObject onBattleLose;
     void Start()
     {
         gameOverScreen.SetActive(false);
+        isBattleLose.Value = false;
         StartCoroutine(GameOverEnum());
     }
 
@@ -20,8 +21,8 @@ public class GameOverWatcher : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
         }
-        onGameOver.Raise();
-        isGameOver.Value = true;
+        onBattleLose.Raise();
+        isBattleLose.Value = true;
         gameOverScreen.SetActive(true);
     }
 }
