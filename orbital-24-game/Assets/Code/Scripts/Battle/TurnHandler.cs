@@ -52,9 +52,15 @@ public class TurnHandler : MonoBehaviour
 
     public void ChangeTurn()
     {
+        StartCoroutine(ChangeTurnEnum());
+    }
+
+    private IEnumerator ChangeTurnEnum()
+    {
         if (isPlayerTurn.Value) // player -> enemy
         {
             onPlayerTurnEnd.Raise();
+            yield return new WaitForSeconds(1f);
             onEnemyTurnStart.Raise();
         }
         else // enemy -> player

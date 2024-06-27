@@ -31,5 +31,7 @@ public class EnemyHandler : MonoBehaviour
     public void ChangeStateToDefeated()
     {
         currentState = defeatedState;
+        Debug.Log(currentState);
+        Debug.Log("State is now defeated");
     }
 }

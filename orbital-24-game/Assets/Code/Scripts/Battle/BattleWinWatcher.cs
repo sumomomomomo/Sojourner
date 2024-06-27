@@ -13,10 +13,10 @@ public class BattleWinWatcher : MonoBehaviour
     {
         gameWinText.SetActive(false);
         isBattleWin.Value = false;
-        StartCoroutine(GameOverEnum());
+        StartCoroutine(WinEnum());
     }
 
-    private IEnumerator GameOverEnum()
+    private IEnumerator WinEnum()
     {
         while (enemyHP.Value > 0)
         {
