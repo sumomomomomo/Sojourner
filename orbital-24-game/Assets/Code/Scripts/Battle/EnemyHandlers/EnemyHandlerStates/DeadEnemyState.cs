@@ -12,6 +12,6 @@ public class DeadHandlerState : ScriptableObject, IEnemyHandlerState
 
     public void OnEnemyTurnStart(MonoBehaviour monoBehaviour)
     {
-        Debug.Log("EnemyTurnEnd Start");
+        Debug.Log("EnemyTurnStart Dead");
     }
 }
