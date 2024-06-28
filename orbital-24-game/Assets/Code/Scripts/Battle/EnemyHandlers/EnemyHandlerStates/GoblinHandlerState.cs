@@ -22,7 +22,7 @@ public class GoblinHandlerState : ScriptableObject, IEnemyHandlerState
     public void OnEnemyTurnStart(MonoBehaviour monoBehaviour)
     {
         AttackPattern chosenAttack = attackPatterns[Random.Range(0,2)];
-        boundTargetInstructionsObject.PlayerBoundsTarget = chosenAttack.PlayerBoundsTarget;
+        boundTargetInstructionsObject.PlayerBoundsTarget = chosenAttack.PlayerBoundsTarget; // TODO redo?
         onUpdateBounds.Raise();
         monoBehaviour.StartCoroutine(DoAttack(chosenAttack));
     }

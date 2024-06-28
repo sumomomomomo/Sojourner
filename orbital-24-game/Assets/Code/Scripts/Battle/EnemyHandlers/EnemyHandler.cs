@@ -25,13 +25,12 @@ public class EnemyHandler : MonoBehaviour
 
     public void ChangeState(IEnemyHandlerState newState)
     {
+        Debug.Log("State changed from " + currentState + " to " + newState); 
         currentState = newState;
     }
 
     public void ChangeStateToDefeated()
     {
-        currentState = defeatedState;
-        Debug.Log(currentState);
-        Debug.Log("State is now defeated");
+        ChangeState(defeatedState);
     }
 }

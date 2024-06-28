@@ -17,6 +17,7 @@ public class BattleLoseWatcher : MonoBehaviour
 
     private IEnumerator GameOverEnum()
     {
+        yield return new WaitForSeconds(1f);
         while (playerHP.Value > 0)
         {
             yield return new WaitForSeconds(0.01f);

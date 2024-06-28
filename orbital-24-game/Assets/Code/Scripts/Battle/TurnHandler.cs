@@ -31,7 +31,7 @@ public class TurnHandler : MonoBehaviour
     }
     void Start()
     {
-        // TODO always hardcoded for enemy to move first?
+        // Hardcoded
         isPlayerTurn.Value = true;
         timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, false);
         onPlayerTurnStart.Raise();
@@ -60,7 +60,7 @@ public class TurnHandler : MonoBehaviour
         if (isPlayerTurn.Value) // player -> enemy
         {
             onPlayerTurnEnd.Raise();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f); // TODO redo this later
             onEnemyTurnStart.Raise();
         }
         else // enemy -> player

@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8606584d61d423b47a2f55046444478e, type: 3}
-  m_Name: OnInventoryClicked
+  m_Name: OnInventoryOpened
   m_EditorClassIdentifier: 

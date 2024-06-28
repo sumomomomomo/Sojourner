@@ -10,6 +10,10 @@ public class EnemyObject : ScriptableObject
     public string EnemyName => enemyName;
     [SerializeField] private int maxHP;
     public int MaxHP => maxHP;
+    [SerializeField] private int def;
+    public int Def => def;
+    [SerializeField] private int atk;
+    public int Atk => atk;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
     [SerializeField] private Object _enemyHandlerState;

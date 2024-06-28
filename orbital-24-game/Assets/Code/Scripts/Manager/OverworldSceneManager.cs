@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class OverworldSceneManager : MonoBehaviour
 {
+    [SerializeField] private string mainMenuSceneName = "MainMenuScene"; 
     [SerializeField] private string battleSceneName = "BattleScene"; 
     [SerializeField] private IntReference enemyHP;
     [SerializeField] private IntReference enemyMaxHP;
@@ -26,5 +27,10 @@ public class OverworldSceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.01f);
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }

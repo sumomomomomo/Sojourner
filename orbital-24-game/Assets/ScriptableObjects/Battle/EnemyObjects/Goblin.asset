@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   enemyName: Goblin
-  maxHP: 50
+  maxHP: 10
+  def: 5
+  atk: 5
   enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
   hasEnemyLoadedTrackerObject: 1
   _enemyHandlerState: {fileID: 11400000, guid: 78832d7dfb8f93d4d81a278982c49770, type: 2}

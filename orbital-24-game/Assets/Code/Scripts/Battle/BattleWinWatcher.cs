@@ -18,6 +18,7 @@ public class BattleWinWatcher : MonoBehaviour
 
     private IEnumerator WinEnum()
     {
+        yield return new WaitForSeconds(1f);
         while (enemyHP.Value > 0)
         {
             yield return new WaitForSeconds(0.01f);

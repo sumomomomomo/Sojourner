@@ -1059,6 +1059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpriteRenderer: {fileID: 509369456}
   isFreezeTurn: {fileID: 11400000, guid: c971f046454deb64a8a01146d718cedc, type: 2}
+  isBattleWin: {fileID: 11400000, guid: 9cbf673a6d629914da0bbfc175b53cd1, type: 2}
+  isBattleLose: {fileID: 11400000, guid: d0facc3837488ed4b88160edfff04c3e, type: 2}
 --- !u!1 &327395365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,7 +2172,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 398825992}
         m_TargetAssemblyTypeName: PlayerDamageDealer, Assembly-CSharp
-        m_MethodName: dealDamage
+        m_MethodName: DealDamage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2654,7 +2656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 498.5, y: 280.5}
+  m_AnchoredPosition: {x: 498.49994, y: 280.49988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1030711515
@@ -2891,6 +2893,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEnemy: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
   enemyHandler: {fileID: 1815488900}
+  enemyHP:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
+  enemyAtk:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 4131e62e66a7d394cab2afa40bf454b3, type: 2}
+  enemyDef:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 1e5954384adfee942bf978be35daed29, type: 2}
 --- !u!4 &1324071819
 Transform:
   m_ObjectHideFlags: 0
@@ -3405,6 +3419,7 @@ GameObject:
   - component: {fileID: 1485773493}
   - component: {fileID: 1485773495}
   - component: {fileID: 1485773494}
+  - component: {fileID: 1485773496}
   m_Layer: 5
   m_Name: Enemy Health
   m_TagString: Untagged
@@ -3528,6 +3543,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485773492}
   m_CullTransparentMesh: 1
+--- !u!114 &1485773496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485773492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efde26d4280252b48b9c5b4eec4d0ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealthText: {fileID: 1485773494}
+  enemyHealth:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
+  enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
 --- !u!1 &1501041541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4731,7 +4764,6 @@ GameObject:
   - component: {fileID: 1958097470}
   - component: {fileID: 1958097469}
   - component: {fileID: 1958097468}
-  - component: {fileID: 1958097471}
   m_Layer: 5
   m_Name: Player Health
   m_TagString: Untagged
@@ -4876,27 +4908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958097466}
   m_CullTransparentMesh: 1
---- !u!114 &1958097471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958097466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efde26d4280252b48b9c5b4eec4d0ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHealthText: {fileID: 1485773494}
-  enemyHealth:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
-  enemyMaxHealth:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 1cd12836d5b9a37448947fef2e4dfa81, type: 2}
 --- !u!1 &1997370599
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,12 +5288,12 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1324071819}
   - {fileID: 662513069}
   - {fileID: 509369457}
   - {fileID: 1746862070}
   - {fileID: 164782524}
   - {fileID: 266355630}
   - {fileID: 1997370601}
-  - {fileID: 1324071819}
   - {fileID: 839984071}
   - {fileID: 975379843}

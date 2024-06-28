@@ -7,9 +7,9 @@ public class EnemyHealthWatcher : MonoBehaviour
 {
     [SerializeField] private TMP_Text enemyHealthText;
     [SerializeField] private IntReference enemyHealth;
-    [SerializeField] private IntReference enemyMaxHealth;
+    [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     void Update()
     {
-        enemyHealthText.text = "Enemy: " + enemyHealth.Value + "/" + enemyMaxHealth.Value + " HP";
+        enemyHealthText.text = "Enemy: " + enemyHealth.Value + "/" + enemyLoadedTrackerObject.LoadedEnemy.MaxHP + " HP";
     }
 }
