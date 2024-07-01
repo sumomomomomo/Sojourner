@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b740e9cc6001ea41924f357f648b12a, type: 3}
+  m_Name: CurrentStrategy
+  m_EditorClassIdentifier: 
+  strategyOrder:
+  - {fileID: 11400000, guid: a353d6515cc4c55469b7a9e27feed514, type: 2}
+  - {fileID: 11400000, guid: 7b8b5d28b1855544cbd82730c1a8eeae, type: 2}
+  - {fileID: 11400000, guid: 92cfeb2e44f9444478220644c847ec28, type: 2}
+  - {fileID: 11400000, guid: 3f8e7a99107bf5b49b68d5d49a6956b7, type: 2}
+  selectedStrategy: {fileID: 11400000, guid: 7b8b5d28b1855544cbd82730c1a8eeae, type: 2}
+  strategyIndex: 1

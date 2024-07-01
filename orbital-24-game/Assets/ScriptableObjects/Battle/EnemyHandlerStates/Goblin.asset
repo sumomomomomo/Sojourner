@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e73dcce92e9d14ebf54fa442e0bbde, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: 
+  attackPatterns:
+  - attackPrefab: {fileID: 8244151387994412328, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: d8171dc38599f084e901a56681cc83ab, type: 2}
+  - attackPrefab: {fileID: 1249380028934948399, guid: 2fd9c384222cea94a83f41de076d2ff0, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: b8c1d3b1ed0f8b34dba945751a07c9ea, type: 2}
+  boundTargetInstructionsObject: {fileID: 11400000, guid: 084588809e942614bbb3572d288e6484, type: 2}
+  onUpdateBounds: {fileID: 11400000, guid: 4b31df5d38f1b6244b6410edb4e9cbc2, type: 2}
+  isFreezeTurn:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: c971f046454deb64a8a01146d718cedc, type: 2}
