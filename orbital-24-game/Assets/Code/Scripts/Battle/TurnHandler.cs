@@ -75,15 +75,15 @@ public class TurnHandler : MonoBehaviour
     public void OnBattleLose()
     {
         Debug.Log("OnBattleLose");
-        onPlayerTurnEnd.Raise();
+        //onPlayerTurnEnd.Raise(); //buggy
         onEnemyTurnEnd.Raise();
     }
 
     public void OnBattleWin()
     {
         Debug.Log("OnBattleWin");
-        onPlayerTurnEnd.Raise();
-        onEnemyTurnEnd.Raise();
+        //onPlayerTurnEnd.Raise(); //buggy
+        //onEnemyTurnEnd.Raise();
     }
 
 }

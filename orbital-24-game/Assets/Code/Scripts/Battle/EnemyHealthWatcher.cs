@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class EnemyHealthWatcher : MonoBehaviour
 {
     [SerializeField] private TMP_Text enemyHealthText;

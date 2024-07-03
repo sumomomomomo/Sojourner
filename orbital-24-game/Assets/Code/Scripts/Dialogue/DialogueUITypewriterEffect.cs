@@ -9,8 +9,7 @@ using TMPro;
 /// </summary>
 public class DialogueUITypewriterEffect : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 50f;
+    [SerializeField] private float speed = 50f;
     public Coroutine Run(string textToType, TMP_Text textLabel)
     {
         return StartCoroutine(TypeText(textToType, textLabel));
