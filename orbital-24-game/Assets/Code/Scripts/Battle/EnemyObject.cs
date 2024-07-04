@@ -14,6 +14,10 @@ public class EnemyObject : ScriptableObject
     public int Def => def;
     [SerializeField] private int atk;
     public int Atk => atk;
+    [SerializeField] private int expReward;
+    public int ExpReward => expReward;
+    [SerializeField] private int moneyReward;
+    public int MoneyReward => moneyReward;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
     [SerializeField] private Object _enemyHandlerState;

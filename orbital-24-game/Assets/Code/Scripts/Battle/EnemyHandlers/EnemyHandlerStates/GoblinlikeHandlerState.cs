@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy Handler States/Goblin")]
-public class GoblinHandlerState : ScriptableObject, IEnemyHandlerState
+[CreateAssetMenu(menuName = "Enemy Handler States/Goblinlike")]
+public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
 {
     [SerializeField] private AttackPattern[] attackPatterns;
     [SerializeField] private BoundTargetInstructionsObject boundTargetInstructionsObject;

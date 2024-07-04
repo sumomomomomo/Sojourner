@@ -9,7 +9,7 @@ public class RetryHandler : MonoBehaviour
     private int startingPlayerHP;
     void Start()
     {
-        Debug.Log("RetryHanlder start");
+        Debug.Log("RetryHandler start");
         startingPlayerHP = playerHP.Value;
     }
 

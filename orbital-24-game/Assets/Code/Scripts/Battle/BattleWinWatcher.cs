@@ -7,11 +7,9 @@ public class BattleWinWatcher : MonoBehaviour
 {
     [SerializeField] private IntVariable enemyHP;
     [SerializeField] private BoolVariable isBattleWin;
-    [SerializeField] private GameObject gameWinText;
     [SerializeField] private GameEventObject onBattleWin;
     void Start()
     {
-        gameWinText.SetActive(false);
         isBattleWin.Value = false;
         StartCoroutine(WinEnum());
     }
@@ -23,8 +21,7 @@ public class BattleWinWatcher : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
         }
-        onBattleWin.Raise();
         isBattleWin.Value = true;
-        gameWinText.SetActive(true);
+        onBattleWin.Raise();
     }
 }
