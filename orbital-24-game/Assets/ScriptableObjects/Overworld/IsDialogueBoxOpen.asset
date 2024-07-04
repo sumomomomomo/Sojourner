@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 150ee35f0bca3c543a757ae48b31b7e6, type: 3}
-  m_Name: IsOverworldMenuOpen
+  m_Name: IsDialogueBoxOpen
   m_EditorClassIdentifier: 
   value: 0
-  developerComments: Indicates if overworld menu is open
+  developerComments: True when dialogue box is visible

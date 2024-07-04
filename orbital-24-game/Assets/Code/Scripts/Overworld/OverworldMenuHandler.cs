@@ -7,18 +7,30 @@ public class OverworldMenuHandler : MonoBehaviour
 {
     [SerializeField] private GameObject overworldMenuCanvas;
     [SerializeField] private BoolReference isOverworldMenuOpen;
+    [SerializeField] private OverworldInputHandlerStateObject overworldInputHandlerStateObject;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (overworldInputHandlerStateObject.CanOverworldMenuOpen() && !isOverworldMenuOpen.Value)
         {
-            isOverworldMenuOpen.Value = !isOverworldMenuOpen.Value;
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                isOverworldMenuOpen.Value = !isOverworldMenuOpen.Value;
+            }
         }
+        else if (overworldInputHandlerStateObject.CanOverworldMenuClose() && isOverworldMenuOpen.Value)
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                isOverworldMenuOpen.Value = !isOverworldMenuOpen.Value;
+            }
+        }
+
         if (isOverworldMenuOpen.Value)
         {
             overworldMenuCanvas.SetActive(true);
         }
-        if (!isOverworldMenuOpen.Value)
+        else
         {
             overworldMenuCanvas.SetActive(false);
         }

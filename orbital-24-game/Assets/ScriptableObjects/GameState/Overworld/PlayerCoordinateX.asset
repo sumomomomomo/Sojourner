@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150ee35f0bca3c543a757ae48b31b7e6, type: 3}
-  m_Name: IsOverworldMenuOpen
+  m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
+  m_Name: PlayerCoordinateX
   m_EditorClassIdentifier: 
-  value: 0
-  developerComments: Indicates if overworld menu is open
+  value: 18.017595
+  developerComments: 
