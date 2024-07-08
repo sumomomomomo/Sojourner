@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   enemyName: Goblin
+  spritePrefab: {fileID: 54413684770801189, guid: 428e1aa9598b4444fab5724f0c236aa8, type: 3}
   maxHP: 10
+  currHP: 0
   def: 5
   atk: 5
+  agility: 5
   expReward: 1
   moneyReward: 1
   enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
   hasEnemyLoadedTrackerObject: 1
   _enemyHandlerState: {fileID: 11400000, guid: 78832d7dfb8f93d4d81a278982c49770, type: 2}
-  developerComments: Basic goblin
+  isEnemyDead: 1
+  developerComments: First goblin the player meets

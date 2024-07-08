@@ -7,8 +7,9 @@ using UnityEngine.Events;
 
 public class TurnHandler : MonoBehaviour
 {
+    [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
+
     [SerializeField] private FloatReference minEnemyTurnTime;
-    [SerializeField] private FloatReference enemyAgility;
     [SerializeField] private FloatReference playerAgility;
     [SerializeField] private FloatReference timeLeftToNextTurn;
     [SerializeField] private BoolReference isPlayerTurn;
@@ -33,7 +34,7 @@ public class TurnHandler : MonoBehaviour
     {
         // Hardcoded
         isPlayerTurn.Value = true;
-        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, false);
+        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, false);
         onPlayerTurnStart.Raise();
 
     }
@@ -69,7 +70,7 @@ public class TurnHandler : MonoBehaviour
             onPlayerTurnStart.Raise();
         }
         isPlayerTurn.Value = !isPlayerTurn.Value;
-        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, isPlayerTurn.Value);
+        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, isPlayerTurn.Value);
     }
 
     public void OnBattleLose()
@@ -84,6 +85,10 @@ public class TurnHandler : MonoBehaviour
         Debug.Log("OnBattleWin");
         //onPlayerTurnEnd.Raise(); //buggy
         //onEnemyTurnEnd.Raise();
+
+        // Set enemy flag to be dead
+        enemyLoadedTrackerObject.LoadedEnemy.OnBattleWin();
+
     }
 
 }

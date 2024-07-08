@@ -8,12 +8,18 @@ public class EnemyObject : ScriptableObject
 {
     [SerializeField] private string enemyName;
     public string EnemyName => enemyName;
+    [SerializeField] private GameObject spritePrefab;
+    public GameObject SpritePrefab => spritePrefab;
     [SerializeField] private int maxHP;
     public int MaxHP => maxHP;
+    [SerializeField] private int currHP;
+    public int CurrHP => currHP;
     [SerializeField] private int def;
     public int Def => def;
     [SerializeField] private int atk;
     public int Atk => atk;
+    [SerializeField] private float agility;
+    public float Agility => agility;
     [SerializeField] private int expReward;
     public int ExpReward => expReward;
     [SerializeField] private int moneyReward;
@@ -22,6 +28,7 @@ public class EnemyObject : ScriptableObject
     [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
     [SerializeField] private Object _enemyHandlerState;
     public IEnemyHandlerState EnemyHandlerState => (IEnemyHandlerState) _enemyHandlerState;
+    [SerializeField] private bool isEnemyDead = false;
     [SerializeField] [TextArea] private string developerComments;
 
     #if UNITY_EDITOR
@@ -51,5 +58,10 @@ public class EnemyObject : ScriptableObject
         {
             enemyLoadedTrackerObject.LoadEnemy(this);
         }
+    }
+
+    public void OnBattleWin()
+    {
+        isEnemyDead = true;
     }
 }

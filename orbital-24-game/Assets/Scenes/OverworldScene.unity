@@ -516,6 +516,8 @@ GameObject:
   - component: {fileID: 321787046}
   - component: {fileID: 321787047}
   - component: {fileID: 321787050}
+  - component: {fileID: 321787052}
+  - component: {fileID: 321787051}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -679,6 +681,48 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   developerComments: 
+--- !u!95 &321787051
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321787042}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!320 &321787052
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321787042}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 64970c0b66f88574f900a0eae351d785, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 2834871029178530166, guid: 64970c0b66f88574f900a0eae351d785, type: 2}
+    value: {fileID: 321787051}
+  - key: {fileID: 1261264408762696573, guid: 64970c0b66f88574f900a0eae351d785, type: 2}
+    value: {fileID: 321787042}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &344271638
 GameObject:
   m_ObjectHideFlags: 0
