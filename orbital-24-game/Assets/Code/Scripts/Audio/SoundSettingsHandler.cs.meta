@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6f643e2e6506b5c4d86f9547823a5365
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - isVolumeSettingsInitialized: {fileID: 11400000, guid: eab507229f8d7fb44abab968fd6a86a2, type: 2}
+  - masterVolume: {fileID: 11400000, guid: 0677b7b21ea564841babce01278a11e6, type: 2}
+  - sfxVolume: {fileID: 11400000, guid: eecad6a84d9926a44b3ef7c0d0735475, type: 2}
+  - bgmVolume: {fileID: 11400000, guid: 06f666ed5f67d0046870732c0486a039, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
