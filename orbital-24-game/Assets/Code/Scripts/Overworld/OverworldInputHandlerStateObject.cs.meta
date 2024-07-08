@@ -3,7 +3,11 @@ guid: e17d5bcf306b2674780bfdc0e227ff99
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - isDialogueBoxOpen: {fileID: 11400000, guid: 8187f1687aa86f543ab1f76943300517, type: 2}
+  - isInventoryOpen: {fileID: 11400000, guid: 0e72b97b5e275714f84828d46d8bec83, type: 2}
+  - isOverworldMenuOpen: {fileID: 11400000, guid: c617284f430453d4b9cad028e4e363b7, type: 2}
+  - isCutscenePlaying: {fileID: 11400000, guid: b7f7d90f7d16626429b658c43d3bbc04, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

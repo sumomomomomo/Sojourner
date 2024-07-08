@@ -16,4 +16,4 @@ MonoBehaviour:
   developerComments: 'Overworld scene should set this to the desired enemy
 
     EnemyLoader
-    will read this and instantiate everything'
+    will read this and instantiate everything on enemy loaded'
