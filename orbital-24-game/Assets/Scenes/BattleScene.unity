@@ -1050,7 +1050,7 @@ Transform:
   m_GameObject: {fileID: 266355629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.38, z: -1}
+  m_LocalPosition: {x: 0, y: -1.57, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1639,8 +1639,8 @@ Transform:
   m_GameObject: {fileID: 461050882}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.515, z: 0}
-  m_LocalScale: {x: 5.26, y: 0.21, z: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 15.39, y: 0.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -2531,6 +2531,7 @@ GameObject:
   - component: {fileID: 929903703}
   - component: {fileID: 929903705}
   - component: {fileID: 929903704}
+  - component: {fileID: 929903706}
   m_Layer: 0
   m_Name: PlayerOnTakeDamageSoundHandler
   m_TagString: Untagged
@@ -2678,6 +2679,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &929903706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929903702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71f5f36009e2324e97a0e90c7d913b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeGetter: {fileID: 11400000, guid: 25a9fe0659790ad4f94ab09e1e0ad71f, type: 2}
+  audioSource: {fileID: 929903705}
+  isSfx: 1
 --- !u!1 &975379841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,8 +3634,8 @@ Transform:
   m_GameObject: {fileID: 1436820575}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.525, y: 0, z: 0}
-  m_LocalScale: {x: 0.21, y: 5.2400002, z: 1}
+  m_LocalPosition: {x: 7.59, y: 0, z: 0}
+  m_LocalScale: {x: 0.21, y: 5.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -3806,7 +3822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enemy: 10/10 HP'
+  m_text: 'Enemy: -17/10 HP'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4337,8 +4353,8 @@ Transform:
   m_GameObject: {fileID: 1751715096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.525, y: 0, z: 0}
-  m_LocalScale: {x: 0.21, y: 5.2400002, z: 1}
+  m_LocalPosition: {x: -7.59, y: 0, z: 0}
+  m_LocalScale: {x: 0.21, y: 5.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -5307,7 +5323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player: 0/20 HP'
+  m_text: 'Player: 2/20 HP'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5632,8 +5648,8 @@ Transform:
   m_GameObject: {fileID: 2067505879}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.515, z: 0}
-  m_LocalScale: {x: 5.26, y: 0.21, z: 1}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalScale: {x: 15.39, y: 0.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}

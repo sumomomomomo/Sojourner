@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
   m_Name: BGMVolume
   m_EditorClassIdentifier: 
-  value: 1
+  value: 0.58
   developerComments: Set in main menu
