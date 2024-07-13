@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventListener : MonoBehaviour
+public class CutsceneEventListener : MonoBehaviour
 {
-    [SerializeField] private GameEventObject Event;
+    [SerializeField] private CutsceneEventObject Event;
     [SerializeField] private UnityEvent Response;
     [SerializeField] [TextArea] private string developerComments;
 
@@ -17,8 +17,8 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListener(this); 
     }
 
-    public void OnEventRaised()
+    public void OnStartCutscene()
     { 
-        Response.Invoke(); 
+        Response.Invoke();
     }
 }
