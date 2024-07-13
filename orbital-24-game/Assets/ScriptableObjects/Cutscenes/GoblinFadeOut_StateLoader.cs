@@ -6,6 +6,7 @@ public class GoblinFadeOut_StateLoader : MonoBehaviour
 {
     [SerializeField] private CutsceneEventSequenceObject cutsceneEventSequenceObject;
     [SerializeField] private GameObject goblin;
+    [SerializeField] [TextArea] private string developerComments;
     void Start()
     {
         if (cutsceneEventSequenceObject.IsCutsceneFinished)

@@ -575,6 +575,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutsceneEventSequenceObject: {fileID: 11400000, guid: ebc7cff814146fa49811ab039742be58, type: 2}
   goblin: {fileID: 321787042}
+  developerComments: 'Checks if GoblinFadeOut has been performed before
+
+    If yes,
+    disable goblin'
 --- !u!1 &277634894
 GameObject:
   m_ObjectHideFlags: 0
