@@ -24,5 +24,7 @@ MonoBehaviour:
   enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
   hasEnemyLoadedTrackerObject: 1
   _enemyHandlerState: {fileID: 11400000, guid: 78832d7dfb8f93d4d81a278982c49770, type: 2}
-  isEnemyDead: 1
+  isEnemyDead: 0
+  onWinBackloggedCutsceneSequenceObject: {fileID: 11400000, guid: f96d38d4077373543b495af8da115029, type: 2}
+  onWinCutsceneSequenceObject: {fileID: 11400000, guid: ebc7cff814146fa49811ab039742be58, type: 2}
   developerComments: First goblin the player meets

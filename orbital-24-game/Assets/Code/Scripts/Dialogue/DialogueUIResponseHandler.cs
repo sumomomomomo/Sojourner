@@ -23,16 +23,18 @@ public class DialogueUIResponseHandler : MonoBehaviour
     public void ShowResponses(DialogueResponse[] responses) 
     {
         float responseBoxHeight = 0;
+        List<GameObject> generatedButtons = new();
 
         for (int i = 0; i < responses.Length; i++)
         {
             DialogueResponse response = responses[i];
             GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
+            generatedButtons.Add(responseButton);
             responseButton.SetActive(true);
             responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
             responseButton.GetComponent<Button>()
                 .onClick
-                .AddListener(() => OnPickedResponse(response));
+                .AddListener(() => OnPickedResponse(response, generatedButtons));
 
             responseBoxHeight += responseButtonTemplate.sizeDelta.y;
         }
@@ -41,8 +43,12 @@ public class DialogueUIResponseHandler : MonoBehaviour
         responseBox.gameObject.SetActive(true);
     }
 
-    private void OnPickedResponse(DialogueResponse response)
+    private void OnPickedResponse(DialogueResponse response, List<GameObject> generatedButtons)
     {
+        foreach (GameObject generatedButton in generatedButtons)
+        {
+            Destroy(generatedButton);
+        }
         responseBox.gameObject.SetActive(false);
 
         // Show new dialogue and call associated event at the same time

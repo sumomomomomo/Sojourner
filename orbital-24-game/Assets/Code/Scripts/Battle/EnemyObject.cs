@@ -29,6 +29,8 @@ public class EnemyObject : ScriptableObject
     [SerializeField] private Object _enemyHandlerState;
     public IEnemyHandlerState EnemyHandlerState => (IEnemyHandlerState) _enemyHandlerState;
     [SerializeField] private bool isEnemyDead = false;
+    [SerializeField] private BackloggedCutsceneSequenceObject onWinBackloggedCutsceneSequenceObject;
+    [SerializeField] private CutsceneEventSequenceObject onWinCutsceneSequenceObject;
     [SerializeField] [TextArea] private string developerComments;
 
     #if UNITY_EDITOR
@@ -62,6 +64,10 @@ public class EnemyObject : ScriptableObject
 
     public void OnBattleWin()
     {
+        if (onWinBackloggedCutsceneSequenceObject != null && onWinCutsceneSequenceObject != null)
+        {
+            onWinBackloggedCutsceneSequenceObject.LoadCutsceneEventSequence(onWinCutsceneSequenceObject);
+        }
         isEnemyDead = true;
     }
 }
