@@ -28,7 +28,7 @@ public class DialogueUIResponseHandler : MonoBehaviour
         for (int i = 0; i < responses.Length; i++)
         {
             DialogueResponse response = responses[i];
-            GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
+            GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer); // TODO change to object pool pattern
             generatedButtons.Add(responseButton);
             responseButton.SetActive(true);
             responseButton.GetComponent<TMP_Text>().text = response.ResponseText;

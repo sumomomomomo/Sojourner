@@ -8,8 +8,6 @@ public class OverworldSceneManager : MonoBehaviour
 {
     [SerializeField] private string mainMenuSceneName = "MainMenuScene"; 
     [SerializeField] private string battleSceneName = "BattleScene"; 
-    [SerializeField] private IntReference enemyHP;
-    [SerializeField] private IntReference enemyMaxHP;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     public void LoadBattle()
     {
