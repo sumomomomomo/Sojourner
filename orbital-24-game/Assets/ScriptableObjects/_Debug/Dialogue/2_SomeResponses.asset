@@ -10,9 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd2730ccfc0da9f4b98468244e346f67, type: 3}
-  m_Name: 1_NoResponses
+  m_Name: 2_SomeResponses
   m_EditorClassIdentifier: 
   dialogue:
-  - The quick brown fox
-  - Jumps over the lazy dog
-  responses: []
+  - 'There should be some responses here?
+
+    Second line...
+
+    Third line.'
+  - But not implemented yet.
+  responses:
+  - responseText: Really?
+    nextDialogue: {fileID: 11400000, guid: c12b9e5e2b794944eb1d80d1ce62f543, type: 2}
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls: []

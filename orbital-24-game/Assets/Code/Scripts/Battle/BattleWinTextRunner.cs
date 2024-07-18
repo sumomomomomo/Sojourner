@@ -24,7 +24,11 @@ public class BattleWinTextRunner : MonoBehaviour
         for (int i = 0; i < textToDisplay.Length; i++)
         {
             string dialogue = textToDisplay[i];
-            yield return typewriterEffect.Run(dialogue, textLabel);
+            typewriterEffect.Run(dialogue, textLabel);
+            while (typewriterEffect.IsRunning)
+            {
+                yield return null;
+            }
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
 
