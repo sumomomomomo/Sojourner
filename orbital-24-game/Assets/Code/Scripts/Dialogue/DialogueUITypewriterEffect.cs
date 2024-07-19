@@ -6,13 +6,14 @@ using TMPro;
 
 /// <summary>
 /// Composed under DialogueUI. Handles modifying TMP_Text.
-/// From Semag Games
+/// Referenced from Semag Games
 /// </summary>
 public class DialogueUITypewriterEffect : MonoBehaviour
 {
     [SerializeField] private float speed = 50f;
 
     public bool IsRunning { get; private set; }
+    public bool IsTalking { get; private set; }
 
     private readonly Dictionary<HashSet<char>, float> punctuations = new()
     {
@@ -31,11 +32,13 @@ public class DialogueUITypewriterEffect : MonoBehaviour
     {
         StopCoroutine(typingCoroutine);
         IsRunning = false;
+        IsTalking = false;
     }
 
     private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
         IsRunning = true;
+        IsTalking = true;
 
         textLabel.text = string.Empty;
 
@@ -51,6 +54,7 @@ public class DialogueUITypewriterEffect : MonoBehaviour
             charIndex = Mathf.FloorToInt(t);
             charIndex = Mathf.Clamp(charIndex, 0, textToType.Length);
 
+
             // Handle for pauses when punctuation is within the deltaTime substring
             for (int i = lastCharIndex; i < charIndex; i++)
             {
@@ -59,13 +63,18 @@ public class DialogueUITypewriterEffect : MonoBehaviour
 
                 if (IsPunctuation(textToType[i], out float waitTime) && !isLastChar && !IsPunctuation(textToType[i + 1], out _))
                 {
+                    IsTalking = false;
                     yield return new WaitForSeconds(waitTime);
+                    IsTalking = true;
                 }
             }
+
+            IsTalking = true;
 
             yield return null;
         }
         IsRunning = false;
+        IsTalking = false;
     }
 
     private bool IsPunctuation(char character, out float waitTime)

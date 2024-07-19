@@ -14,12 +14,11 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private BoolVariable isDialogueBoxOpen;
 
-    private DialogueUIResponseHandler responseHandler;
-    private DialogueUITypewriterEffect typewriterEffect;
+    [SerializeField] private DialogueUIResponseHandler responseHandler;
+    [SerializeField] private DialogueUITypewriterEffect typewriterEffect;
+    [SerializeField] private DialogueUITypewriterEffectSound typewriterEffectSound;
     void Start()
     {
-        typewriterEffect = GetComponent<DialogueUITypewriterEffect>();
-        responseHandler = GetComponent<DialogueUIResponseHandler>();
         CloseDialogueBox();
     }
 
@@ -63,6 +62,10 @@ public class DialogueUI : MonoBehaviour
     private IEnumerator RunTypingEffect(string dialogue)
     {
         typewriterEffect.Run(dialogue, textLabel);
+        if (typewriterEffectSound != null)
+        {
+            typewriterEffectSound.Run();
+        }
         
         while (typewriterEffect.IsRunning)
         {
