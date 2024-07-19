@@ -10,21 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd2730ccfc0da9f4b98468244e346f67, type: 3}
-  m_Name: 2_SomeResponses
+  m_Name: 4_2_no
   m_EditorClassIdentifier: 
   dialogue:
-  - 'There should be some responses here?
-
-    Second line...
-
-    Third line.'
-  - But not implemented yet.
-  responses:
-  - responseText: Really?
-    nextDialogue: {fileID: 11400000, guid: c12b9e5e2b794944eb1d80d1ce62f543, type: 2}
-    onPickedResponse:
-      m_PersistentCalls:
-        m_Calls: []
+  - '* You said no.'
+  responses: []
   dialogueSpritePairs:
-  - leftSprite: {fileID: 0}
-    rightSprite: {fileID: 0}
+  - dialogueSpriteBehaviour: {fileID: 11400000, guid: 280d30920ebe4ce49be898a5effedf61, type: 2}
+    leftSprite: {fileID: 21300000, guid: cc0d72110bb5cc1438af938ed9ccb63f, type: 3}
+    rightSprite: {fileID: 21300000, guid: 7663cd2c84552be43ba6c55a19957cca, type: 3}
+  talkingSound: {fileID: 0}

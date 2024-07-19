@@ -17,6 +17,8 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private DialogueUIResponseHandler responseHandler;
     [SerializeField] private DialogueUITypewriterEffect typewriterEffect;
     [SerializeField] private DialogueUITypewriterEffectSound typewriterEffectSound;
+
+    [SerializeField] private DialogueUISpriteHandler spriteHandler;
     void Start()
     {
         CloseDialogueBox();
@@ -24,8 +26,14 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
+        if (dialogueObject == null)
+        {
+            CloseDialogueBox();
+            return;
+        }
         isDialogueBoxOpen.Value = true;
         dialogueBox.SetActive(true);
+
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
@@ -33,6 +41,10 @@ public class DialogueUI : MonoBehaviour
     {
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
+            if (dialogueObject.HasSprites)
+            {
+                spriteHandler.ShowSprites(dialogueObject.DialogueSpritePairs[i]);
+            }
             string dialogue = dialogueObject.Dialogue[i];
 
             yield return RunTypingEffect(dialogue);
@@ -80,6 +92,7 @@ public class DialogueUI : MonoBehaviour
 
     private void CloseDialogueBox()
     {
+        spriteHandler.HideSprites();
         isDialogueBoxOpen.Value = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
