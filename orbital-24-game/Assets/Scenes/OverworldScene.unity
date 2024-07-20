@@ -1424,14 +1424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuSceneName: MainMenuScene
   battleSceneName: BattleScene
-  enemyHP:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
-  enemyMaxHP:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 1cd12836d5b9a37448947fef2e4dfa81, type: 2}
   enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
 --- !u!4 &473133370
 Transform:
@@ -1849,7 +1841,7 @@ Transform:
   m_GameObject: {fileID: 518114472}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.05, z: 0}
+  m_LocalPosition: {x: -70, y: -2.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36432,6 +36424,8 @@ MonoBehaviour:
   responseBox: {fileID: 344271639}
   responseButtonTemplate: {fileID: 1965486336}
   responseContainer: {fileID: 778394332}
+  currResponseIndex: {fileID: 0}
+  spacebarWatcher: {fileID: 0}
 --- !u!114 &1783580597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36447,6 +36441,10 @@ MonoBehaviour:
   textLabel: {fileID: 2078080613}
   dialogueBox: {fileID: 1231944304}
   isDialogueBoxOpen: {fileID: 11400000, guid: 8187f1687aa86f543ab1f76943300517, type: 2}
+  responseHandler: {fileID: 0}
+  typewriterEffect: {fileID: 0}
+  typewriterEffectSound: {fileID: 0}
+  spriteHandler: {fileID: 0}
 --- !u!1 &1785865594
 GameObject:
   m_ObjectHideFlags: 0
