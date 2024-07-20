@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
-  m_Name: BGMVolume
+  m_Name: TimeLeftForCurrentTurnMax
   m_EditorClassIdentifier: 
-  value: 0
-  developerComments: Set in main menu
+  value: 10
+  developerComments: Number of seconds the turn started with

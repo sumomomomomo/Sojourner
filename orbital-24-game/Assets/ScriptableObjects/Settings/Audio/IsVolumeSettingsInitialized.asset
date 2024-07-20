@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150ee35f0bca3c543a757ae48b31b7e6, type: 3}
   m_Name: IsVolumeSettingsInitialized
   m_EditorClassIdentifier: 
-  value: 0
+  value: 1
   developerComments: 

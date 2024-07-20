@@ -9,9 +9,9 @@ public class BattleState : ScriptableObject
     [SerializeField] private BoolVariable isFreezeTurn;
     [SerializeField] private BoolVariable isBattleLose;
     [SerializeField] private BoolVariable isBattleWin;
-
     [SerializeField] private BoolVariable isPlayerDefending;
     [SerializeField] private BoolVariable isPlayerInvulnerable;
+    [SerializeField] private BoolVariable isChangeTurnExecuting;
 
     public void SetToPlayerTurn()
     {
@@ -24,7 +24,7 @@ public class BattleState : ScriptableObject
 
     public bool IsTurnHandlerActive()
     {
-        return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value;
+        return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value && !isChangeTurnExecuting.Value;
     }
 
     public bool IsPlayerTurn()
@@ -57,7 +57,7 @@ public class BattleState : ScriptableObject
         return isFreezeTurn.Value || isPlayerTurn.Value;
     }
 
-    public void ChangeTurn()
+    public void FlipIsPlayerTurn()
     {
         isPlayerTurn.Value = !isPlayerTurn.Value;
     }
@@ -85,5 +85,15 @@ public class BattleState : ScriptableObject
     public void SetFreezeTurn(bool b)
     {
         isFreezeTurn.Value = b;
+    }
+
+    public void OnStartChangeTurn()
+    {
+        isChangeTurnExecuting.Value = true;
+    }
+
+    public void OnEndChangeTurn()
+    {
+        isChangeTurnExecuting.Value = false;
     }
 }

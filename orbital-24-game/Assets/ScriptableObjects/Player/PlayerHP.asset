@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2b6d82d256f8740ac5476ce1589f9c, type: 3}
   m_Name: PlayerHP
   m_EditorClassIdentifier: 
-  value: 5
+  value: 19
   developerComments: Current Player HP
