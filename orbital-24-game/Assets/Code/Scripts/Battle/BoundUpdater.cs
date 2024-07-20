@@ -52,7 +52,7 @@ public class BoundUpdater : MonoBehaviour
 
         battleState.SetFreezeTurn(true);
 
-        yield return CoroutineUtils.Lerp(buat, t=> {
+        yield return CoroutineUtils.Lerp(buat, t => {
             boundWidth.Value = Mathf.Lerp(startBw, endBw, t);
             boundHeight.Value = Mathf.Lerp(startBh, endBh, t);
             boundOriginXTranslation.Value = Mathf.Lerp(startBOXT, endBOXT, t);

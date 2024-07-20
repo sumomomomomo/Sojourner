@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Battle State")]
 public class BattleState : ScriptableObject
 {
+    [SerializeField] private FloatVariable playerDamageAnimationLength;
+    public float PlayerDamageAnimationLength => playerDamageAnimationLength.Value;
+
     [SerializeField] private BoolVariable isPlayerTurn;
     [SerializeField] private BoolVariable isFreezeTurn;
     [SerializeField] private BoolVariable isBattleLose;
@@ -12,14 +15,30 @@ public class BattleState : ScriptableObject
     [SerializeField] private BoolVariable isPlayerDefending;
     [SerializeField] private BoolVariable isPlayerInvulnerable;
     [SerializeField] private BoolVariable isChangeTurnExecuting;
+    [SerializeField] private BoolVariable isEnemyDamageAnimationPlaying;
+
+    public void ResetAllFlags()
+    {
+        isFreezeTurn.Value = false;
+        isBattleLose.Value = false;
+        isBattleWin.Value = false;
+        isPlayerDefending.Value = false;
+        isPlayerInvulnerable.Value = false;
+        isChangeTurnExecuting.Value = false;
+        isEnemyDamageAnimationPlaying.Value = false;
+    }
 
     public void SetToPlayerTurn()
     {
         isPlayerTurn.Value = true;
     }
-    public bool CanStartTurn()
+    public bool CanStartPlayerTurn()
     {
         return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value;
+    }
+    public bool CanStartEnemyTurn()
+    {
+        return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value && !isEnemyDamageAnimationPlaying.Value;
     }
 
     public bool IsTurnHandlerActive()
@@ -57,6 +76,11 @@ public class BattleState : ScriptableObject
         return isFreezeTurn.Value || isPlayerTurn.Value;
     }
 
+    public bool IsEnemyDamageAnimationPlaying()
+    {
+        return isEnemyDamageAnimationPlaying.Value;
+    }
+
     public void FlipIsPlayerTurn()
     {
         isPlayerTurn.Value = !isPlayerTurn.Value;
@@ -87,6 +111,11 @@ public class BattleState : ScriptableObject
         isFreezeTurn.Value = b;
     }
 
+    public void SetEnemyDamageAnimationPlaying(bool b)
+    {
+        isEnemyDamageAnimationPlaying.Value = b;
+    }
+
     public void OnStartChangeTurn()
     {
         isChangeTurnExecuting.Value = true;
@@ -96,4 +125,5 @@ public class BattleState : ScriptableObject
     {
         isChangeTurnExecuting.Value = false;
     }
+
 }

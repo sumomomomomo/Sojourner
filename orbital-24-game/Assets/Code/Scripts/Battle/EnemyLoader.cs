@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class EnemyLoader : MonoBehaviour
 {
+    [SerializeField] private BattleState battleState;
     [SerializeField] private EnemyLoadedTrackerObject currentEnemy;
     [SerializeField] private EnemyHandler enemyHandler;
     [SerializeField] private IntReference enemyHP;
@@ -14,8 +15,12 @@ public class EnemyLoader : MonoBehaviour
     {
         if (currentEnemy != null) 
         {
+            // Reset Battle State flags
+            battleState.ResetAllFlags();
+
             // Init enemy health
             enemyHP.Value = currentEnemy.LoadedEnemy.MaxHP;
+            currentEnemy.LoadedEnemy.SetCurrHP(enemyHP.Value);
 
             // HARDCODED TODO: account for statuses that affect atk/def
             enemyAtk.Value = currentEnemy.LoadedEnemy.Atk;

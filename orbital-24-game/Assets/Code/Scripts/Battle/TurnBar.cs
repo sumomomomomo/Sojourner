@@ -12,12 +12,21 @@ public class TurnBar : MonoBehaviour
     [SerializeField] private BattleState battleState;
 
     [SerializeField] private GameObject turnBarText;
+    [SerializeField] private Animator turnBarTextAnimator;
 
     private void Update()
     {
         if (battleState.IsPlayerTurn())
         {
             turnBarText.SetActive(true);
+            if (timeLeftForTurn.Value <= timeLeftForTurnMax.Value / 2)
+            {
+                turnBarTextAnimator.Play("Act Blink");
+            }
+            else
+            {
+                turnBarTextAnimator.Play("Default");
+            }
             slider.maxValue = timeLeftForTurnMax.Value;
             slider.value = timeLeftForTurn.Value;
         }

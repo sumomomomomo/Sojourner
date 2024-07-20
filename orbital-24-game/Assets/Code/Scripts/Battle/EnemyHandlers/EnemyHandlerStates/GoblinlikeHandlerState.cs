@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Enemy Handler States/Goblinlike")]
 public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
@@ -12,7 +13,19 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     [SerializeField] private EnemyObject enemyObject;
     [SerializeField] private GameObject winTextPrefab;
     private List<GameObject> instantiatedObjects = new();
-    private GameObject spritePrefab;
+    private GameObject spriteObject;
+    private GameObject healthBarSliderCanvasObject;
+    private EnemyHealthBar enemyHealthBar;
+    public void OnBattleStart(MonoBehaviour monoBehaviour)
+    {
+        // instantiate enemy sprite
+        spriteObject = Instantiate(enemyObject.SpritePrefab);
+
+        healthBarSliderCanvasObject = Instantiate(enemyObject.HealthBarPrefab);
+        enemyHealthBar = healthBarSliderCanvasObject.GetComponentInChildren<EnemyHealthBar>();
+        enemyHealthBar.SetEnemyObject(enemyObject);
+        enemyHealthBar.Hide();
+    }
     public void OnEnemyTurnEnd(MonoBehaviour monoBehaviour)
     {
         for (int i = 0; i < instantiatedObjects.Count; i++)
@@ -41,17 +54,34 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         instantiatedObjects.Add(Instantiate(attackPattern.AttackPrefab));
     }
 
-    public void OnBattleStart(MonoBehaviour monoBehaviour)
-    {
-        // instantiate enemy sprite
-        spritePrefab = Instantiate(enemyObject.SpritePrefab);
-    }
-
     public void OnPlayerWin(MonoBehaviour monoBehaviour)
     {
         // sprite fades away
-        Destroy(spritePrefab);
+        Destroy(spriteObject);
+        Destroy(healthBarSliderCanvasObject);
         // wintext appears
         Instantiate(winTextPrefab);
+    }
+
+    public void OnTakeDamage(MonoBehaviour monoBehaviour, IntVariable enemyHP, BattleState battleState)
+    {
+        battleState.SetEnemyDamageAnimationPlaying(true);
+        monoBehaviour.StartCoroutine(AnimateDamageTaken(enemyHP, battleState));
+    }
+
+    private IEnumerator AnimateDamageTaken(IntVariable enemyHP, BattleState battleState)
+    {
+        enemyHealthBar.Show();
+        float beforeHP = enemyObject.CurrHP;
+        float afterHP = enemyHP.Value;
+        yield return CoroutineUtils.Lerp(battleState.PlayerDamageAnimationLength, t => {
+            enemyObject.SetCurrHP(Mathf.Lerp(beforeHP, afterHP, t));
+        });
+        enemyObject.SetCurrHP(enemyHP.Value);
+
+        yield return new WaitForSeconds(1f);
+
+        battleState.SetEnemyDamageAnimationPlaying(false);
+        enemyHealthBar.Hide();
     }
 }

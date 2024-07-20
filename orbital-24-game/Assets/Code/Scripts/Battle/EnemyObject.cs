@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Battle/EnemyObject")]
 public class EnemyObject : ScriptableObject
@@ -10,10 +11,12 @@ public class EnemyObject : ScriptableObject
     public string EnemyName => enemyName;
     [SerializeField] private GameObject spritePrefab;
     public GameObject SpritePrefab => spritePrefab;
+    [SerializeField] private GameObject healthBarPrefab;
+    public GameObject HealthBarPrefab => healthBarPrefab;
     [SerializeField] private int maxHP;
     public int MaxHP => maxHP;
-    [SerializeField] private int currHP;
-    public int CurrHP => currHP;
+    [SerializeField] private float currHP;
+    public float CurrHP => currHP;
     [SerializeField] private int def;
     public int Def => def;
     [SerializeField] private int atk;
@@ -69,5 +72,10 @@ public class EnemyObject : ScriptableObject
             onWinBackloggedCutsceneSequenceObject.LoadCutsceneEventSequence(onWinCutsceneSequenceObject);
         }
         isEnemyDead = true;
+    }
+
+    public void SetCurrHP(float newHP)
+    {
+        currHP = newHP;
     }
 }

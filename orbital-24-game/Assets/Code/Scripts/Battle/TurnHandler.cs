@@ -20,6 +20,8 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] private GameEventObject onPlayerTurnStart;
     [SerializeField] private GameEventObject onPlayerTurnEnd;
 
+    [SerializeField] private BattleWinWatcher battleWinWatcher;
+
     private float currTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
     {
         if (isPlayerTurn)
@@ -68,7 +70,6 @@ public class TurnHandler : MonoBehaviour
         if (battleState.IsPlayerTurn()) // player -> enemy
         {
             onPlayerTurnEnd.Raise();
-            yield return new WaitForSeconds(0.5f); // TODO redo this later
             yield return StartEnemyTurnWhenPossible();
         }
         else // enemy -> player
@@ -83,7 +84,7 @@ public class TurnHandler : MonoBehaviour
 
     private IEnumerator StartPlayerTurnWhenPossible()
     {
-        while (!battleState.CanStartTurn())
+        while (!battleState.CanStartPlayerTurn())
         {
             yield return null;
         }
@@ -92,11 +93,14 @@ public class TurnHandler : MonoBehaviour
 
     private IEnumerator StartEnemyTurnWhenPossible()
     {
-        while (!battleState.CanStartTurn())
+        while (!battleState.CanStartEnemyTurn())
         {
             yield return null;
         }
-        onEnemyTurnStart.Raise();
+        if (!battleWinWatcher.ForceCheckBattleWin())
+        {
+            onEnemyTurnStart.Raise();
+        }
     }
 
     public void OnBattleLose()

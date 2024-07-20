@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a79bd68291302944975511fb7ad3b67, type: 3}
   m_Name: BattleState
   m_EditorClassIdentifier: 
+  playerDamageAnimationLength: {fileID: 11400000, guid: 4254c90130b36464eb74f20d3b8964a7, type: 2}
   isPlayerTurn: {fileID: 11400000, guid: f89aa55e90f341740982641e28251cf8, type: 2}
   isFreezeTurn: {fileID: 11400000, guid: c971f046454deb64a8a01146d718cedc, type: 2}
   isBattleLose: {fileID: 11400000, guid: d0facc3837488ed4b88160edfff04c3e, type: 2}
@@ -19,3 +20,4 @@ MonoBehaviour:
   isPlayerDefending: {fileID: 11400000, guid: 3f760e4e8f567a7489f5d0764ef26d83, type: 2}
   isPlayerInvulnerable: {fileID: 11400000, guid: 4cfd66b9d8b90e040879ab5677c6ecd4, type: 2}
   isChangeTurnExecuting: {fileID: 11400000, guid: efc561e5a8f640344853769488e0ceab, type: 2}
+  isEnemyDamageAnimationPlaying: {fileID: 11400000, guid: c9119635d06a00640a9e9a28da0e3859, type: 2}

@@ -8,8 +8,10 @@ public class BattleWinWatcher : MonoBehaviour
     [SerializeField] private IntVariable enemyHP;
     [SerializeField] private BattleState battleState;
     [SerializeField] private GameEventObject onBattleWin;
+    private bool hasRaised;
     void Start()
     {
+        hasRaised = false;
         battleState.SetBattleWin(false);
         StartCoroutine(WinEnum());
     }
@@ -17,11 +19,24 @@ public class BattleWinWatcher : MonoBehaviour
     private IEnumerator WinEnum()
     {
         yield return new WaitForSeconds(1f);
-        while (enemyHP.Value > 0)
+        while (!ForceCheckBattleWin())
         {
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    public bool ForceCheckBattleWin()
+    {
+        if (hasRaised)
+        {
+            return true;
+        }
+        if (enemyHP.Value > 0)
+        {
+            return false;
+        }
         battleState.SetBattleWin(true);
         onBattleWin.Raise();
+        return true;
     }
 }

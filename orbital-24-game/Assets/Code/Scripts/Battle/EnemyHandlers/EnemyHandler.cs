@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyHandler : MonoBehaviour
 {
+    [SerializeField] private IntVariable enemyHP;
+    [SerializeField] private BattleState battleState;
     private IEnemyHandlerState currentState;
     public void OnEnemyTurnStart()
     {
@@ -23,6 +25,11 @@ public class EnemyHandler : MonoBehaviour
     public void OnPlayerWin()
     {
         currentState.OnPlayerWin(this);
+    }
+
+    public void OnTakeDamage()
+    {
+        currentState.OnTakeDamage(this, enemyHP, battleState);
     }
 
     public void ChangeState(IEnemyHandlerState newState)
