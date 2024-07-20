@@ -8,34 +8,75 @@ public class BattleStrategyTrackerObject : ScriptableObject
     [SerializeField] private BattleStrategyObject selectedStrategy;
     [SerializeField] private int strategyIndex = 0;
     public string StrategyName => selectedStrategy != null ? selectedStrategy.StrategyName : "None";
-
-    public UnityEvent OnExecuteStrategy => selectedStrategy.OnExecuteStrategy;
+    public UnityEvent OnExecuteStrategy()
+    {
+        DefaultValidStrategy();
+        return selectedStrategy.OnExecuteStrategy;
+    }
 
     public void ToNextStrategy()
     {
-        if (selectedStrategy == null)
+        DefaultValidStrategy();
+        if (strategyIndex >= strategyOrder.Length - 1) return;
+        strategyIndex++;
+        BattleStrategyObject nextStrategy = strategyOrder[strategyIndex];
+        if (nextStrategy.IsDisabled)
         {
-            selectedStrategy = strategyOrder[0];
+            // try to skip that option
+            for (int i = strategyIndex + 1; i < strategyOrder.Length; i++)
+            {
+                BattleStrategyObject skippedStrategy = strategyOrder[i];
+                if (!skippedStrategy.IsDisabled)
+                {
+                    strategyIndex = i;
+                    selectedStrategy = skippedStrategy;
+                    return; 
+                }
+            }
+            strategyIndex--;
+            return;
         }
-        else
-        {
-            if (strategyIndex >= strategyOrder.Length - 1) return;
-            strategyIndex++;
-            selectedStrategy = strategyOrder[strategyIndex];
-        }
+        selectedStrategy = strategyOrder[strategyIndex];
     }
 
     public void ToPreviousStrategy()
     {
-        if (selectedStrategy == null)
+        DefaultValidStrategy();
+        if (strategyIndex <= 0) return;
+        strategyIndex--;
+        BattleStrategyObject prevStrategy = strategyOrder[strategyIndex];
+        if (prevStrategy.IsDisabled)
         {
-            selectedStrategy = strategyOrder[0];
+            for (int i = strategyIndex - 1; i >= 0; i--)
+            {
+                BattleStrategyObject skippedStrategy = strategyOrder[i];
+                if (!skippedStrategy.IsDisabled)
+                {
+                    strategyIndex = i;
+                    selectedStrategy = skippedStrategy;
+                    return; 
+                }
+            }
+            strategyIndex++;
+            return;
         }
-        else
+        selectedStrategy = strategyOrder[strategyIndex];
+    }
+
+    private void DefaultValidStrategy()
+    {
+        if (selectedStrategy == null || selectedStrategy.IsDisabled == true)
         {
-            if (strategyIndex <= 0) return;
-            strategyIndex--;
-            selectedStrategy = strategyOrder[strategyIndex];
+            for (int i = 0; i < strategyOrder.Length; i++)
+            {
+                if (!strategyOrder[i].IsDisabled)
+                {
+                    selectedStrategy = strategyOrder[i];
+                    strategyIndex = i;
+                    return;
+                }
+            }
+            Debug.LogError("No valid strategy!");
         }
     }
 

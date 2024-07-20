@@ -8,8 +8,7 @@ public class PlayerMovementHandler : MonoBehaviour
 {
     [SerializeField] private FloatReference playerSpeed;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private BoolReference isFreezeTurn;
-    [SerializeField] private BoolReference isPlayerTurn;
+    [SerializeField] private BattleState battleState;
 
     void Start()
     {
@@ -19,7 +18,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isFreezeTurn.Value || isPlayerTurn.Value)
+        if (battleState.IsPlayerUnmovable())
         {
             rb.velocity = new Vector2(0, 0);
         }

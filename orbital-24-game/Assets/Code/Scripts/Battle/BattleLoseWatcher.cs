@@ -5,13 +5,13 @@ using UnityEngine;
 public class BattleLoseWatcher : MonoBehaviour
 {
     [SerializeField] private IntVariable playerHP;
-    [SerializeField] private BoolVariable isBattleLose;
+    [SerializeField] private BattleState battleState;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameEventObject onBattleLose;
     void Start()
     {
         gameOverScreen.SetActive(false);
-        isBattleLose.Value = false;
+        battleState.SetBattleLose(false);
         StartCoroutine(GameOverEnum());
     }
 
@@ -23,7 +23,7 @@ public class BattleLoseWatcher : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         onBattleLose.Raise();
-        isBattleLose.Value = true;
+        battleState.SetBattleLose(true);
         gameOverScreen.SetActive(true);
     }
 }

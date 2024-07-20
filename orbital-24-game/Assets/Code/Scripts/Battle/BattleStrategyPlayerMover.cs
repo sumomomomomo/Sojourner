@@ -5,13 +5,12 @@ using UnityEngine;
 public class BattleStrategyPlayerMover : MonoBehaviour
 {
     [SerializeField] private GameObject playerGroup;
-    [SerializeField] private BoolVariable isPlayerTurn;
-    [SerializeField] private BoolVariable isFreezeTurn;
+    [SerializeField] private BattleState battleState;
     [SerializeField] private BattleStrategyTrackerObject currentStrategy;
 
     void Update()
     {
-        if (isPlayerTurn.Value && !isFreezeTurn.Value)
+        if (battleState.IsPlayerStrategySelectable())
         {
             playerGroup.transform.position = currentStrategy.GetPlayerTurnPosition();
         }

@@ -16,6 +16,6 @@ public class PlayerStrategyExecuter : MonoBehaviour
 
     public void OnPlayerTurnEnd()
     {
-        currentStrategy.OnExecuteStrategy?.Invoke();
+        currentStrategy.OnExecuteStrategy().Invoke();
     }
 }

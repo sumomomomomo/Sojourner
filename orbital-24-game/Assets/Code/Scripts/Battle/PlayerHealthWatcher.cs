@@ -11,6 +11,6 @@ public class PlayerHealthWatcher : MonoBehaviour
     [SerializeField] private IntReference playerMaxHealth;
     void Update()
     {
-        playerHealthText.text = "Player: " + playerHealth.Value + "/" + playerMaxHealth.Value + " HP";
+        playerHealthText.text = playerHealth.Value + "/" + playerMaxHealth.Value;
     }
 }

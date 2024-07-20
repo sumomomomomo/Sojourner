@@ -5,6 +5,8 @@ using UnityEngine.Events;
 public class BattleStrategyObject : ScriptableObject
 {
     [SerializeField] private string strategyName;
+    [SerializeField] private bool isDisabled = false;
+    public bool IsDisabled => isDisabled;
     [SerializeField] private UnityEvent onExecuteStrategy;
     public string StrategyName => strategyName;
     public UnityEvent OnExecuteStrategy => onExecuteStrategy;

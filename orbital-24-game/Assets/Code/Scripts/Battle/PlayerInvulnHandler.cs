@@ -6,16 +6,16 @@ public class PlayerInvulnHandler : MonoBehaviour
 {
     [SerializeField] private FloatReference timeLeftForPlayerInvuln;
     [SerializeField] private FloatReference invulnTimeWhenHit;
-    [SerializeField] private BoolReference isPlayerInvuln;
+    [SerializeField] private BattleState battleState;
 
     void Update()
     {
-        if (isPlayerInvuln.Value)
+        if (battleState.IsPlayerInvulnerable())
         {
             timeLeftForPlayerInvuln.Value -= Time.deltaTime;
             if (timeLeftForPlayerInvuln.Value <= 0)
             {
-                isPlayerInvuln.Value = false;
+                battleState.SetPlayerInvulnerable(false);
                 timeLeftForPlayerInvuln.Value = 0;
             }
         }
@@ -23,7 +23,7 @@ public class PlayerInvulnHandler : MonoBehaviour
 
     public void EnableOnHitInvuln()
     {
-        isPlayerInvuln.Value = true;
+        battleState.SetPlayerInvulnerable(true);
         timeLeftForPlayerInvuln.Value = invulnTimeWhenHit.Value;
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   strategyName: Attack
+  isDisabled: 0
   onExecuteStrategy:
     m_PersistentCalls:
       m_Calls:
@@ -28,5 +29,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTurnXCoordinate: -6.3
-  playerTurnYCoordinate: -1.45
+  playerTurnXCoordinate: -6.35
+  playerTurnYCoordinate: -1.56
