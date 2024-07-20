@@ -12,10 +12,11 @@ public class DialogueObject : ScriptableObject
     [SerializeField] private DialogueResponse[] responses;
     [SerializeField] private DialogueSpritePair[] dialogueSpritePairs;
     [SerializeField] private AudioClip talkingSound;
-
+    public AudioClip TalkingSound => talkingSound;
     public string[] Dialogue => dialogue;
     public bool HasResponses => responses != null && responses.Length > 0;
     public bool HasSprites => dialogueSpritePairs.Count() == dialogue.Count();
+    public bool HasTalkingSound => talkingSound != null;
     public DialogueResponse[] Responses => responses;
     public DialogueSpritePair[] DialogueSpritePairs => dialogueSpritePairs;
 }

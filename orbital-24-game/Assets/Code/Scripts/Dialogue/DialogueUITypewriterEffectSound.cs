@@ -9,15 +9,14 @@ public class DialogueUITypewriterEffectSound : MonoBehaviour
     [SerializeField] private FloatReference waitTime;
 
     private Coroutine typingSoundCoroutine;
+
+    public void SetAudioClip(AudioClip audioClip)
+    {
+        audioSource.clip = audioClip;
+    }
     
     public void Run()
     {
-        typingSoundCoroutine = StartCoroutine(TypeTextSound(audioSource));
-    }
-
-     public void Run(AudioClip audioClip)
-    {
-        audioSource.clip = audioClip;
         typingSoundCoroutine = StartCoroutine(TypeTextSound(audioSource));
     }
 

@@ -13,12 +13,11 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private BoolVariable isDialogueBoxOpen;
-
     [SerializeField] private DialogueUIResponseHandler responseHandler;
     [SerializeField] private DialogueUITypewriterEffect typewriterEffect;
     [SerializeField] private DialogueUITypewriterEffectSound typewriterEffectSound;
-
     [SerializeField] private DialogueUISpriteHandler spriteHandler;
+
     void Start()
     {
         CloseDialogueBox();
@@ -34,6 +33,15 @@ public class DialogueUI : MonoBehaviour
         isDialogueBoxOpen.Value = true;
         dialogueBox.SetActive(true);
 
+        // set audio if present
+        if (dialogueObject.HasTalkingSound)
+        {
+            if (typewriterEffectSound != null)
+            {
+                typewriterEffectSound.SetAudioClip(dialogueObject.TalkingSound);
+            }
+        }
+
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
@@ -47,7 +55,7 @@ public class DialogueUI : MonoBehaviour
             }
             string dialogue = dialogueObject.Dialogue[i];
 
-            yield return RunTypingEffect(dialogue);
+            yield return RunTypingEffect(dialogue, dialogueObject);
 
             textLabel.text = dialogue;
 
@@ -71,10 +79,10 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
-    private IEnumerator RunTypingEffect(string dialogue)
+    private IEnumerator RunTypingEffect(string dialogue, DialogueObject dialogueObject)
     {
         typewriterEffect.Run(dialogue, textLabel);
-        if (typewriterEffectSound != null)
+        if (typewriterEffectSound != null && dialogueObject.HasTalkingSound)
         {
             typewriterEffectSound.Run();
         }
