@@ -18,3 +18,4 @@ MonoBehaviour:
   isBattleWin: {fileID: 11400000, guid: 9cbf673a6d629914da0bbfc175b53cd1, type: 2}
   isPlayerDefending: {fileID: 11400000, guid: 3f760e4e8f567a7489f5d0764ef26d83, type: 2}
   isPlayerInvulnerable: {fileID: 11400000, guid: 4cfd66b9d8b90e040879ab5677c6ecd4, type: 2}
+  isChangeTurnExecuting: {fileID: 11400000, guid: efc561e5a8f640344853769488e0ceab, type: 2}

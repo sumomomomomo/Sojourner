@@ -12,6 +12,7 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] private FloatReference minEnemyTurnTime;
     [SerializeField] private FloatReference playerAgility;
     [SerializeField] private FloatReference timeLeftToNextTurn;
+    [SerializeField] private FloatReference timeLeftToNextTurnMax;
     [SerializeField] private BattleState battleState;
 
     [SerializeField] private GameEventObject onEnemyTurnStart;
@@ -30,8 +31,9 @@ public class TurnHandler : MonoBehaviour
     void Start()
     {
         // Hardcoded
+        battleState.OnEndChangeTurn();
         battleState.SetToPlayerTurn();
-        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, false);
+        ChangeTimeLeftValues(currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, false));
         onPlayerTurnStart.Raise();
 
     }
@@ -48,8 +50,16 @@ public class TurnHandler : MonoBehaviour
         }
     }
 
+    private void ChangeTimeLeftValues(float time)
+    {
+        timeLeftToNextTurnMax.Value = time;
+        timeLeftToNextTurn.Value = time;
+    }
+
     public void ChangeTurn()
     {
+        battleState.OnStartChangeTurn();
+        timeLeftToNextTurn.Value = 0;
         StartCoroutine(ChangeTurnEnum());
     }
 
@@ -66,8 +76,9 @@ public class TurnHandler : MonoBehaviour
             onEnemyTurnEnd.Raise();
             yield return StartPlayerTurnWhenPossible();
         }
-        battleState.ChangeTurn();
-        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, battleState.IsPlayerTurn());
+        battleState.FlipIsPlayerTurn();
+        ChangeTimeLeftValues(currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, battleState.IsPlayerTurn()));
+        battleState.OnEndChangeTurn();
     }
 
     private IEnumerator StartPlayerTurnWhenPossible()

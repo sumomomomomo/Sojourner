@@ -11,7 +11,6 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private IntReference playerMaxHP;
 
     private void Update()
-
     {
         slider.maxValue = playerMaxHP.Value; 
         slider.value = playerHP.Value;
