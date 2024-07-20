@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7dcc2a7e7fd114cae957c9adf15ffb, type: 3}
-  m_Name: Dead
+  m_Script: {fileID: 11500000, guid: f1e108af09575ff4a929285ad0f8b29a, type: 3}
+  m_Name: PlayerName
   m_EditorClassIdentifier: 
-  winText: {fileID: 6628638439428263865, guid: 06494d84f6ecde84e9eaceb3c9e93bef, type: 3}
+  value: ???
+  developerComments: Set to ??? on game start

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Talk
   m_EditorClassIdentifier: 
   strategyName: Talk
+  isDisabled: 0
   onExecuteStrategy:
     m_PersistentCalls:
       m_Calls:
@@ -29,4 +30,4 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   playerTurnXCoordinate: 0.37
-  playerTurnYCoordinate: -1.45
+  playerTurnYCoordinate: -1.56

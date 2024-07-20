@@ -12,10 +12,7 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] private FloatReference minEnemyTurnTime;
     [SerializeField] private FloatReference playerAgility;
     [SerializeField] private FloatReference timeLeftToNextTurn;
-    [SerializeField] private BoolReference isPlayerTurn;
-    [SerializeField] private BoolReference isFreezeTurn;
-    [SerializeField] private BoolReference isBattleLose;
-    [SerializeField] private BoolReference isBattleWin;
+    [SerializeField] private BattleState battleState;
 
     [SerializeField] private GameEventObject onEnemyTurnStart;
     [SerializeField] private GameEventObject onEnemyTurnEnd;
@@ -33,7 +30,7 @@ public class TurnHandler : MonoBehaviour
     void Start()
     {
         // Hardcoded
-        isPlayerTurn.Value = true;
+        battleState.SetToPlayerTurn();
         timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, false);
         onPlayerTurnStart.Raise();
 
@@ -41,7 +38,7 @@ public class TurnHandler : MonoBehaviour
 
     void Update()
     {
-        if (!isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value)
+        if (battleState.IsTurnHandlerActive())
         {
             timeLeftToNextTurn.Value -= Time.deltaTime;
             if (timeLeftToNextTurn.Value <= 0)
@@ -58,19 +55,37 @@ public class TurnHandler : MonoBehaviour
 
     private IEnumerator ChangeTurnEnum()
     {
-        if (isPlayerTurn.Value) // player -> enemy
+        if (battleState.IsPlayerTurn()) // player -> enemy
         {
             onPlayerTurnEnd.Raise();
             yield return new WaitForSeconds(0.5f); // TODO redo this later
-            onEnemyTurnStart.Raise();
+            yield return StartEnemyTurnWhenPossible();
         }
         else // enemy -> player
         {
             onEnemyTurnEnd.Raise();
-            onPlayerTurnStart.Raise();
+            yield return StartPlayerTurnWhenPossible();
         }
-        isPlayerTurn.Value = !isPlayerTurn.Value;
-        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, isPlayerTurn.Value);
+        battleState.ChangeTurn();
+        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, battleState.IsPlayerTurn());
+    }
+
+    private IEnumerator StartPlayerTurnWhenPossible()
+    {
+        while (!battleState.CanStartTurn())
+        {
+            yield return null;
+        }
+        onPlayerTurnStart.Raise();
+    }
+
+    private IEnumerator StartEnemyTurnWhenPossible()
+    {
+        while (!battleState.CanStartTurn())
+        {
+            yield return null;
+        }
+        onEnemyTurnStart.Raise();
     }
 
     public void OnBattleLose()

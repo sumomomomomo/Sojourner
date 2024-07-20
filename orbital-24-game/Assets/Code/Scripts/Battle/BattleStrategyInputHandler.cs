@@ -5,13 +5,12 @@ using UnityEngine;
 public class BattleStrategyInputHandler : MonoBehaviour
 {
     [SerializeField] private BattleStrategyTrackerObject currentStrategy;
-    [SerializeField] private BoolVariable isPlayerTurn;
-    [SerializeField] private BoolVariable isFreezeTurn;
+    [SerializeField] private BattleState battleState;
     [SerializeField] private GameEventObject onForceChangeTurn;
 
     void Update()
     {
-        if (isPlayerTurn.Value && !isFreezeTurn.Value)
+        if (battleState.IsPlayerStrategySelectable())
         {
             if (Input.GetKeyDown(KeyCode.A))
             {

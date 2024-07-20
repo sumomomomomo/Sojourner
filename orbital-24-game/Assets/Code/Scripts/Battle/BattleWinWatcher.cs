@@ -6,11 +6,11 @@ using UnityEngine;
 public class BattleWinWatcher : MonoBehaviour
 {
     [SerializeField] private IntVariable enemyHP;
-    [SerializeField] private BoolVariable isBattleWin;
+    [SerializeField] private BattleState battleState;
     [SerializeField] private GameEventObject onBattleWin;
     void Start()
     {
-        isBattleWin.Value = false;
+        battleState.SetBattleWin(false);
         StartCoroutine(WinEnum());
     }
 
@@ -21,7 +21,7 @@ public class BattleWinWatcher : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
         }
-        isBattleWin.Value = true;
+        battleState.SetBattleWin(true);
         onBattleWin.Raise();
     }
 }

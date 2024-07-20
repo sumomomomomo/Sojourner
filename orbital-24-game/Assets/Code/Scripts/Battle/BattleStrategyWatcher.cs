@@ -6,7 +6,7 @@ using UnityEngine;
 public class BattleStrategyWatcher : MonoBehaviour
 {
     [SerializeField] private GameObject[] strategyTexts;
-    [SerializeField] private BoolVariable isFreezeTurn;
+    [SerializeField] private BattleState battleState;
     public void EnableStrategyTexts()
     {
         StartCoroutine(EnableStrategyTextsEnum());
@@ -14,7 +14,7 @@ public class BattleStrategyWatcher : MonoBehaviour
 
     private IEnumerator EnableStrategyTextsEnum()
     {
-        while (isFreezeTurn.Value) 
+        while (!battleState.IsPlayerStrategySelectable()) 
         {
             yield return new WaitForSeconds(0.01f);
         }
@@ -32,7 +32,7 @@ public class BattleStrategyWatcher : MonoBehaviour
 
     private IEnumerator DisableStrategyTextsEnum()
     {        
-        while (isFreezeTurn.Value) 
+        while (!battleState.IsPlayerStrategySelectable()) 
         {
             yield return new WaitForSeconds(0.01f);
         }

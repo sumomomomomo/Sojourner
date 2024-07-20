@@ -5,12 +5,10 @@ using UnityEngine;
 public class PlayerSpriteHider : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
-    [SerializeField] private BoolVariable isFreezeTurn;
-    [SerializeField] private BoolVariable isBattleWin;
-    [SerializeField] private BoolVariable isBattleLose;
+    [SerializeField] private BattleState battleState;
     void Update()
     {
-        if (isFreezeTurn.Value || isBattleLose.Value || isBattleWin.Value) 
+        if (battleState.IsPlayerHidden()) 
         {
             playerSpriteRenderer.enabled = false;
         }

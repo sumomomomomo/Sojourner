@@ -9,7 +9,10 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     [SerializeField] private BoundTargetInstructionsObject boundTargetInstructionsObject;
     [SerializeField] private GameEventObject onUpdateBounds;
     [SerializeField] private BoolReference isFreezeTurn;
+    [SerializeField] private EnemyObject enemyObject;
+    [SerializeField] private GameObject winTextPrefab;
     private List<GameObject> instantiatedObjects = new();
+    private GameObject spritePrefab;
     public void OnEnemyTurnEnd(MonoBehaviour monoBehaviour)
     {
         for (int i = 0; i < instantiatedObjects.Count; i++)
@@ -36,5 +39,19 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         }
         yield return new WaitForSeconds(0.25f);
         instantiatedObjects.Add(Instantiate(attackPattern.AttackPrefab));
+    }
+
+    public void OnBattleStart(MonoBehaviour monoBehaviour)
+    {
+        // instantiate enemy sprite
+        spritePrefab = Instantiate(enemyObject.SpritePrefab);
+    }
+
+    public void OnPlayerWin(MonoBehaviour monoBehaviour)
+    {
+        // sprite fades away
+        Destroy(spritePrefab);
+        // wintext appears
+        Instantiate(winTextPrefab);
     }
 }

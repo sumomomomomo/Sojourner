@@ -10,7 +10,6 @@ public class EnemyLoader : MonoBehaviour
     [SerializeField] private IntReference enemyHP;
     [SerializeField] private IntReference enemyAtk;
     [SerializeField] private IntReference enemyDef;
-    private GameObject loadedEnemySprite;
     void Start()
     {
         if (currentEnemy != null) 
@@ -24,25 +23,18 @@ public class EnemyLoader : MonoBehaviour
 
             // TODO: player is invisible for 0.5s cos player bound shift animation - add initialization for player bounds
 
-            // Load enemy sprite/graphics etc
-            loadedEnemySprite = Instantiate(currentEnemy.LoadedEnemy.SpritePrefab);
-
             // Change state for EnemyHandler
             IEnemyHandlerState enemyHandlerState = currentEnemy.LoadedEnemy.EnemyHandlerState;
             Assert.IsNotNull(enemyHandlerState);
             enemyHandler.ChangeState(enemyHandlerState);
+
+            enemyHandler.OnBattleStart();
+
             Debug.Log("Enemy handler loaded for " + currentEnemy.LoadedEnemy.EnemyName);
         }
         else
         {
             Debug.Log("Enemy not set");    
         }
-    }
-
-    public void UpdateEnemySprite(GameObject newSpritePrefab)
-    {
-        Assert.IsNotNull(loadedEnemySprite);
-        Destroy(loadedEnemySprite);
-        Instantiate(newSpritePrefab);
     }
 }
