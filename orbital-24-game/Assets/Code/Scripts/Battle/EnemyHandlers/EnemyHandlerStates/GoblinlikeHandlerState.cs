@@ -82,6 +82,6 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         yield return new WaitForSeconds(1f);
 
         battleState.SetEnemyDamageAnimationPlaying(false);
-        enemyHealthBar.Hide();
+        enemyHealthBar?.Hide();
     }
 }
