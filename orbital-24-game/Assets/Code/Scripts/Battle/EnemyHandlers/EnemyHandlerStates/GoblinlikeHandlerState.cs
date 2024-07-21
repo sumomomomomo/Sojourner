@@ -73,6 +73,9 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     {
         float beforeHP = enemyObject.CurrHP;
         float afterHP = enemyHP.Value;
+
+        yield return new WaitForSeconds(battleState.PlayerDamageAnimationLength + 0.2f);
+
         enemyHealthBar.ShowWithDamageTextJump((int) (beforeHP - afterHP));
         yield return CoroutineUtils.Lerp(battleState.PlayerDamageAnimationLength, t => {
             enemyObject.SetCurrHP(Mathf.Lerp(beforeHP, afterHP, t));
