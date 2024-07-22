@@ -15,6 +15,7 @@ MonoBehaviour:
   enemyName: Debug Goblin
   spritePrefab: {fileID: 54413684770801189, guid: 428e1aa9598b4444fab5724f0c236aa8, type: 3}
   healthBarPrefab: {fileID: 3039378987177289043, guid: 329dc5465ac3f3b47824c3b6120f5ba8, type: 3}
+  dialogueBoxPrefab: {fileID: 1258732640870507999, guid: 9b50db9c9210cd6489a5d30016499aa9, type: 3}
   maxHP: 10
   currHP: 10
   def: 5
@@ -39,6 +40,10 @@ MonoBehaviour:
   - angry
   - scared
   - terrified
+  indexSensitiveSpritesForEachEmotion:
+  - {fileID: 21300000, guid: afd1612990b546049ad048e67cea9afe, type: 3}
+  - {fileID: 21300000, guid: 7799ee3e120f4894d8321e0862b529d9, type: 3}
+  - {fileID: 21300000, guid: 7799ee3e120f4894d8321e0862b529d9, type: 3}
   enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
   hasEnemyLoadedTrackerObject: 1
   _enemyHandlerState: {fileID: 11400000, guid: 78832d7dfb8f93d4d81a278982c49770, type: 2}

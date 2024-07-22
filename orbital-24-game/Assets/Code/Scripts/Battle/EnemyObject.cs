@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using OpenAI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Battle/EnemyObject")]
@@ -14,6 +16,8 @@ public class EnemyObject : ScriptableObject
     public GameObject SpritePrefab => spritePrefab;
     [SerializeField] private GameObject healthBarPrefab;
     public GameObject HealthBarPrefab => healthBarPrefab;
+    [SerializeField] private GameObject dialogueBoxPrefab;
+    public GameObject DialogueBoxPrefab => dialogueBoxPrefab;
     [SerializeField] private int maxHP;
     public int MaxHP => maxHP;
     [SerializeField] private float currHP;
@@ -32,9 +36,11 @@ public class EnemyObject : ScriptableObject
     public ChatMessageObject[] DefaultChatMessageObjects => defaultChatMessageObjects;
     [SerializeField] private string[] availableEmotions;
     public string[] AvailableEmotions => availableEmotions;
+    [SerializeField] private Sprite[] indexSensitiveSpritesForEachEmotion;
+    public Sprite[] IndexSensitiveSpritesForEachEmotion => indexSensitiveSpritesForEachEmotion;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
-    [SerializeField] private Object _enemyHandlerState;
+    [SerializeField] private UnityEngine.Object _enemyHandlerState;
     public IEnemyHandlerState EnemyHandlerState => (IEnemyHandlerState) _enemyHandlerState;
     //[SerializeField] private bool isEnemyDead = false;
     [SerializeField] private BackloggedCutsceneSequenceObject onWinBackloggedCutsceneSequenceObject;
@@ -82,5 +88,16 @@ public class EnemyObject : ScriptableObject
     public void SetCurrHP(float newHP)
     {
         currHP = newHP;
+    }
+
+    public Dictionary<string, Sprite> GetStringToSpriteDictionary()
+    {
+        Dictionary<string, Sprite> ans = new();
+        Assert.IsTrue(availableEmotions.Length == indexSensitiveSpritesForEachEmotion.Length);
+        for (int i = 0; i < availableEmotions.Length; i++)
+        {
+            ans.Add(availableEmotions[i], indexSensitiveSpritesForEachEmotion[i]); 
+        }
+        return ans;
     }
 }

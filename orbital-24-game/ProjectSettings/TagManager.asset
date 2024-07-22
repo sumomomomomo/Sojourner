@@ -40,6 +40,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: EnemySprite
+    uniqueID: 1874122625
+    locked: 0
+  - name: PlayerBoundsBase
+    uniqueID: 4124791455
+    locked: 0
+  - name: PlayerSprite
+    uniqueID: 652514773
+    locked: 0
   - name: Background
     uniqueID: 1792947387
     locked: 0

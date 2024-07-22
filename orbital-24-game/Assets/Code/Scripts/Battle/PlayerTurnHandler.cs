@@ -19,6 +19,7 @@ public class PlayerTurnHandler : MonoBehaviour
     [SerializeField] private EnemyHandler enemyHandler;
 
     [SerializeField] private FloatReference llmTemperature;
+    [SerializeField] private IntReference llmShot;
 
     private OpenAIApi openai = new();
 
@@ -56,8 +57,8 @@ public class PlayerTurnHandler : MonoBehaviour
             chatMessageObjectsTracker.AddChatMessage(
                 new ChatMessageObject("user", playerTalkInputField.text)
                 );
-            
-            CreateChatCompletionResponse completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+
+            CreateChatCompletionRequest req = new()
             {
                 Model = "gpt-4o-mini",
                 Messages = chatMessageObjectsTracker.GetChatMessages(),
@@ -66,29 +67,48 @@ public class PlayerTurnHandler : MonoBehaviour
                     Type = ResponseType.JsonObject
                 },
                 Temperature = 0.6f
-            });
+            };
 
-            if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
+            int triesLeft = llmShot.Value;
+            bool isSuccessful = false;
+            ChatMessage message;
+            while (triesLeft > 0)
             {
-                ChatMessage message = completionResponse.Choices[0].Message;
-                message.Content = message.Content.Trim();
-
-                // test to see if output is valid
-                bool isOutputValid = enemyHandler.OnLLMResponse(message.Content);
-                if (isOutputValid)
+                CreateChatCompletionResponse completionResponse = await openai.CreateChatCompletion(req);
+                triesLeft--;
+                if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
                 {
-                    chatMessageObjectsTracker.AddChatMessage(message);
+                    message = completionResponse.Choices[0].Message;
+                    message.Content = message.Content.Trim();
+
+                    bool isOutputValid = enemyHandler.CheckLLMResponse(message.Content);
+                    if (isOutputValid)
+                    {
+                        chatMessageObjectsTracker.AddChatMessage(message);
+                        isSuccessful = true;
+                        break;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("This prompt generated invalid output.");
+                        continue;
+                    }
                 }
                 else
                 {
-                    Debug.LogWarning("This prompt generated invalid output. No message added.");
-                    chatMessageObjectsTracker.RemoveLastMessage();
-                    // TODO: rerun?
+                    Debug.LogWarning("No text was generated from this prompt.");
+                    continue;
                 }
+            }
+            
+            if (!isSuccessful)
+            {
+                Debug.LogWarning("Reached max tries but was not successful. Removing last message.");
+                chatMessageObjectsTracker.RemoveLastMessage();
             }
             else
             {
-                Debug.LogWarning("No text was generated from this prompt.");
+                enemyHandler.HandleLLMResponse(message.Content);
             }
 
             battleState.SetPlayerTalking(false);

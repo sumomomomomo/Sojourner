@@ -25,3 +25,4 @@ MonoBehaviour:
     variable: {fileID: 11400000, guid: c971f046454deb64a8a01146d718cedc, type: 2}
   enemyObject: {fileID: 11400000, guid: 3103dec79c1f9594ebdd7b0faae02804, type: 2}
   winTextPrefab: {fileID: 6628638439428263865, guid: 06494d84f6ecde84e9eaceb3c9e93bef, type: 3}
+  enemyEmotion: {fileID: 11400000, guid: 98e774a847e624249ac81724b77d2efe, type: 2}

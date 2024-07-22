@@ -17,6 +17,7 @@ public class BattleState : ScriptableObject
     [SerializeField] private BoolVariable isPlayerTalking;
     [SerializeField] private BoolVariable isChangeTurnExecuting;
     [SerializeField] private BoolVariable isEnemyDamageAnimationPlaying;
+    [SerializeField] private BoolVariable isEnemySpeaking;
 
     public void ResetAllFlags()
     {
@@ -28,6 +29,7 @@ public class BattleState : ScriptableObject
         isPlayerTalking.Value = false;
         isChangeTurnExecuting.Value = false;
         isEnemyDamageAnimationPlaying.Value = false;
+        isEnemySpeaking.Value = false;
     }
 
     public void SetToPlayerTurn()
@@ -40,7 +42,7 @@ public class BattleState : ScriptableObject
     }
     public bool CanStartEnemyTurn()
     {
-        return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value && !isEnemyDamageAnimationPlaying.Value && !isPlayerTalking.Value;
+        return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value && !isEnemyDamageAnimationPlaying.Value && !isPlayerTalking.Value && !isEnemySpeaking.Value;
     }
 
     public bool IsTurnHandlerActive()
@@ -93,6 +95,11 @@ public class BattleState : ScriptableObject
         return isEnemyDamageAnimationPlaying.Value;
     }
 
+    public bool IsEnemySpeaking()
+    {
+        return isEnemySpeaking.Value;
+    }
+
     public void FlipIsPlayerTurn()
     {
         isPlayerTurn.Value = !isPlayerTurn.Value;
@@ -131,6 +138,11 @@ public class BattleState : ScriptableObject
     public void SetEnemyDamageAnimationPlaying(bool b)
     {
         isEnemyDamageAnimationPlaying.Value = b;
+    }
+
+    public void SetEnemySpeaking(bool b)
+    {
+        isEnemySpeaking.Value = b;
     }
 
     public void SetChangeTurnExecutingToTrue()

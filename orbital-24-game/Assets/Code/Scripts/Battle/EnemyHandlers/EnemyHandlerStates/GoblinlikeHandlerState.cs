@@ -14,22 +14,36 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     [SerializeField] private BoolReference isFreezeTurn;
     [SerializeField] private EnemyObject enemyObject;
     [SerializeField] private GameObject winTextPrefab;
+    [SerializeField] private StringVariable enemyEmotion;
     private List<GameObject> instantiatedObjects = new();
     private GameObject spriteObject;
     private GameObject healthBarSliderCanvasObject;
+    private GameObject dialogueBoxObject;
+    private EnemySpriteHandler enemySpriteHandler;
     private EnemyHealthBar enemyHealthBar;
-    private string currEmotion;
+    private EnemyDialogueHandler enemyDialogueHandler;
     public void OnBattleStart(MonoBehaviour monoBehaviour)
     {
         // instantiate enemy sprite
         spriteObject = Instantiate(enemyObject.SpritePrefab);
+        enemySpriteHandler = spriteObject.GetComponentInChildren<EnemySpriteHandler>();
+        enemySpriteHandler.SetStringToSprite(enemyObject.GetStringToSpriteDictionary());
 
+        // instantiate enemy health bar
         healthBarSliderCanvasObject = Instantiate(enemyObject.HealthBarPrefab);
         enemyHealthBar = healthBarSliderCanvasObject.GetComponentInChildren<EnemyHealthBar>();
         enemyHealthBar.SetEnemyObject(enemyObject);
         enemyHealthBar.Hide();
 
-        currEmotion = "angry";
+        // instantiate enemy dialogue box
+        dialogueBoxObject = Instantiate(enemyObject.DialogueBoxPrefab);
+        enemyDialogueHandler = dialogueBoxObject.GetComponentInChildren<EnemyDialogueHandler>();
+        enemyDialogueHandler.ClearText();
+        enemyDialogueHandler.Hide();
+
+        // instantiate emotion
+        // TODO make this a StringVariable
+        enemyEmotion.Value = "angry";
     }
     public void OnEnemyTurnEnd(MonoBehaviour monoBehaviour)
     {
@@ -64,6 +78,7 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         // sprite fades away
         Destroy(spriteObject);
         Destroy(healthBarSliderCanvasObject);
+        Destroy(dialogueBoxObject);
         // wintext appears
         Instantiate(winTextPrefab);
     }
@@ -99,7 +114,7 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         public string response;
     }
 
-    public bool OnLLMResponse(MonoBehaviour monoBehaviour, string content)
+    public bool CheckLLMResponse(MonoBehaviour monoBehaviour, string content)
     {
         Debug.Log(content);
         try
@@ -110,7 +125,7 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
                 Debug.LogError("invalid emotion: " + res.emotion);
                 return false;
             }
-            currEmotion = res.emotion;
+            enemyEmotion.Value = res.emotion;
             return true;
         }
         catch (Exception e)
@@ -118,5 +133,17 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
             Debug.LogError("Exception while parsing LLM Response: " + e);
             return false;
         }
+    }
+
+    public void HandleLLMResponse(MonoBehaviour monoBehaviour, string content)
+    {
+        LLMResponse res = JsonUtility.FromJson<LLMResponse>(content);
+        enemyEmotion.Value = res.emotion;
+        OnDisplayEnemyDialogue(monoBehaviour, res.response);
+    }
+
+    public void OnDisplayEnemyDialogue(MonoBehaviour monoBehaviour, string content)
+    {
+        enemyDialogueHandler.DisplayText(content);
     }
 }

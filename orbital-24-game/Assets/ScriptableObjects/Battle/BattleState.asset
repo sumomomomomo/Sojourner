@@ -22,3 +22,4 @@ MonoBehaviour:
   isPlayerTalking: {fileID: 11400000, guid: 281a7de0c91f6db498b416ac2da35b68, type: 2}
   isChangeTurnExecuting: {fileID: 11400000, guid: efc561e5a8f640344853769488e0ceab, type: 2}
   isEnemyDamageAnimationPlaying: {fileID: 11400000, guid: c9119635d06a00640a9e9a28da0e3859, type: 2}
+  isEnemySpeaking: {fileID: 11400000, guid: 96750d3af614eea4aa15324cf85ec3e0, type: 2}
