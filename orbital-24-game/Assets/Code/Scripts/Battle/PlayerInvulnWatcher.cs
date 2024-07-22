@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerInvulnWatcher : MonoBehaviour
 {
     private Animator playerAnimator;
-    [SerializeField] private TMP_Text invulnTimer;
     [SerializeField] private FloatReference timeLeftForInvuln;
     [SerializeField] private BoolReference isInvuln;
 
@@ -19,12 +18,10 @@ public class PlayerInvulnWatcher : MonoBehaviour
     {
         if (isInvuln.Value)
         {
-            invulnTimer.text = "Invuln for " + ((int) Math.Floor(timeLeftForInvuln.Value)).ToString() + "s";
             if (playerAnimator != null) playerAnimator.Play("Invuln Blink");
         }
         else
         {
-            invulnTimer.text = "";
             if (playerAnimator != null) playerAnimator.Play("Normal");
         }
     }
