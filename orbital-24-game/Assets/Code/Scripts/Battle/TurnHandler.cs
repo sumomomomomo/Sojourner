@@ -22,6 +22,8 @@ public class TurnHandler : MonoBehaviour
 
     [SerializeField] private BattleWinWatcher battleWinWatcher;
 
+    private Coroutine changeTurnCoroutine;
+
     private float currTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
     {
         if (isPlayerTurn)
@@ -33,7 +35,7 @@ public class TurnHandler : MonoBehaviour
     void Start()
     {
         // Hardcoded
-        battleState.OnEndChangeTurn();
+        battleState.SetChangeTurnExecutingToFalse();
         battleState.SetToPlayerTurn();
         ChangeTimeLeftValues(currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, false));
         onPlayerTurnStart.Raise();
@@ -60,9 +62,9 @@ public class TurnHandler : MonoBehaviour
 
     public void ChangeTurn()
     {
-        battleState.OnStartChangeTurn();
+        battleState.SetChangeTurnExecutingToTrue();
         timeLeftToNextTurn.Value = 0;
-        StartCoroutine(ChangeTurnEnum());
+        changeTurnCoroutine = StartCoroutine(ChangeTurnEnum());
     }
 
     private IEnumerator ChangeTurnEnum()
@@ -70,37 +72,25 @@ public class TurnHandler : MonoBehaviour
         if (battleState.IsPlayerTurn()) // player -> enemy
         {
             onPlayerTurnEnd.Raise();
-            yield return StartEnemyTurnWhenPossible();
+            while (!battleState.CanStartEnemyTurn())
+            {
+                yield return null;
+            }
+            onEnemyTurnStart.Raise();
         }
         else // enemy -> player
         {
             onEnemyTurnEnd.Raise();
-            yield return StartPlayerTurnWhenPossible();
+            while (!battleState.CanStartPlayerTurn())
+            {
+                yield return null;
+            }
+            onPlayerTurnStart.Raise();
         }
         battleState.FlipIsPlayerTurn();
         ChangeTimeLeftValues(currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, battleState.IsPlayerTurn()));
-        battleState.OnEndChangeTurn();
-    }
-
-    private IEnumerator StartPlayerTurnWhenPossible()
-    {
-        while (!battleState.CanStartPlayerTurn())
-        {
-            yield return null;
-        }
-        onPlayerTurnStart.Raise();
-    }
-
-    private IEnumerator StartEnemyTurnWhenPossible()
-    {
-        while (!battleState.CanStartEnemyTurn())
-        {
-            yield return null;
-        }
-        if (!battleWinWatcher.ForceCheckBattleWin())
-        {
-            onEnemyTurnStart.Raise();
-        }
+        battleState.SetChangeTurnExecutingToFalse();
+        Debug.Log("Coroutine ended");
     }
 
     public void OnBattleLose()
@@ -119,6 +109,33 @@ public class TurnHandler : MonoBehaviour
         // Set enemy flag to be dead
         enemyLoadedTrackerObject.LoadedEnemy.OnBattleWin();
 
+    }
+
+    public void OnPlayerTalk()
+    {
+        // Force kill TurnChangeEnum
+        // Enum will be stuck as enemy cannot start turn
+        StartCoroutine(KillChangeTurnEnum());
+        // And set player turn time to 20s
+        ChangeTimeLeftValues(20f);
+    }
+
+    private IEnumerator KillChangeTurnEnum()
+    {
+        while (true)
+        {
+            if (changeTurnCoroutine != null)
+            {
+                Debug.Log("killed change turn enum");
+                StopCoroutine(changeTurnCoroutine);
+                battleState.SetChangeTurnExecutingToFalse();
+                break;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
     }
 
 }

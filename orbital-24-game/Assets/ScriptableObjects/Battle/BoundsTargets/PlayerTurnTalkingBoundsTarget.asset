@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031145d4354c59941b3e9451201116b1, type: 3}
   m_Name: PlayerTurnTalkingBoundsTarget
   m_EditorClassIdentifier: 
-  boundHeight: 0
-  boundWidth: 0
+  boundHeight: 0.98
+  boundWidth: 16.8
   boundOriginX: 0
-  boundOriginY: 0
+  boundOriginY: -3.56
   Read: 0
+  Load: 0

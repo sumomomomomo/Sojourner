@@ -14,6 +14,7 @@ public class BattleState : ScriptableObject
     [SerializeField] private BoolVariable isBattleWin;
     [SerializeField] private BoolVariable isPlayerDefending;
     [SerializeField] private BoolVariable isPlayerInvulnerable;
+    [SerializeField] private BoolVariable isPlayerTalking;
     [SerializeField] private BoolVariable isChangeTurnExecuting;
     [SerializeField] private BoolVariable isEnemyDamageAnimationPlaying;
 
@@ -24,6 +25,7 @@ public class BattleState : ScriptableObject
         isBattleWin.Value = false;
         isPlayerDefending.Value = false;
         isPlayerInvulnerable.Value = false;
+        isPlayerTalking.Value = false;
         isChangeTurnExecuting.Value = false;
         isEnemyDamageAnimationPlaying.Value = false;
     }
@@ -38,7 +40,7 @@ public class BattleState : ScriptableObject
     }
     public bool CanStartEnemyTurn()
     {
-        return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value && !isEnemyDamageAnimationPlaying.Value;
+        return !isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value && !isEnemyDamageAnimationPlaying.Value && !isPlayerTalking.Value;
     }
 
     public bool IsTurnHandlerActive()
@@ -53,12 +55,17 @@ public class BattleState : ScriptableObject
 
     public bool IsPlayerHidden()
     {
-        return isFreezeTurn.Value || isBattleLose.Value || isBattleWin.Value;
+        return isFreezeTurn.Value || isBattleLose.Value || isBattleWin.Value || isPlayerTalking.Value;
     }
 
     public bool IsPlayerStrategySelectable()
     {
-        return isPlayerTurn.Value && !isFreezeTurn.Value;
+        return isPlayerTurn.Value && !isFreezeTurn.Value && !isPlayerTalking.Value;
+    }
+
+    public bool IsPlayerTalkInputEnabled()
+    {
+        return isPlayerTurn.Value && isPlayerTalking.Value && !isFreezeTurn.Value;
     }
 
     public bool IsPlayerDefending()
@@ -69,6 +76,11 @@ public class BattleState : ScriptableObject
     public bool IsPlayerInvulnerable()
     {
         return isPlayerInvulnerable.Value;
+    }
+
+    public bool IsPlayerTalking()
+    {
+        return isPlayerTalking.Value;
     }
 
     public bool IsPlayerUnmovable()
@@ -111,17 +123,22 @@ public class BattleState : ScriptableObject
         isFreezeTurn.Value = b;
     }
 
+    public void SetPlayerTalking(bool b)
+    {
+        isPlayerTalking.Value = b;
+    }
+
     public void SetEnemyDamageAnimationPlaying(bool b)
     {
         isEnemyDamageAnimationPlaying.Value = b;
     }
 
-    public void OnStartChangeTurn()
+    public void SetChangeTurnExecutingToTrue()
     {
         isChangeTurnExecuting.Value = true;
     }
 
-    public void OnEndChangeTurn()
+    public void SetChangeTurnExecutingToFalse()
     {
         isChangeTurnExecuting.Value = false;
     }
