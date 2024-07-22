@@ -1146,7 +1146,7 @@ Transform:
   m_GameObject: {fileID: 266355629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.38, z: -1}
+  m_LocalPosition: {x: 0, y: -1.64, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1531,7 +1531,7 @@ Transform:
   m_GameObject: {fileID: 461050882}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.515, z: 0}
+  m_LocalPosition: {x: 0, y: 0.695, z: 0}
   m_LocalScale: {x: 5.26, y: 0.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1689,7 +1689,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1814,7 +1814,7 @@ GameObject:
   - component: {fileID: 490097838}
   - component: {fileID: 490097841}
   m_Layer: 0
-  m_Name: PlayerStrategyExecuter
+  m_Name: PlayerTurnHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4324,7 +4324,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.525, y: 0, z: 0}
-  m_LocalScale: {x: 0.21, y: 5.2400002, z: 1}
+  m_LocalScale: {x: 0.21, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -5304,7 +5304,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.525, y: 0, z: 0}
-  m_LocalScale: {x: 0.21, y: 5.2400002, z: 1}
+  m_LocalScale: {x: 0.21, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -5886,7 +5886,7 @@ GameObject:
   - component: {fileID: 1868609094}
   - component: {fileID: 1868609093}
   m_Layer: 0
-  m_Name: PlayerTurnHandler
+  m_Name: BattleStrategyGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6462,7 +6462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 8/20
+  m_text: 7/20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79798027d6be83c44bc29a9a11649b29, type: 2}
   m_sharedMaterial: {fileID: -7013637769228816244, guid: 79798027d6be83c44bc29a9a11649b29, type: 2}
@@ -6807,7 +6807,7 @@ Transform:
   m_GameObject: {fileID: 2067505879}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.515, z: 0}
+  m_LocalPosition: {x: 0, y: -0.695, z: 0}
   m_LocalScale: {x: 5.26, y: 0.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

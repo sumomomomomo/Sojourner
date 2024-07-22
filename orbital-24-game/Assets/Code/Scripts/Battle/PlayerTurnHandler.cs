@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerStrategyExecuter : MonoBehaviour
+public class PlayerTurnHandler : MonoBehaviour
 {
     [SerializeField] private BattleStrategyTrackerObject currentStrategy;
     [SerializeField] private BoundTargetInstructionsObject boundTargetInstructionsObject;
@@ -37,12 +37,20 @@ public class PlayerStrategyExecuter : MonoBehaviour
         {
             // Something should have been typed -- handle it here
 
-            battleState.SetPlayerTalking(false);
+            //battleState.SetPlayerTalking(false);
 
             Debug.Log(playerTalkInputField.text);
-
-            playerTalkInputField.gameObject.SetActive(false);
+            playerTalkInputField.enabled = false;
             playerTalkInputHandlerObject.SetActive(false);
+
+
+            // Do stuff here
+
+
+
+            // do battleState.SetPlayerTalking(false)
+            // and playerTalkInputField.gameObject.SetActive(false)
+            // so that the enemy will begin acting
         }
     }
 
@@ -62,6 +70,7 @@ public class PlayerStrategyExecuter : MonoBehaviour
         {
             yield return null;
         }
+        playerTalkInputField.enabled = true;
         playerTalkInputField.gameObject.SetActive(true);
         playerTalkInputField.text = "";
         playerTalkInputHandlerObject.SetActive(true);
