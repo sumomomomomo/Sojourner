@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TurnBar : MonoBehaviour
+public class TurnBarAndText : MonoBehaviour
 {
     
     [SerializeField] private Slider slider;
@@ -11,14 +12,22 @@ public class TurnBar : MonoBehaviour
     [SerializeField] private FloatReference timeLeftForTurnMax;
     [SerializeField] private BattleState battleState;
 
-    [SerializeField] private GameObject turnBarText;
+    [SerializeField] private TMP_Text turnBarText;
     [SerializeField] private Animator turnBarTextAnimator;
 
     private void Update()
     {
         if (battleState.IsPlayerTurn())
         {
-            turnBarText.SetActive(true);
+            if (battleState.IsPlayerTalking())
+            {
+                turnBarText.text = "TALK!";
+            }
+            else
+            {
+                turnBarText.text = "ACT!";
+            }
+            turnBarText.gameObject.SetActive(true);
             if (timeLeftForTurn.Value <= timeLeftForTurnMax.Value / 2)
             {
                 turnBarTextAnimator.Play("Act Blink");
@@ -32,7 +41,7 @@ public class TurnBar : MonoBehaviour
         }
         else
         {
-            turnBarText.SetActive(false);
+            turnBarText.gameObject.SetActive(false);
             slider.maxValue = timeLeftForTurnMax.Value;
             slider.value = timeLeftForTurnMax.Value - timeLeftForTurn.Value;
         }

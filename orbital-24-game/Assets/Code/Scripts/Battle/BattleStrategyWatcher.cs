@@ -14,6 +14,7 @@ public class BattleStrategyWatcher : MonoBehaviour
 
     private IEnumerator EnableStrategyTextsEnum()
     {
+        Debug.Log("strat texts enabled start");
         while (!battleState.IsPlayerStrategySelectable()) 
         {
             yield return new WaitForSeconds(0.01f);
@@ -23,6 +24,7 @@ public class BattleStrategyWatcher : MonoBehaviour
         {
             strategyTexts[i].SetActive(true);
         }
+        Debug.Log("start texts enabled end");
     }
 
     public void DisableStrategyTexts()
@@ -32,14 +34,12 @@ public class BattleStrategyWatcher : MonoBehaviour
 
     private IEnumerator DisableStrategyTextsEnum()
     {        
-        while (!battleState.IsPlayerStrategySelectable()) 
-        {
-            yield return new WaitForSeconds(0.01f);
-        }
-
+        Debug.Log("strat texts disabled start");
         for (int i = 0; i < strategyTexts.Length; i++)
         {
             strategyTexts[i].SetActive(false);
         }
+        Debug.Log("strat texts disabled end");
+        yield return null;
     }
 }

@@ -31,7 +31,7 @@ public class EnemyObject : ScriptableObject
     [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
     [SerializeField] private Object _enemyHandlerState;
     public IEnemyHandlerState EnemyHandlerState => (IEnemyHandlerState) _enemyHandlerState;
-    [SerializeField] private bool isEnemyDead = false;
+    //[SerializeField] private bool isEnemyDead = false;
     [SerializeField] private BackloggedCutsceneSequenceObject onWinBackloggedCutsceneSequenceObject;
     [SerializeField] private CutsceneEventSequenceObject onWinCutsceneSequenceObject;
     [SerializeField] [TextArea] private string developerComments;
@@ -71,7 +71,7 @@ public class EnemyObject : ScriptableObject
         {
             onWinBackloggedCutsceneSequenceObject.LoadCutsceneEventSequence(onWinCutsceneSequenceObject);
         }
-        isEnemyDead = true;
+        //isEnemyDead = true;
     }
 
     public void SetCurrHP(float newHP)
