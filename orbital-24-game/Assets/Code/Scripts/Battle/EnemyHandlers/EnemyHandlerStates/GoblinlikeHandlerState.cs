@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,7 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     private GameObject spriteObject;
     private GameObject healthBarSliderCanvasObject;
     private EnemyHealthBar enemyHealthBar;
+    private string currEmotion;
     public void OnBattleStart(MonoBehaviour monoBehaviour)
     {
         // instantiate enemy sprite
@@ -25,6 +28,8 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         enemyHealthBar = healthBarSliderCanvasObject.GetComponentInChildren<EnemyHealthBar>();
         enemyHealthBar.SetEnemyObject(enemyObject);
         enemyHealthBar.Hide();
+
+        currEmotion = "angry";
     }
     public void OnEnemyTurnEnd(MonoBehaviour monoBehaviour)
     {
@@ -37,7 +42,7 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
 
     public void OnEnemyTurnStart(MonoBehaviour monoBehaviour)
     {
-        AttackPattern chosenAttack = attackPatterns[Random.Range(0,2)];
+        AttackPattern chosenAttack = attackPatterns[UnityEngine.Random.Range(0,2)];
         boundTargetInstructionsObject.PlayerBoundsTarget = chosenAttack.PlayerBoundsTarget; // TODO redo?
         onUpdateBounds.Raise();
         monoBehaviour.StartCoroutine(DoAttack(chosenAttack));
@@ -86,5 +91,32 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
 
         battleState.SetEnemyDamageAnimationPlaying(false);
         enemyHealthBar?.Hide();
+    }
+
+    private class LLMResponse
+    {
+        public string emotion;
+        public string response;
+    }
+
+    public bool OnLLMResponse(MonoBehaviour monoBehaviour, string content)
+    {
+        Debug.Log(content);
+        try
+        {
+            LLMResponse res = JsonUtility.FromJson<LLMResponse>(content);
+            if (!enemyObject.AvailableEmotions.Contains(res.emotion))
+            {
+                Debug.LogError("invalid emotion: " + res.emotion);
+                return false;
+            }
+            currEmotion = res.emotion;
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Exception while parsing LLM Response: " + e);
+            return false;
+        }
     }
 }

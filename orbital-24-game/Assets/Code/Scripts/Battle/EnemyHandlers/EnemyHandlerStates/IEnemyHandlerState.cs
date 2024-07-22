@@ -7,4 +7,5 @@ public interface IEnemyHandlerState
     abstract void OnBattleStart(MonoBehaviour monoBehaviour);
     abstract void OnPlayerWin(MonoBehaviour monoBehaviour);
     abstract void OnTakeDamage(MonoBehaviour monoBehaviour, IntVariable enemyHP, BattleState battleState);
+    abstract bool OnLLMResponse(MonoBehaviour monoBehaviour, string content);
 }

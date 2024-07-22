@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using OpenAI;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,10 @@ public class EnemyObject : ScriptableObject
     public int ExpReward => expReward;
     [SerializeField] private int moneyReward;
     public int MoneyReward => moneyReward;
+    [SerializeField] private ChatMessageObject[] defaultChatMessageObjects;
+    public ChatMessageObject[] DefaultChatMessageObjects => defaultChatMessageObjects;
+    [SerializeField] private string[] availableEmotions;
+    public string[] AvailableEmotions => availableEmotions;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
     [SerializeField] private Object _enemyHandlerState;

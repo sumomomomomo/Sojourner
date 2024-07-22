@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using OpenAI;
 using TMPro;
 using UnityEngine;
 
@@ -11,9 +12,15 @@ public class PlayerTurnHandler : MonoBehaviour
     [SerializeField] private PlayerBoundsTarget playerBoundsTargetTalk;
     [SerializeField] private BattleState battleState;
     [SerializeField] private GameEventObject onUpdateBounds;
+    [SerializeField] private ChatMessageObjectsTracker chatMessageObjectsTracker;
 
     [SerializeField] private TMP_InputField playerTalkInputField;
     [SerializeField] private GameObject playerTalkInputHandlerObject;
+    [SerializeField] private EnemyHandler enemyHandler;
+
+    [SerializeField] private FloatReference llmTemperature;
+
+    private OpenAIApi openai = new();
 
     private void Start()
     {
@@ -27,7 +34,7 @@ public class PlayerTurnHandler : MonoBehaviour
         onUpdateBounds.Raise();
     }
 
-    public void OnPlayerTurnEnd()
+    public async void OnPlayerTurnEnd()
     {
         if (!battleState.IsPlayerTalking())
         {
@@ -46,11 +53,46 @@ public class PlayerTurnHandler : MonoBehaviour
 
             // Do stuff here
 
+            chatMessageObjectsTracker.AddChatMessage(
+                new ChatMessageObject("user", playerTalkInputField.text)
+                );
+            
+            CreateChatCompletionResponse completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+            {
+                Model = "gpt-4o-mini",
+                Messages = chatMessageObjectsTracker.GetChatMessages(),
+                ResponseFormat = new ResponseFormat
+                {
+                    Type = ResponseType.JsonObject
+                },
+                Temperature = 0.6f
+            });
 
+            if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
+            {
+                ChatMessage message = completionResponse.Choices[0].Message;
+                message.Content = message.Content.Trim();
 
-            // do battleState.SetPlayerTalking(false)
-            // and playerTalkInputField.gameObject.SetActive(false)
-            // so that the enemy will begin acting
+                // test to see if output is valid
+                bool isOutputValid = enemyHandler.OnLLMResponse(message.Content);
+                if (isOutputValid)
+                {
+                    chatMessageObjectsTracker.AddChatMessage(message);
+                }
+                else
+                {
+                    Debug.LogWarning("This prompt generated invalid output. No message added.");
+                    chatMessageObjectsTracker.RemoveLastMessage();
+                    // TODO: rerun?
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No text was generated from this prompt.");
+            }
+
+            battleState.SetPlayerTalking(false);
+            playerTalkInputField.gameObject.SetActive(false);
         }
     }
 

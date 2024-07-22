@@ -90,8 +90,9 @@ Answer in JSON format. Always answer with your current emotion."
                 Messages = messages,
                 ResponseFormat = new ResponseFormat
                 {
-                    Type = "json_object"
-                }
+                    Type = ResponseType.JsonObject
+                },
+                Temperature = 0.6f
             });
 
             if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
