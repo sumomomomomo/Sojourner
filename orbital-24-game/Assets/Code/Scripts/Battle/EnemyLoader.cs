@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using OpenAI;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -11,6 +12,7 @@ public class EnemyLoader : MonoBehaviour
     [SerializeField] private IntReference enemyHP;
     [SerializeField] private IntReference enemyAtk;
     [SerializeField] private IntReference enemyDef;
+    [SerializeField] private ChatMessageObjectsTracker chatMessageObjectsTracker;
     void Start()
     {
         if (currentEnemy != null) 
@@ -27,6 +29,13 @@ public class EnemyLoader : MonoBehaviour
             enemyDef.Value = currentEnemy.LoadedEnemy.Def;
 
             // TODO: player is invisible for 0.5s cos player bound shift animation - add initialization for player bounds
+
+            // Load Enemy Chat Messages
+            chatMessageObjectsTracker.ClearAllMessages();
+            foreach (ChatMessageObject chatMessageObject in currentEnemy.LoadedEnemy.DefaultChatMessageObjects)
+            {
+                chatMessageObjectsTracker.AddChatMessage(chatMessageObject);
+            }
 
             // Change state for EnemyHandler
             IEnemyHandlerState enemyHandlerState = currentEnemy.LoadedEnemy.EnemyHandlerState;

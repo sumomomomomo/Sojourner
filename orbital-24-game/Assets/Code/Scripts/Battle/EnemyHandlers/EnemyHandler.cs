@@ -32,6 +32,11 @@ public class EnemyHandler : MonoBehaviour
         currentState.OnTakeDamage(this, enemyHP, battleState);
     }
 
+    public bool OnLLMResponse(string content)
+    {
+        return currentState.OnLLMResponse(this, content);
+    }
+
     public void ChangeState(IEnemyHandlerState newState)
     {
         Debug.Log("State changed from " + currentState + " to " + newState); 
