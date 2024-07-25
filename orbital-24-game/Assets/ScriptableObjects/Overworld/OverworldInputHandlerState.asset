@@ -16,3 +16,4 @@ MonoBehaviour:
   isInventoryOpen: {fileID: 11400000, guid: 0e72b97b5e275714f84828d46d8bec83, type: 2}
   isOverworldMenuOpen: {fileID: 11400000, guid: c617284f430453d4b9cad028e4e363b7, type: 2}
   isCutscenePlaying: {fileID: 11400000, guid: b7f7d90f7d16626429b658c43d3bbc04, type: 2}
+  isStatusOpen: {fileID: 11400000, guid: b3d4656186dfe02439a814f57ea13f7a, type: 2}
