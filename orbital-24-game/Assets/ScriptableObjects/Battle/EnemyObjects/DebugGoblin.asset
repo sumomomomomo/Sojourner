@@ -31,7 +31,7 @@ MonoBehaviour:
       following conversation takes place after you spot Player walking out of his
       jail cell. You are fighting the player right now.\r\nYou are intimidated by
       the player's towering presence, and you are on the brink of running away.\r\nYour
-      responses should always be under 10 words long. \r\nAlways speak in the first
+      responses should always be under 10 words long.\r\nAlways speak in the first
       person. \r\nAnswer in JSON format. Always answer with your current emotion.\r\nYour
       available emotions are {\"scared\", \"terrified\", \"angry\"}"
   - role: assistant

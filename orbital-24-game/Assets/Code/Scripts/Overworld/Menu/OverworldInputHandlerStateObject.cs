@@ -9,6 +9,7 @@ public class OverworldInputHandlerStateObject : ScriptableObject
     [SerializeField] private BoolVariable isInventoryOpen;
     [SerializeField] private BoolVariable isOverworldMenuOpen;
     [SerializeField] private BoolVariable isCutscenePlaying;
+    [SerializeField] private BoolVariable isStatusOpen;
 
     public bool CanPlayerInteract()
     {
@@ -27,6 +28,11 @@ public class OverworldInputHandlerStateObject : ScriptableObject
 
     public bool CanOverworldMenuClose()
     {
-        return !isInventoryOpen.Value;
+        return !isInventoryOpen.Value && !isStatusOpen.Value;
+    }
+
+    public bool IsMenuOptionsSelectable()
+    {
+        return isOverworldMenuOpen.Value && CanOverworldMenuClose();
     }
 }
