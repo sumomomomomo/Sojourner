@@ -63,6 +63,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1192053202732916881}
     m_Modifications:
+    - target: {fileID: 137846488518351718, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+      propertyPath: damageModifier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3604517417909770993, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
       propertyPath: m_Name
       value: Knife (1)
@@ -125,6 +129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1192053202732916881}
     m_Modifications:
+    - target: {fileID: 137846488518351718, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
+      propertyPath: damageModifier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3604517417909770993, guid: b56a772d25cabc34189fd078f2d41241, type: 3}
       propertyPath: m_Name
       value: Knife
