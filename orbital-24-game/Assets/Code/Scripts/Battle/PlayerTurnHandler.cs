@@ -31,6 +31,7 @@ public class PlayerTurnHandler : MonoBehaviour
     }
     public void OnPlayerTurnStart()
     {
+        currentStrategy.ToDefaultValidStrategy();
         boundTargetInstructionsObject.PlayerBoundsTarget = playerBoundsTarget;
         onUpdateBounds.Raise();
     }

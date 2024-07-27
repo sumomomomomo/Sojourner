@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Run
   m_EditorClassIdentifier: 
   strategyName: Run
-  isDisabled: 0
+  originalDisplayText: Run!
+  originalColor: {r: 1, g: 1, b: 1, a: 1}
+  isDisabled: 1
   onExecuteStrategy:
     m_PersistentCalls:
       m_Calls:

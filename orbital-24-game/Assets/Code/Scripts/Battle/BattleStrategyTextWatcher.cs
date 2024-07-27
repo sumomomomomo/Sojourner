@@ -12,6 +12,7 @@ public class BattleStrategyTextWatcher : MonoBehaviour
 
     void Update()
     {
+        selfText.text = referenceStrategy.DisplayText;
         if (referenceStrategy.StrategyName == currentStrategy.StrategyName)
         {
             selfText.fontStyle = FontStyles.Bold;
@@ -25,7 +26,7 @@ public class BattleStrategyTextWatcher : MonoBehaviour
         else
         {
             selfText.fontStyle = FontStyles.Normal;
-            selfText.color = new Color(1f, 1f, 1f, 1f);
+            selfText.color = referenceStrategy.Color;
         }
     }
 }

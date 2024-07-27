@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b28849729939a84a97eade61c315464, type: 3}
   m_Name: BoundTargetInstructions
   m_EditorClassIdentifier: 
-  playerBoundsTarget: {fileID: 11400000, guid: d8171dc38599f084e901a56681cc83ab, type: 2}
+  playerBoundsTarget: {fileID: 11400000, guid: b8c1d3b1ed0f8b34dba945751a07c9ea, type: 2}
+  onUpdateBounds: {fileID: 11400000, guid: 4b31df5d38f1b6244b6410edb4e9cbc2, type: 2}

@@ -11,6 +11,7 @@ public class TurnHandler : MonoBehaviour
 
     [SerializeField] private FloatReference minEnemyTurnTime;
     [SerializeField] private FloatReference playerAgility;
+    [SerializeField] private FloatReference enemyAgility;
     [SerializeField] private FloatReference timeLeftToNextTurn;
     [SerializeField] private FloatReference timeLeftToNextTurnMax;
     [SerializeField] private BattleState battleState;
@@ -24,22 +25,24 @@ public class TurnHandler : MonoBehaviour
 
     private Coroutine changeTurnCoroutine;
 
-    private float currTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
+    private float CurrTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
     {
         if (isPlayerTurn)
         {
-            return 5;
+            return Math.Max(5, 5 + playerAgility - enemyAgility);
         }
-        return Math.Max(minEnemyTurnTime.Value, 10 + enemyAgility - playerAgility);
+        else
+        {
+            return Math.Max(3, Math.Max(minEnemyTurnTime.Value, 10 + enemyAgility - playerAgility));
+        }
     }
     void Start()
     {
         // Hardcoded
         battleState.SetChangeTurnExecutingToFalse();
         battleState.SetToPlayerTurn();
-        ChangeTimeLeftValues(currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, false));
+        ChangeTimeLeftValues(10);
         onPlayerTurnStart.Raise();
-
     }
 
     void Update()
@@ -62,6 +65,7 @@ public class TurnHandler : MonoBehaviour
 
     public void ChangeTurn()
     {
+        Debug.Log("Change turn called");
         battleState.SetChangeTurnExecutingToTrue();
         timeLeftToNextTurn.Value = 0;
         changeTurnCoroutine = StartCoroutine(ChangeTurnEnum());
@@ -69,6 +73,7 @@ public class TurnHandler : MonoBehaviour
 
     private IEnumerator ChangeTurnEnum()
     {
+        Debug.Log("Change turn enum start");
         if (battleState.IsPlayerTurn()) // player -> enemy
         {
             onPlayerTurnEnd.Raise();
@@ -88,9 +93,9 @@ public class TurnHandler : MonoBehaviour
             onPlayerTurnStart.Raise();
         }
         battleState.FlipIsPlayerTurn();
-        ChangeTimeLeftValues(currTurnLength(playerAgility.Value, enemyLoadedTrackerObject.LoadedEnemy.Agility, battleState.IsPlayerTurn()));
+        ChangeTimeLeftValues(CurrTurnLength(playerAgility.Value, enemyAgility.Value, battleState.IsPlayerTurn()));
         battleState.SetChangeTurnExecutingToFalse();
-        Debug.Log("Coroutine ended");
+        Debug.Log("Change turn enum end");
     }
 
     public void OnBattleLose()
@@ -105,10 +110,6 @@ public class TurnHandler : MonoBehaviour
         Debug.Log("OnBattleWin");
         //onPlayerTurnEnd.Raise(); //buggy
         //onEnemyTurnEnd.Raise();
-
-        // Set enemy flag to be dead
-        enemyLoadedTrackerObject.LoadedEnemy.OnBattleWin();
-
     }
 
     public void OnPlayerTalk()
@@ -136,6 +137,11 @@ public class TurnHandler : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    public void SetTimeLeftValues(float timeLeft)
+    {
+        ChangeTimeLeftValues(timeLeft);
     }
 
 }

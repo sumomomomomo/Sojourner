@@ -8,15 +8,24 @@ public class BattleWinTextRunner : MonoBehaviour
 {
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private DialogueUITypewriterEffect typewriterEffect;
-    [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     [SerializeField] private GameEventObject onReturnToOverworld;
     private string[] textToDisplay;
-    void Start()
+    //void Start()
+    //{
+        //textToDisplay = new string[2];
+        //textToDisplay[0] = "Battle won!";
+        //textToDisplay[1] = "You gained " + enemyLoadedTrackerObject.LoadedEnemy.ExpReward + " EXP and " + enemyLoadedTrackerObject.LoadedEnemy.MoneyReward + " money.";
+        //StartCoroutine(StepThroughWinDialogue());
+    //}
+
+    public void Init(string[] textToDisplay)
     {
-        textToDisplay = new string[2];
-        textToDisplay[0] = "Battle won!";
-        textToDisplay[1] = "You gained " + enemyLoadedTrackerObject.LoadedEnemy.ExpReward + " EXP and " + enemyLoadedTrackerObject.LoadedEnemy.MoneyReward + " money.";
-        StartCoroutine(StepThroughWinDialogue());
+        this.textToDisplay = textToDisplay;
+    }
+
+    public void BeginBattleWinSequence()
+    {
+        StepThroughWinDialogue();
     }
 
     private IEnumerator StepThroughWinDialogue()

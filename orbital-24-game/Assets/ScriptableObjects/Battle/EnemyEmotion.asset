@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e108af09575ff4a929285ad0f8b29a, type: 3}
   m_Name: EnemyEmotion
   m_EditorClassIdentifier: 
-  value: 
+  value: angry
   developerComments: 

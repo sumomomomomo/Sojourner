@@ -10,6 +10,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Battle/EnemyObject")]
 public class EnemyObject : ScriptableObject
 {
+    [SerializeField] private UnityEngine.Object _enemyHandlerState;
+    public IEnemyHandlerState EnemyHandlerState => (IEnemyHandlerState) _enemyHandlerState;
     [SerializeField] private string enemyName;
     public string EnemyName => enemyName;
     [SerializeField] private GameObject spritePrefab;
@@ -32,6 +34,10 @@ public class EnemyObject : ScriptableObject
     public int ExpReward => expReward;
     [SerializeField] private int moneyReward;
     public int MoneyReward => moneyReward;
+    [SerializeField] private GameObject winTextPrefab;
+    public GameObject WinTextPrefab => winTextPrefab;
+    [SerializeField] private AttackPattern[] attackPatterns;
+    public AttackPattern[] AttackPatterns => attackPatterns;
     [SerializeField] private ChatMessageObject[] defaultChatMessageObjects;
     public ChatMessageObject[] DefaultChatMessageObjects => defaultChatMessageObjects;
     [SerializeField] private string[] availableEmotions;
@@ -39,18 +45,16 @@ public class EnemyObject : ScriptableObject
     [SerializeField] private Sprite[] indexSensitiveSpritesForEachEmotion;
     public Sprite[] IndexSensitiveSpritesForEachEmotion => indexSensitiveSpritesForEachEmotion;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
-    [SerializeField] private bool hasEnemyLoadedTrackerObject = false;
-    [SerializeField] private UnityEngine.Object _enemyHandlerState;
-    public IEnemyHandlerState EnemyHandlerState => (IEnemyHandlerState) _enemyHandlerState;
     //[SerializeField] private bool isEnemyDead = false;
-    [SerializeField] private BackloggedCutsceneSequenceObject onWinBackloggedCutsceneSequenceObject;
+    [SerializeField] private BackloggedCutsceneSequenceObject backloggedCutsceneSequenceObject;
     [SerializeField] private CutsceneEventSequenceObject onWinCutsceneSequenceObject;
+    [SerializeField] private CutsceneEventSequenceObject onSpareCutsceneSequenceObject;
     [SerializeField] [TextArea] private string developerComments;
 
     #if UNITY_EDITOR
     public void Awake()
     {
-        if (!hasEnemyLoadedTrackerObject)
+        if (enemyLoadedTrackerObject == null)
         {
             string[] guids = AssetDatabase.FindAssets("t:EnemyLoadedTrackerObject");
             if (guids.Length < 1)
@@ -59,14 +63,13 @@ public class EnemyObject : ScriptableObject
             }
             enemyLoadedTrackerObject = (EnemyLoadedTrackerObject) AssetDatabase.LoadAssetAtPath(
                 AssetDatabase.GUIDToAssetPath(guids[0]), typeof(EnemyLoadedTrackerObject));
-            hasEnemyLoadedTrackerObject = true;
         }
     }
     #endif
 
     public void SetEnemyLoadedTrackerObjectToThis()
     {
-        if (!hasEnemyLoadedTrackerObject)
+        if (enemyLoadedTrackerObject == null)
         {
             Debug.LogError("No EnemyLoadedTrackerObject set!");
         }
@@ -78,11 +81,19 @@ public class EnemyObject : ScriptableObject
 
     public void OnBattleWin()
     {
-        if (onWinBackloggedCutsceneSequenceObject != null && onWinCutsceneSequenceObject != null)
+        if (backloggedCutsceneSequenceObject != null && onWinCutsceneSequenceObject != null)
         {
-            onWinBackloggedCutsceneSequenceObject.LoadCutsceneEventSequence(onWinCutsceneSequenceObject);
+            backloggedCutsceneSequenceObject.LoadCutsceneEventSequence(onWinCutsceneSequenceObject);
         }
         //isEnemyDead = true;
+    }
+
+    public void OnSpare()
+    {
+        if (backloggedCutsceneSequenceObject != null && onSpareCutsceneSequenceObject != null)
+        {
+            backloggedCutsceneSequenceObject.LoadCutsceneEventSequence(onSpareCutsceneSequenceObject);
+        } 
     }
 
     public void SetCurrHP(float newHP)

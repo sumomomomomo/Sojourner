@@ -10,13 +10,12 @@ public class BattleStrategyTrackerObject : ScriptableObject
     public string StrategyName => selectedStrategy != null ? selectedStrategy.StrategyName : "None";
     public UnityEvent OnExecuteStrategy()
     {
-        DefaultValidStrategy();
+        ToDefaultValidStrategy();
         return selectedStrategy.OnExecuteStrategy;
     }
 
     public void ToNextStrategy()
     {
-        DefaultValidStrategy();
         if (strategyIndex >= strategyOrder.Length - 1) return;
         strategyIndex++;
         BattleStrategyObject nextStrategy = strategyOrder[strategyIndex];
@@ -41,7 +40,6 @@ public class BattleStrategyTrackerObject : ScriptableObject
 
     public void ToPreviousStrategy()
     {
-        DefaultValidStrategy();
         if (strategyIndex <= 0) return;
         strategyIndex--;
         BattleStrategyObject prevStrategy = strategyOrder[strategyIndex];
@@ -63,7 +61,7 @@ public class BattleStrategyTrackerObject : ScriptableObject
         selectedStrategy = strategyOrder[strategyIndex];
     }
 
-    private void DefaultValidStrategy()
+    public void ToDefaultValidStrategy()
     {
         if (selectedStrategy == null || selectedStrategy.IsDisabled == true)
         {
@@ -87,5 +85,13 @@ public class BattleStrategyTrackerObject : ScriptableObject
             selectedStrategy = strategyOrder[0];
         }
         return new Vector2(selectedStrategy.PlayerTurnXCoordinate, selectedStrategy.PlayerTurnYCoordinate);
+    }
+
+    public void InitAll()
+    {
+        foreach (BattleStrategyObject bso in strategyOrder)
+        {
+            bso.Init();
+        }
     }
 }

@@ -5,13 +5,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "Enemy Handler States/Goblinlike")]
-public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
+[CreateAssetMenu(menuName = "Enemy Handler States/Goblin Guard")]
+public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
 {
     [SerializeField] private EnemyObject enemyObject;
     [SerializeField] private BoundTargetInstructionsObject boundTargetInstructionsObject;
     [SerializeField] private BoolVariable isFreezeTurn;
     [SerializeField] private StringVariable enemyEmotion;
+    [SerializeField] private BattleStrategyObject run;
+    [SerializeField] private BattleStrategyObject talk;
+    [SerializeField] private IntVariable enemyAtk;
+    [SerializeField] private IntVariable enemyDef;
+    [SerializeField] private FloatVariable enemyAgi;
+    private TurnHandler turnHandler;
     private List<GameObject> instantiatedObjects = new();
     private GameObject spriteObject;
     private GameObject healthBarSliderCanvasObject;
@@ -19,8 +25,14 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     private EnemySpriteHandler enemySpriteHandler;
     private EnemyHealthBar enemyHealthBar;
     private EnemyDialogueHandler enemyDialogueHandler;
-    public void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler _)
+    public void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler turnHandler)
     {
+        //Init turnhandler
+        this.turnHandler = turnHandler;
+
+        // Disable Run
+        run.Disable();
+
         // instantiate enemy sprite
         spriteObject = Instantiate(enemyObject.SpritePrefab);
         enemySpriteHandler = spriteObject.GetComponentInChildren<EnemySpriteHandler>();
@@ -41,7 +53,7 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         // instantiate emotion
         enemyEmotion.Value = "angry";
 
-        ((IEnemyHandlerState) this).OnDisplayEnemyDialogueExpire(monoBehaviour, "I am debug goblin", enemyDialogueHandler, 2);
+        ((IEnemyHandlerState) this).OnDisplayEnemyDialogueExpire(monoBehaviour, "Go back! Cell!", enemyDialogueHandler, 2);
     }
     public void OnEnemyTurnEnd(MonoBehaviour monoBehaviour)
     {
@@ -54,11 +66,20 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
 
     public void OnEnemyTurnStart(MonoBehaviour monoBehaviour)
     {
-        AttackPattern chosenAttack = enemyObject.AttackPatterns[UnityEngine.Random.Range(0, enemyObject.AttackPatterns.Length)];
-        boundTargetInstructionsObject.SetAndRaiseUpdateBounds(chosenAttack.PlayerBoundsTarget);
-        monoBehaviour.StartCoroutine(DoAttack(chosenAttack));
-    }
+        if (enemyEmotion.Value != "terrified")
+        {
+            AttackPattern chosenAttack = enemyObject.AttackPatterns[UnityEngine.Random.Range(0, 2)];
+            boundTargetInstructionsObject.SetAndRaiseUpdateBounds(chosenAttack.PlayerBoundsTarget);
+            monoBehaviour.StartCoroutine(DoAttack(chosenAttack));
+        }
+        else
+        {
+            // do nothing
+            boundTargetInstructionsObject.SetAndRaiseUpdateBounds(enemyObject.AttackPatterns[0].PlayerBoundsTarget);
+            monoBehaviour.StartCoroutine(DoNothing(monoBehaviour));
+        }
 
+    }
     private IEnumerator DoAttack(AttackPattern attackPattern)
     {
         yield return new WaitForSeconds(0.25f);
@@ -68,6 +89,19 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
         }
         yield return new WaitForSeconds(0.25f);
         instantiatedObjects.Add(Instantiate(attackPattern.AttackPrefab));
+    }
+
+    private IEnumerator DoNothing(MonoBehaviour monoBehaviour)
+    {
+        yield return new WaitForSeconds(0.25f);
+        while (isFreezeTurn.Value)
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+        turnHandler.SetTimeLeftValues(4);
+        ((IEnemyHandlerState) this).OnDisplayEnemyDialogueExpire(monoBehaviour, "*Goblin Guard is trembling in fear*", enemyDialogueHandler, 2);
+        yield return new WaitForSeconds(3.25f);
+        
     }
 
     public void OnPlayerWin(MonoBehaviour monoBehaviour)
@@ -86,7 +120,11 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
 
     public void OnPlayerRun(MonoBehaviour monoBehaviour, BattleState battleState)
     {
-        //unimplemented
+        // in this case, instant win
+        battleState.SetBattleWin(true);
+
+        Destroy(healthBarSliderCanvasObject);
+        Destroy(dialogueBoxObject);
     }
 
     public void OnTakeDamage(MonoBehaviour monoBehaviour, IntVariable enemyHP, BattleState battleState)
@@ -131,7 +169,6 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
                 Debug.LogError("invalid emotion: " + res.emotion);
                 return false;
             }
-            enemyEmotion.Value = res.emotion;
             return true;
         }
         catch (Exception e)
@@ -144,7 +181,34 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     public void HandleLLMResponse(MonoBehaviour monoBehaviour, string content)
     {
         LLMResponse res = JsonUtility.FromJson<LLMResponse>(content);
-        enemyEmotion.Value = res.emotion;
+        OnChangeEmotion(res.emotion);
         ((IEnemyHandlerState) this).OnDisplayEnemyDialogue(monoBehaviour, res.response, enemyDialogueHandler);
+    }
+
+    private void OnChangeEmotion(string newEmotion)
+    {
+        enemyEmotion.Value = newEmotion;
+        switch (newEmotion)
+        {
+            case "angry":
+                enemyAtk.Value = enemyObject.Atk;
+                enemyDef.Value = enemyObject.Def;
+                enemyAgi.Value = enemyObject.Agility;
+                break;
+            case "scared":
+                enemyAtk.Value = enemyObject.Atk;
+                enemyDef.Value = enemyObject.Def - 2;
+                enemyAgi.Value = enemyObject.Agility - 2;
+                break;
+            case "terrified":
+                talk.Disable();
+                run.Enable();
+                run.SetText("Spare");
+                run.SetColor(Color.yellow);
+                enemyAtk.Value = enemyObject.Atk;
+                enemyDef.Value = enemyObject.Def - 2;
+                enemyAgi.Value = -999;
+                break;
+        }
     }
 }

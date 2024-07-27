@@ -9,11 +9,34 @@ public class EnemyDialogueHandler : MonoBehaviour
     [SerializeField] private GameObject backing;
     [SerializeField] private DialogueUITypewriterEffect dialogueUITypewriterEffect;
     [SerializeField] private BoolVariable isEnemySpeaking;
-    public void DisplayText(string text)
+    private Coroutine speakCoroutine;
+    public void DisplayTextExpire(string text, float duration)
     {
+        if (speakCoroutine != null)
+            StopCoroutine(speakCoroutine);
         Show();
         isEnemySpeaking.Value = true;
-        StartCoroutine(DisplayTextSingle(text));
+        speakCoroutine = StartCoroutine(DisplayTextSingleExpire(text, duration));
+    }
+
+    private IEnumerator DisplayTextSingleExpire(string text, float duration)
+    {
+        dialogueUITypewriterEffect.Run(text, enemyDialogueTextField);
+        while (dialogueUITypewriterEffect.IsRunning)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(duration);
+        isEnemySpeaking.Value = false;
+        Hide();
+    }
+    public void DisplayText(string text)
+    {
+        if (speakCoroutine != null)
+            StopCoroutine(speakCoroutine);
+        Show();
+        isEnemySpeaking.Value = true;
+        speakCoroutine = StartCoroutine(DisplayTextSingle(text));
     }
 
     private IEnumerator DisplayTextSingle(string text)
@@ -44,6 +67,12 @@ public class EnemyDialogueHandler : MonoBehaviour
     {
         enemyDialogueTextField.enabled = true;
         backing.SetActive(true);
+    }
+
+    public void KillCoroutine()
+    {
+        if (speakCoroutine != null)
+            StopCoroutine(speakCoroutine);
     }
 
     // TODO add support for DialogueObjects?

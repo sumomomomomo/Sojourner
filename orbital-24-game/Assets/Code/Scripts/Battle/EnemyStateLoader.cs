@@ -4,14 +4,16 @@ using OpenAI;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class EnemyLoader : MonoBehaviour
+public class EnemyStateLoader : MonoBehaviour
 {
     [SerializeField] private BattleState battleState;
     [SerializeField] private EnemyLoadedTrackerObject currentEnemy;
+    [SerializeField] private BattleStrategyTrackerObject battleStrategyTrackerObject;
     [SerializeField] private EnemyHandler enemyHandler;
-    [SerializeField] private IntReference enemyHP;
-    [SerializeField] private IntReference enemyAtk;
-    [SerializeField] private IntReference enemyDef;
+    [SerializeField] private IntVariable enemyHP;
+    [SerializeField] private IntVariable enemyAtk;
+    [SerializeField] private IntVariable enemyDef;
+    [SerializeField] private FloatVariable enemyAgi;
     [SerializeField] private ChatMessageObjectsTracker chatMessageObjectsTracker;
     void Start()
     {
@@ -20,15 +22,19 @@ public class EnemyLoader : MonoBehaviour
             // Reset Battle State flags
             battleState.ResetAllFlags();
 
+            // Enable all strategies
+            battleStrategyTrackerObject.InitAll();
+
             // Init enemy health
             enemyHP.Value = currentEnemy.LoadedEnemy.MaxHP;
             currentEnemy.LoadedEnemy.SetCurrHP(enemyHP.Value);
 
-            // HARDCODED TODO: account for statuses that affect atk/def
+            // Init atk def agi values
             enemyAtk.Value = currentEnemy.LoadedEnemy.Atk;
             enemyDef.Value = currentEnemy.LoadedEnemy.Def;
+            enemyAgi.Value = currentEnemy.LoadedEnemy.Agility;
 
-            // TODO: player is invisible for 0.5s cos player bound shift animation - add initialization for player bounds
+            // TODO: player is invisible for 0.5s cos player bound shift animation - add initialization for player bounds?
 
             // Load Enemy Chat Messages
             chatMessageObjectsTracker.ClearAllMessages();

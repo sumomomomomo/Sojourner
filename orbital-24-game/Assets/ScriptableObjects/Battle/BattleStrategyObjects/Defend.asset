@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Defend
   m_EditorClassIdentifier: 
   strategyName: Defend
+  originalDisplayText: Defend
+  originalColor: {r: 1, g: 1, b: 1, a: 1}
   isDisabled: 0
   onExecuteStrategy:
     m_PersistentCalls:

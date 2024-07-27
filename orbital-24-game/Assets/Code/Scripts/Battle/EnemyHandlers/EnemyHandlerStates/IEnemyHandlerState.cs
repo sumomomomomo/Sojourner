@@ -18,10 +18,11 @@ public interface IEnemyHandlerState
 
     /// <summary>
     /// Attached to listener for GameEventObject OnBattleStart.
-    /// Instantiates prefabs associated with the enemy.
+    /// Instantiates prefabs associated with the enemy, among other init tasks.
     /// </summary>
     /// <param name="monoBehaviour">EnemyHandler instance</param>
-    abstract void OnBattleStart(MonoBehaviour monoBehaviour);
+    /// <param name="turnHandler">TurnHandler instance</param>
+    abstract void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler turnHandler);
 
     /// <summary>
     /// Attached to listener for GameEventObject OnPlayerWin.
@@ -29,6 +30,14 @@ public interface IEnemyHandlerState
     /// </summary>
     /// <param name="monoBehaviour">EnemyHandler instance</param>
     abstract void OnPlayerWin(MonoBehaviour monoBehaviour);
+    
+    /// <summary>
+    /// Attached to listener for GameEventObject OnPlayerRun.
+    /// Refers to all nonstandard enemy win conditions. Eg spare, run, etc
+    /// </summary>
+    /// <param name="monoBehaviour">EnemyHandler instance</param>
+    /// <param name="battleState">Battle State</param>
+    abstract void OnPlayerRun(MonoBehaviour monoBehaviour, BattleState battleState);
 
     /// <summary>
     /// Attached to listener for GameEventObject OnEnemyTakeDamage.
@@ -58,10 +67,27 @@ public interface IEnemyHandlerState
     abstract void HandleLLMResponse(MonoBehaviour monoBehaviour, string content);
 
     /// <summary>
-    /// Called internally by HandleLLMResponse.
-    /// Handles enemy speech.
+    /// Called internally by HandleLLMResponse or otherwise.
+    /// Handles enemy speech. Progresses by spacebar.
     /// </summary>
     /// <param name="monoBehaviour">EnemyHandler instance</param>
     /// <param name="content">String of enemy dialogue</param>
-    abstract void OnDisplayEnemyDialogue(MonoBehaviour monoBehaviour, string content);
+    /// <param name="enemyDialogueHandler">EnemyDialogueHandler specific to current enemy</param>
+    void OnDisplayEnemyDialogue(MonoBehaviour monoBehaviour, string content, EnemyDialogueHandler enemyDialogueHandler)
+    {
+        enemyDialogueHandler.DisplayText(content);
+    }
+
+    /// <summary>
+    /// Called internally.
+    /// Handles enemy speech. Hides itself after a set duration.
+    /// </summary>
+    /// <param name="monoBehaviour">EnemyHandler instance</param>
+    /// <param name="content">String of enemy dialogue</param>
+    /// <param name="enemyDialogueHandler">EnemyDialogueHandler specific to current enemy</param>
+    /// <param name="duration">Length of time to show the dialogue for</param>
+    void OnDisplayEnemyDialogueExpire(MonoBehaviour monoBehaviour, string content, EnemyDialogueHandler enemyDialogueHandler, float duration)
+    {
+        enemyDialogueHandler.DisplayTextExpire(content, duration);
+    }
 }
