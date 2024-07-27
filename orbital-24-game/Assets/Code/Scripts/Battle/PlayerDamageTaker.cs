@@ -11,6 +11,8 @@ public class PlayerDamageTaker : MonoBehaviour
     [SerializeField] private BattleState battleState;
     [SerializeField] private GameEventObject onPlayerTakeDamage;
     [SerializeField] private IntReference enemyAtk;
+    [SerializeField] private BoolVariable isPlayerMoving;
+    public BoolVariable IsPlayerMoving => isPlayerMoving;
     public void takeDamage(float damageModifier)
     {
         if (battleState.IsPlayerInvulnerable()) return;

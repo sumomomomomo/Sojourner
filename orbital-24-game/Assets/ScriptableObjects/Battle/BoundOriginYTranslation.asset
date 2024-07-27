@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
   m_Name: BoundOriginYTranslation
   m_EditorClassIdentifier: 
-  value: -3.56
+  value: -0.41
   developerComments: This value is added to y coordinates of middle of the screen,
     to change the origin of the player's bounding box
