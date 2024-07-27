@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
-  m_Name: BoundHeight
+  m_Script: {fileID: 11500000, guid: 031145d4354c59941b3e9451201116b1, type: 3}
+  m_Name: RectangleCombo
   m_EditorClassIdentifier: 
-  value: 3.77
-  developerComments: Height of player bounds
+  boundHeight: 3.57
+  boundWidth: 7.4
+  boundOriginX: 0
+  boundOriginY: -0.32
+  Read: 0
+  Load: 0
