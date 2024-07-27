@@ -37,13 +37,12 @@ public class TripleComboScript : MonoBehaviour
     private IEnumerator PunchStart()
     {
         float waitTimeOverall = 0.25f;
-        float waitTimePunch = 0.4f;
         while (true)
         {
             yield return new WaitForSeconds(waitTimeOverall);
             for (int i = 0; i < 3; i++)
             {
-                yield return new WaitForSeconds(waitTimePunch);
+                yield return new WaitForSeconds(0.4f);
                 fists[i].transform.position = player.transform.position;
                 fists[i].Play("Punch");
             }
@@ -51,8 +50,6 @@ public class TripleComboScript : MonoBehaviour
 
             waitTimeOverall -= 0.05f;
             waitTimeOverall = Mathf.Min(0.05f, waitTimeOverall);
-            waitTimePunch -= 0.1f;
-            waitTimePunch = Mathf.Min(0.2f, waitTimePunch);
         }
     }
 
