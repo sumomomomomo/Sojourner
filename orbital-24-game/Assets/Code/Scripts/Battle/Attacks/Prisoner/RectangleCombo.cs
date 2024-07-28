@@ -72,6 +72,7 @@ public class RectangleCombo : MonoBehaviour, IScriptedAttack
     {
         if (attackCoroutine != null)
             StopCoroutine(attackCoroutine);
+        SetFistsToIdle();
     }
 
     private IEnumerator PunchStart()

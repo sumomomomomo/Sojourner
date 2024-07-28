@@ -33,15 +33,6 @@ public class DialogueUI : MonoBehaviour
         isDialogueBoxOpen.Value = true;
         dialogueBox.SetActive(true);
 
-        // set audio if present
-        if (dialogueObject.HasTalkingSound)
-        {
-            if (typewriterEffectSound != null)
-            {
-                typewriterEffectSound.SetAudioClip(dialogueObject.TalkingSound);
-            }
-        }
-
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
@@ -53,7 +44,12 @@ public class DialogueUI : MonoBehaviour
             {
                 spriteHandler.ShowSprites(dialogueObject.DialogueSpritePairs[i]);
             }
+
             string dialogue = dialogueObject.Dialogue[i];
+            if (dialogueObject.HasTalkingSound)
+            {
+                typewriterEffectSound.SetAudioClip(dialogueObject.TalkingSound[i]);
+            }
 
             yield return RunTypingEffect(dialogue, dialogueObject);
 
@@ -71,7 +67,15 @@ public class DialogueUI : MonoBehaviour
 
         if (dialogueObject.HasResponses)
         {
-            responseHandler.ShowResponses(dialogueObject.Responses);
+            if (dialogueObject.Responses[0].ResponseText == "")
+            {
+                dialogueObject.Responses[0].OnPickedResponse.Invoke();
+                CloseDialogueBox();
+            }
+            else
+            {
+                responseHandler.ShowResponses(dialogueObject.Responses);
+            }
         }
         else
         {

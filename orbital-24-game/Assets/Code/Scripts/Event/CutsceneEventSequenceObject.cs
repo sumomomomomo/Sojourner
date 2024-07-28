@@ -67,5 +67,10 @@ public class CutsceneEventSequenceObject : ScriptableObject
         isCutscenePlayingOverworld.Value = false;
         isCutsceneFinished = true;
     }
+
+    public void SetFinished(bool b)
+    {
+        isCutsceneFinished = b;
+    }
     
 }

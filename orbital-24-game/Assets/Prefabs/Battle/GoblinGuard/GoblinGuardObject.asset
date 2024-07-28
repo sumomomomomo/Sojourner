@@ -18,7 +18,7 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 8968244387852400422, guid: b1142e1c977d6974dab5aa2db0a4aaea, type: 3}
   dialogueBoxPrefab: {fileID: 5487736092265790566, guid: f4737490055c1e447bf0152be21c62ca, type: 3}
   maxHP: 10
-  currHP: 10
+  currHP: 1
   def: 5
   atk: 5
   agility: 3
@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 19d73265148c1fb43b2b793fb6f8cfac, type: 3}
   - {fileID: 21300000, guid: 7a2a883edeb07d9489b6a77a7a6d145a, type: 3}
   enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
-  onWinBackloggedCutsceneSequenceObject: {fileID: 11400000, guid: f96d38d4077373543b495af8da115029, type: 2}
-  onWinCutsceneSequenceObject: {fileID: 11400000, guid: ebc7cff814146fa49811ab039742be58, type: 2}
+  backloggedCutsceneSequenceObject: {fileID: 11400000, guid: f96d38d4077373543b495af8da115029, type: 2}
+  onWinCutsceneSequenceObject: {fileID: 11400000, guid: 2ef2b30ffaecb6545a7800fbb06e31da, type: 2}
+  onSpareCutsceneSequenceObject: {fileID: 11400000, guid: 0febfcc9862849543a531165fd07ad3d, type: 2}
   developerComments: First goblin the player meets

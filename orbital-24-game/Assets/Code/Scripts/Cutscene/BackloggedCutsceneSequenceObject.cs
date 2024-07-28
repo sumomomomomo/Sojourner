@@ -6,6 +6,7 @@ using UnityEngine;
 public class BackloggedCutsceneSequenceObject : ScriptableObject
 {
     [SerializeField] private CutsceneEventSequenceObject cutsceneEventSequenceObject;
+    [SerializeField] private BoolVariable isCutscenePlayingOverworld;
     [SerializeField] [TextArea] private string developerComments;
 
     public void LoadCutsceneEventSequence(CutsceneEventSequenceObject newObj)
@@ -18,6 +19,7 @@ public class BackloggedCutsceneSequenceObject : ScriptableObject
         if (cutsceneEventSequenceObject == null)
         {
             Debug.Log("No cutscene in backlog");
+            isCutscenePlayingOverworld.Value = false;
             return;
         }
         cutsceneEventSequenceObject.StartCutsceneSequence();

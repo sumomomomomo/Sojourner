@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - "* Hey kid.\n  Want some candy?"
+  dialogueSpritePairs:
+  - dialogueSpriteBehaviour: {fileID: 11400000, guid: 48df7d09efecec249bec7b7af1926d82, type: 2}
+    leftSprite: {fileID: 21300000, guid: cc0d72110bb5cc1438af938ed9ccb63f, type: 3}
+    rightSprite: {fileID: 21300000, guid: 7663cd2c84552be43ba6c55a19957cca, type: 3}
+  talkingSound:
+  - {fileID: 8300000, guid: 7331ee2eb57571e49868c40ed912dba7, type: 3}
   responses:
   - responseText: Okay.
     nextDialogue: {fileID: 11400000, guid: 010154252d9811249b2ba7d169cd793d, type: 2}
@@ -25,8 +31,3 @@ MonoBehaviour:
     onPickedResponse:
       m_PersistentCalls:
         m_Calls: []
-  dialogueSpritePairs:
-  - dialogueSpriteBehaviour: {fileID: 11400000, guid: 48df7d09efecec249bec7b7af1926d82, type: 2}
-    leftSprite: {fileID: 21300000, guid: cc0d72110bb5cc1438af938ed9ccb63f, type: 3}
-    rightSprite: {fileID: 21300000, guid: 7663cd2c84552be43ba6c55a19957cca, type: 3}
-  talkingSound: {fileID: 8300000, guid: 7331ee2eb57571e49868c40ed912dba7, type: 3}

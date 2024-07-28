@@ -219,6 +219,8 @@ public class PrisonerHandlerState : ScriptableObject, IEnemyHandlerState
         // in this case, instant win
         battleState.SetBattleWin(true);
 
+        enemyObject.OnSpare();
+
         Destroy(healthBarSliderCanvasObject);
         Destroy(dialogueBoxObject);
 
@@ -251,14 +253,17 @@ public class PrisonerHandlerState : ScriptableObject, IEnemyHandlerState
         battleState.SetEnemyDamageAnimationPlaying(false);
         yield return new WaitForSeconds(1f);
 
-        if (enemyHealthBar != null)
-            enemyHealthBar.Hide();
-
-        if (!hardMode && afterHP > 0 && afterHP < enemyObject.MaxHP * 0.67 || convincedLevel >= 2)
+        if (afterHP > 0)
         {
-            hardMode = true;
-            OnChangeConvincedLevel(-1);
-            ((IEnemyHandlerState) this).OnDisplayEnemyDialogue(monoBehaviour, "I'm not going to hold back any more.", enemyDialogueHandler);
+            if (enemyHealthBar != null)
+                enemyHealthBar.Hide();
+
+            if (!hardMode && afterHP > 0 && afterHP < enemyObject.MaxHP * 0.67 || convincedLevel >= 2)
+            {
+                hardMode = true;
+                OnChangeConvincedLevel(-1);
+                ((IEnemyHandlerState) this).OnDisplayEnemyDialogue(monoBehaviour, "I'm not going to hold back any more.", enemyDialogueHandler);
+            }
         }
     }
 
@@ -275,7 +280,7 @@ public class PrisonerHandlerState : ScriptableObject, IEnemyHandlerState
         {
             LLMResponse res = JsonUtility.FromJson<LLMResponse>(content);
             int testConvincedLevel = res.convincedLevel;
-            if (testConvincedLevel < 1 || testConvincedLevel > 5)
+            if (testConvincedLevel < 0 || testConvincedLevel > 5)
             {
                 Debug.LogError("invalid convinced level: " + res.convincedLevel);
                 return false;
@@ -308,19 +313,20 @@ public class PrisonerHandlerState : ScriptableObject, IEnemyHandlerState
             enemyDef.Value = enemyObject.Def - 4;
             enemyAgi.Value = enemyObject.Agility + 5;
         }
-        else if (convincedLevel >= 3 && convincedLevel < 5)
+        else if (convincedLevel >= 2 && convincedLevel < 4)
         {
             enemyEmotion.Value = "convinced";
             enemyAtk.Value = enemyObject.Atk;
             enemyDef.Value = -20;
             enemyAgi.Value = enemyObject.Agility;
         }
-        else if (convincedLevel == 5)
+        else if (convincedLevel >= 4)
         {
             enemyEmotion.Value = "convinced";
             enemyAtk.Value = enemyObject.Atk;
             enemyDef.Value = -99;
             enemyAgi.Value = enemyObject.Agility;
+            talk.Disable();
             run.Enable();
             run.SetText("Spare");
             run.SetColor(Color.yellow);

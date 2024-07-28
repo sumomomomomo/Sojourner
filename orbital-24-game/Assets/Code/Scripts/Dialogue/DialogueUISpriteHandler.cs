@@ -19,8 +19,15 @@ public class DialogueUISpriteHandler : MonoBehaviour
     {
         leftSpriteImage.enabled = true;
         rightSpriteImage.enabled = true;
-        leftSpriteImage.sprite = dialogueSpritePair.LeftSprite;
-        rightSpriteImage.sprite = dialogueSpritePair.RightSprite;
+        
+        if (dialogueSpritePair.LeftSprite != null)
+            leftSpriteImage.sprite = dialogueSpritePair.LeftSprite;
+        else
+            leftSpriteImage.enabled = false;
+        if (dialogueSpritePair.RightSprite != null)
+            rightSpriteImage.sprite = dialogueSpritePair.RightSprite;
+        else
+            rightSpriteImage.enabled = false;
 
 
         // Load specific sprite behaviour

@@ -11,7 +11,8 @@ public class EnemyHandler : MonoBehaviour
     private IEnemyHandlerState currentState;
     public void OnEnemyTurnStart()
     {
-        currentState.OnEnemyTurnStart(this);
+        if (enemyHP.Value > 0)
+            currentState.OnEnemyTurnStart(this);
     }
 
     public void OnEnemyTurnEnd()

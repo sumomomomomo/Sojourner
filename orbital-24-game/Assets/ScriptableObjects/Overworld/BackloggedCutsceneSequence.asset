@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BackloggedCutsceneSequence
   m_EditorClassIdentifier: 
   cutsceneEventSequenceObject: {fileID: 0}
+  isCutscenePlayingOverworld: {fileID: 11400000, guid: b7f7d90f7d16626429b658c43d3bbc04, type: 2}
   developerComments: To use for raising events on scene load (eg enemy fade out when
     enemy dies)

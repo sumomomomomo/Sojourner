@@ -18,7 +18,7 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 8968244387852400422, guid: 66ee5abcaef61604a85ec8cd94322858, type: 3}
   dialogueBoxPrefab: {fileID: 5487736092265790566, guid: 77520f072805dc84ea4aee90b1693f46, type: 3}
   maxHP: 1
-  currHP: -6
+  currHP: -13
   def: 0
   atk: 5
   agility: 3
@@ -56,6 +56,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f12a737ae06c07448a237c3ff01eca68, type: 3}
   enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
   backloggedCutsceneSequenceObject: {fileID: 11400000, guid: f96d38d4077373543b495af8da115029, type: 2}
-  onWinCutsceneSequenceObject: {fileID: 0}
-  onSpareCutsceneSequenceObject: {fileID: 0}
+  onWinCutsceneSequenceObject: {fileID: 11400000, guid: 694b53f038f0baa43aa00063d7139f93, type: 2}
+  onSpareCutsceneSequenceObject: {fileID: 11400000, guid: b6e798ba1ad520c45a7bb67af5d4a4b0, type: 2}
   developerComments: Prisoner. Player meets prisoner immediately after goblin

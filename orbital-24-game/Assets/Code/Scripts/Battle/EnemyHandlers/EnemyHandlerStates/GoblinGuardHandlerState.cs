@@ -113,6 +113,7 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
 
         // Do the behaviours
         enemyObject.OnBattleWin();
+        OnEnemyTurnEnd(monoBehaviour);
 
         // wintext appears
         GameObject winText = Instantiate(enemyObject.WinTextPrefab);
@@ -128,6 +129,8 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
     {
         // in this case, instant win
         battleState.SetBattleWin(true);
+
+        enemyObject.OnSpare();
 
         Destroy(healthBarSliderCanvasObject);
         Destroy(dialogueBoxObject);
@@ -161,7 +164,7 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
         battleState.SetEnemyDamageAnimationPlaying(false);
         yield return new WaitForSeconds(1f);
 
-        if (enemyHealthBar != null)
+        if (enemyHealthBar != null && afterHP > 0)
             enemyHealthBar.Hide();
     }
 

@@ -79,7 +79,7 @@ public class TurnHandler : MonoBehaviour
             onPlayerTurnEnd.Raise();
             while (!battleState.CanStartEnemyTurn())
             {
-                yield return null;
+                yield return new WaitForSeconds(0.01f);
             }
             onEnemyTurnStart.Raise();
         }
@@ -88,7 +88,7 @@ public class TurnHandler : MonoBehaviour
             onEnemyTurnEnd.Raise();
             while (!battleState.CanStartPlayerTurn())
             {
-                yield return null;
+                yield return new WaitForSeconds(0.01f);
             }
             onPlayerTurnStart.Raise();
         }
@@ -109,7 +109,7 @@ public class TurnHandler : MonoBehaviour
     {
         Debug.Log("OnBattleWin");
         //onPlayerTurnEnd.Raise(); //buggy
-        //onEnemyTurnEnd.Raise();
+        onEnemyTurnEnd.Raise();
     }
 
     public void OnPlayerTalk()
