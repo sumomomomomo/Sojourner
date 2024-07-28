@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd6c9b2fedf6cb4185293c90d0daf55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
+  enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
   battleState: {fileID: 11400000, guid: 97289e3a2c5bb2745a1d1365ae778396, type: 2}
   onBattleWin: {fileID: 11400000, guid: 4eb3518dfb8be664f83941a67af28229, type: 2}
 --- !u!4 &256875442
@@ -1179,7 +1179,7 @@ Transform:
   m_GameObject: {fileID: 266355629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.57, z: -1}
+  m_LocalPosition: {x: 0, y: -0.41, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1566,8 +1566,8 @@ Transform:
   m_GameObject: {fileID: 461050882}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
-  m_LocalScale: {x: 15.21, y: 0.21, z: 1}
+  m_LocalPosition: {x: 0, y: 1.885, z: 0}
+  m_LocalScale: {x: 3.71, y: 0.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -4017,8 +4017,8 @@ Transform:
   m_GameObject: {fileID: 1436820575}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.21, y: 5.21, z: 1}
+  m_LocalPosition: {x: 1.75, y: 0, z: 0}
+  m_LocalScale: {x: 0.21, y: 3.98, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -4997,8 +4997,8 @@ Transform:
   m_GameObject: {fileID: 1751715096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.21, y: 5.21, z: 1}
+  m_LocalPosition: {x: -1.75, y: 0, z: 0}
+  m_LocalScale: {x: 0.21, y: 3.98, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -5386,6 +5386,7 @@ MonoBehaviour:
   enemyHP: {fileID: 11400000, guid: 47f72c88fa7673646b0ad7fdcb674b73, type: 2}
   battleState: {fileID: 11400000, guid: 97289e3a2c5bb2745a1d1365ae778396, type: 2}
   turnHandler: {fileID: 1997370600}
+  player: {fileID: 509369453}
 --- !u!4 &1815488901
 Transform:
   m_ObjectHideFlags: 0
@@ -6020,6 +6021,7 @@ MonoBehaviour:
     variable: {fileID: 11400000, guid: d2a05e2ae46f3fc4ebc031598bfeb28d, type: 2}
   rb: {fileID: 509369455}
   battleState: {fileID: 11400000, guid: 97289e3a2c5bb2745a1d1365ae778396, type: 2}
+  isPlayerMoving: {fileID: 11400000, guid: 0e7bda2993b64b9428e74ebec4ab9b85, type: 2}
 --- !u!1 &1954865054
 GameObject:
   m_ObjectHideFlags: 0
@@ -6078,6 +6080,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 4131e62e66a7d394cab2afa40bf454b3, type: 2}
+  isPlayerMoving: {fileID: 11400000, guid: 0e7bda2993b64b9428e74ebec4ab9b85, type: 2}
 --- !u!1 &1958097466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6157,7 +6160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 14/20
+  m_text: 20/20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79798027d6be83c44bc29a9a11649b29, type: 2}
   m_sharedMaterial: {fileID: -7013637769228816244, guid: 79798027d6be83c44bc29a9a11649b29, type: 2}
@@ -6505,7 +6508,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 15, y: 5, z: 0}
+  m_LocalScale: {x: 3.5, y: 3.77, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -6590,8 +6593,8 @@ Transform:
   m_GameObject: {fileID: 2067505879}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
-  m_LocalScale: {x: 15.21, y: 0.21, z: 1}
+  m_LocalPosition: {x: 0, y: -1.885, z: 0}
+  m_LocalScale: {x: 3.71, y: 0.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266355630}
@@ -6841,7 +6844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuSceneName: MainMenuScene
   battleSceneName: BattleScene
-  overworldSceneName: OverworldScene
+  overworldSceneNameVariable: {fileID: 11400000, guid: 9e20163c1b051b346bd540a44dbf3501, type: 2}
 --- !u!4 &2077456142
 Transform:
   m_ObjectHideFlags: 0

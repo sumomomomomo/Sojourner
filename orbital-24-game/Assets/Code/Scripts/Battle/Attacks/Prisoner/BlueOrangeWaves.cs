@@ -18,7 +18,7 @@ public class BlueOrangeWaves : MonoBehaviour, IScriptedAttack
     void Start()
     {
         OnBattleStart(this.gameObject);
-        OnEnemyAttackStart();
+        //OnEnemyAttackStart();
     }
 
     public void OnBattleStart(GameObject _)
@@ -42,6 +42,11 @@ public class BlueOrangeWaves : MonoBehaviour, IScriptedAttack
     {
         SetActiveAllWaves(true);
         attackCoroutine = StartCoroutine(AttackEnum());
+    }
+
+    public void SetVariant(int _)
+    {
+        
     }
 
     private IEnumerator AttackEnum()

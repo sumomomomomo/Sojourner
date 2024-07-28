@@ -25,7 +25,7 @@ public class BattleWinTextRunner : MonoBehaviour
 
     public void BeginBattleWinSequence()
     {
-        StepThroughWinDialogue();
+        StartCoroutine(StepThroughWinDialogue());
     }
 
     private IEnumerator StepThroughWinDialogue()

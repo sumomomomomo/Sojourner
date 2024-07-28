@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-
+// Deprecated
 [CreateAssetMenu(menuName = "Enemy Handler States/Goblinlike")]
 public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
 {
@@ -19,7 +19,7 @@ public class GoblinlikeHandlerState : ScriptableObject, IEnemyHandlerState
     private EnemySpriteHandler enemySpriteHandler;
     private EnemyHealthBar enemyHealthBar;
     private EnemyDialogueHandler enemyDialogueHandler;
-    public void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler _)
+    public void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler _, GameObject __)
     {
         // instantiate enemy sprite
         spriteObject = Instantiate(enemyObject.SpritePrefab);

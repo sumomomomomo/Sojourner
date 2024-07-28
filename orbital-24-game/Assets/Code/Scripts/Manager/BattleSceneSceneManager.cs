@@ -7,7 +7,7 @@ public class BattleSceneSceneManager : MonoBehaviour
 {
     [SerializeField] private string mainMenuSceneName = "MainMenuScene"; 
     [SerializeField] private string battleSceneName = "BattleScene"; 
-    [SerializeField] private string overworldSceneName = "OverworldScene";
+    [SerializeField] private StringVariable overworldSceneNameVariable;
     public void RetryBattle()
     {
         SceneManager.LoadScene(battleSceneName);
@@ -20,6 +20,6 @@ public class BattleSceneSceneManager : MonoBehaviour
 
     public void ReturnToOverworld()
     {
-        SceneManager.LoadScene(overworldSceneName);
+        SceneManager.LoadScene(overworldSceneNameVariable.Value);
     }
 }

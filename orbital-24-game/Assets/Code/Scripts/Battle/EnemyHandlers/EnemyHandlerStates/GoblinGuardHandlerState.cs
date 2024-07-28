@@ -25,7 +25,7 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
     private EnemySpriteHandler enemySpriteHandler;
     private EnemyHealthBar enemyHealthBar;
     private EnemyDialogueHandler enemyDialogueHandler;
-    public void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler turnHandler)
+    public void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler turnHandler, GameObject _)
     {
         //Init turnhandler
         this.turnHandler = turnHandler;
@@ -115,7 +115,13 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
         enemyObject.OnBattleWin();
 
         // wintext appears
-        Instantiate(enemyObject.WinTextPrefab);
+        GameObject winText = Instantiate(enemyObject.WinTextPrefab);
+        BattleWinTextRunner battleWinTextRunner = winText.GetComponentInChildren<BattleWinTextRunner>();
+        battleWinTextRunner.Init(new string[] {
+            "You won.",
+            "You gained nothing."
+        });
+        battleWinTextRunner.BeginBattleWinSequence();
     }
 
     public void OnPlayerRun(MonoBehaviour monoBehaviour, BattleState battleState)
@@ -125,6 +131,13 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
 
         Destroy(healthBarSliderCanvasObject);
         Destroy(dialogueBoxObject);
+
+        GameObject winText = Instantiate(enemyObject.WinTextPrefab);
+        BattleWinTextRunner battleWinTextRunner = winText.GetComponentInChildren<BattleWinTextRunner>();
+        battleWinTextRunner.Init(new string[] {
+            "You let him run away.",
+        });
+        battleWinTextRunner.BeginBattleWinSequence();
     }
 
     public void OnTakeDamage(MonoBehaviour monoBehaviour, IntVariable enemyHP, BattleState battleState)
@@ -145,11 +158,11 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
             enemyObject.SetCurrHP(Mathf.Lerp(beforeHP, afterHP, t));
         });
         enemyObject.SetCurrHP(enemyHP.Value);
-
+        battleState.SetEnemyDamageAnimationPlaying(false);
         yield return new WaitForSeconds(1f);
 
-        battleState.SetEnemyDamageAnimationPlaying(false);
-        enemyHealthBar?.Hide();
+        if (enemyHealthBar != null)
+            enemyHealthBar.Hide();
     }
 
     private class LLMResponse

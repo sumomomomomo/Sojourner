@@ -22,7 +22,8 @@ public interface IEnemyHandlerState
     /// </summary>
     /// <param name="monoBehaviour">EnemyHandler instance</param>
     /// <param name="turnHandler">TurnHandler instance</param>
-    abstract void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler turnHandler);
+    /// <param name="player">Used to pass the player to scripts that take into account player position</param>
+    abstract void OnBattleStart(MonoBehaviour monoBehaviour, TurnHandler turnHandler, GameObject player);
 
     /// <summary>
     /// Attached to listener for GameEventObject OnPlayerWin.

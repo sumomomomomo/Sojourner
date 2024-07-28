@@ -26,12 +26,17 @@ public class RectangleCombo : MonoBehaviour, IScriptedAttack
             fistOrder[i] = a;
         }
         SetFistsToIdle();
-        OnEnemyAttackStart();
+        //OnEnemyAttackStart();
     }
 
     public void OnBattleStart(GameObject player)
     {
         SetFistsToIdle();
+    }
+
+    public void SetVariant(int _)
+    {
+        
     }
 
     public void SetFistsToIdle()

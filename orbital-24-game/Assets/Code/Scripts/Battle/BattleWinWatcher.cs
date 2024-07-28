@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BattleWinWatcher : MonoBehaviour
 {
-    [SerializeField] private IntVariable enemyHP;
+    [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     [SerializeField] private BattleState battleState;
     [SerializeField] private GameEventObject onBattleWin;
     private bool hasRaised;
@@ -31,7 +31,7 @@ public class BattleWinWatcher : MonoBehaviour
         {
             return true;
         }
-        if (enemyHP.Value > 0)
+        if (enemyLoadedTrackerObject.LoadedEnemy.CurrHP > 0 || battleState.IsEnemyDamageAnimationPlaying())
         {
             return false;
         }

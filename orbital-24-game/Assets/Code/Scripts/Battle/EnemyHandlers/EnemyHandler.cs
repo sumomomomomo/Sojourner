@@ -7,6 +7,7 @@ public class EnemyHandler : MonoBehaviour
     [SerializeField] private IntVariable enemyHP;
     [SerializeField] private BattleState battleState;
     [SerializeField] private TurnHandler turnHandler;
+    [SerializeField] private GameObject player;
     private IEnemyHandlerState currentState;
     public void OnEnemyTurnStart()
     {
@@ -20,7 +21,7 @@ public class EnemyHandler : MonoBehaviour
 
     public void OnBattleStart()
     {
-        currentState.OnBattleStart(this, turnHandler);
+        currentState.OnBattleStart(this, turnHandler, player);
     }
 
     public void OnPlayerWin()

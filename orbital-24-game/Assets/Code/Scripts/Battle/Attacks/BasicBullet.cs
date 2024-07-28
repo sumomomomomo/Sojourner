@@ -14,17 +14,17 @@ public class BasicBullet : MonoBehaviour
         {
             if (isBlue && playerDamageTaker.IsPlayerMoving.Value)
             {
-                Debug.Log("blue damage!");
+                //Debug.Log("blue damage!");
                 playerDamageTaker.takeDamage(damageModifier);
             }
             else if (isOrange && !playerDamageTaker.IsPlayerMoving.Value)
             {
-                Debug.Log("orange damage!");
+                //Debug.Log("orange damage!");
                 playerDamageTaker.takeDamage(damageModifier);
             }
             else if (!isOrange && !isBlue)
             {
-                Debug.Log("normal damage!");
+                //Debug.Log("normal damage!");
                 playerDamageTaker.takeDamage(damageModifier);
             }
         }

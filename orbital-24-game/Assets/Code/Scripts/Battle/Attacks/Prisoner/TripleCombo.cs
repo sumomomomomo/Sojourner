@@ -14,15 +14,18 @@ public class TripleCombo : MonoBehaviour, IScriptedAttack
     [SerializeField] private float yMin = -1.41f;
     [SerializeField] private float yMax = 0.59f;
 
+    int variant;
+
     void Start()
     {
         SetFistsToIdle();
-        OnEnemyAttackStart();
+        //OnEnemyAttackStart();
     }
 
     public void OnBattleStart(GameObject player)
     {
         this.player = player;
+        variant = 0;
         SetFistsToIdle();
     }
 
@@ -35,15 +38,45 @@ public class TripleCombo : MonoBehaviour, IScriptedAttack
         }
     }
 
+    public void SetFistsSpeed(float speed)
+    {
+        foreach (Animator a in fists)
+        {
+            a.speed = speed;
+        }
+    }
+
     public void OnEnemyAttackStart()
     {
-        attackCoroutine = StartCoroutine(PunchStart());
+        if (variant == 0)
+        {
+            attackCoroutine = StartCoroutine(PunchStart());
+        }
+        else
+        {
+            // hardmode
+            attackCoroutine = StartCoroutine(PunchStartHardMode());
+        }
     }
 
     public void OnEnemyAttackEnd()
     {
         if (attackCoroutine != null)
             StopCoroutine(attackCoroutine);
+        SetFistsToIdle();
+    }
+
+    public void SetVariant(int variant)
+    {
+        this.variant = variant;
+        if (variant == 0)
+        {
+            SetFistsSpeed(1);
+        }
+        else
+        {
+            SetFistsSpeed(1.5f);
+        }
     }
 
     private Vector3 FistTransformClampJitter(Vector3 pos)
@@ -71,6 +104,20 @@ public class TripleCombo : MonoBehaviour, IScriptedAttack
 
             waitTimeOverall -= 0.05f;
             waitTimeOverall = Mathf.Max(0.6f, waitTimeOverall);
+        }
+    }
+
+    private IEnumerator PunchStartHardMode()
+    {
+        while (true)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                yield return new WaitForSeconds(0.4f);
+                fists[i].transform.position = FistTransformClampJitter(player.transform.position);
+                fists[i].Play("Punch");
+            }
+            yield return new WaitForSeconds(0.6f);
         }
     }
 }

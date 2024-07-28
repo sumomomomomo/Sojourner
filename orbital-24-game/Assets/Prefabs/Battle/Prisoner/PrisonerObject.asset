@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51db3602bebaa3c4baefe6ee5a970d60, type: 3}
+  m_Name: PrisonerObject
+  m_EditorClassIdentifier: 
+  _enemyHandlerState: {fileID: 11400000, guid: 3f646178a254c29418b0725d3580022f, type: 2}
+  enemyName: Prisoner
+  spritePrefab: {fileID: 5899040588695384566, guid: 17b98eddf0c36754c8ba801bdbfc9535, type: 3}
+  healthBarPrefab: {fileID: 8968244387852400422, guid: 66ee5abcaef61604a85ec8cd94322858, type: 3}
+  dialogueBoxPrefab: {fileID: 5487736092265790566, guid: 77520f072805dc84ea4aee90b1693f46, type: 3}
+  maxHP: 1
+  currHP: -6
+  def: 0
+  atk: 5
+  agility: 3
+  expReward: 1
+  moneyReward: 1
+  winTextPrefab: {fileID: 4383072298393545317, guid: 739f4f99fafa95d4b90b658a3b9b85cb, type: 3}
+  attackPatterns:
+  - attackPrefab: {fileID: 1882073610348574971, guid: 139e14eda3d07ba438cc6165e09d3227, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: d48d1843f1187554483b35b7034f71da, type: 2}
+  - attackPrefab: {fileID: 1312565077635207453, guid: 7964c6a953808404b9819f9f60355d85, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: c3298aa11d308554183c6e8067972939, type: 2}
+  - attackPrefab: {fileID: 7210933266679857204, guid: 178dbcb139d39164da437ece8ea7561c, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: c3298aa11d308554183c6e8067972939, type: 2}
+  defaultChatMessageObjects:
+  - role: system
+    content: "Roleplay as a prisoner, named George. You are very muscular and stoic,
+      but are easily shaken in the face of dire circumstances.\r\nYou were once a
+      prisoner held captive by the Goblins, but you made a plea deal, and they agreed
+      to give you freedom if you\r\nmanage to defeat the player in a fight. \r\nThe
+      following conversation takes place after you spot Player walking out of his
+      jail cell.\r\nYou are fighting the player right now.\r\nYou are hesitant to
+      kill the player, and you could be convinced to stop fighting if the player
+      is eloquent enough.\r\nYour responses should always be under 10 words long.\r\nAlways
+      speak in the first person. \r\nAnswer in JSON format. Answer how convinced
+      you are to stop fighting from a scale of 0 to 5."
+  - role: assistant
+    content: '{"response":"Sorry king, but freedom is freedom.","convincedLevel":1}'
+  availableEmotions:
+  - neutral
+  - convinced
+  - angry
+  indexSensitiveSpritesForEachEmotion:
+  - {fileID: 21300000, guid: e73156aec4d2b28479729008731cb360, type: 3}
+  - {fileID: 21300000, guid: 60c0cc2194112b6438c5b39d1fec9de0, type: 3}
+  - {fileID: 21300000, guid: f12a737ae06c07448a237c3ff01eca68, type: 3}
+  enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
+  backloggedCutsceneSequenceObject: {fileID: 11400000, guid: f96d38d4077373543b495af8da115029, type: 2}
+  onWinCutsceneSequenceObject: {fileID: 0}
+  onSpareCutsceneSequenceObject: {fileID: 0}
+  developerComments: Prisoner. Player meets prisoner immediately after goblin
