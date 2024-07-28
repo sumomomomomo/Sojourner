@@ -31,6 +31,9 @@ public class CutsceneEventSequenceObject : ScriptableObject
         }
     }
     #endif
+
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
+
     public void StartCutsceneSequence()
     {
         if (cutsceneEventObjects == null || cutsceneEventObjects.Count < 1)

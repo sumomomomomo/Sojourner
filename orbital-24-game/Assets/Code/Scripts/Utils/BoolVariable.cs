@@ -9,4 +9,6 @@ public class BoolVariable : ScriptableObject
     [SerializeField] [TextArea] private string developerComments;
 
     public bool Value { get => value; set => this.value = value; }
+
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
 }

@@ -15,5 +15,5 @@ MonoBehaviour:
   isCutscenePlayingOverworld: {fileID: 11400000, guid: b7f7d90f7d16626429b658c43d3bbc04, type: 2}
   cutsceneEventObjects:
   - {fileID: 11400000, guid: 6958d9f03e7d6364fbf6d17ad05d45ec, type: 2}
-  isCutsceneFinished: 1
+  isCutsceneFinished: 0
   developerComments: 

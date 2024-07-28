@@ -9,4 +9,6 @@ public class StringVariable : ScriptableObject
     [SerializeField] [TextArea] private string developerComments;
 
     public string Value { get => value; set => this.value = value; }
+
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
 }

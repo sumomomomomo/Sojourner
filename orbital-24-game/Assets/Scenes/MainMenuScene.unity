@@ -3618,13 +3618,14 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 2a649d672db68d5408b4a7422870d0c6, type: 2}
-  playerCoordinatesX: {fileID: 11400000, guid: 03b6066d55f8939429bf1e02babb55ab, type: 2}
+  playerCoordinatesX: {fileID: 11400000, guid: 00243b43371731249a9a6a65825c8a86, type: 2}
   playerCoordinatesY: {fileID: 11400000, guid: eea6827cfdfb78f46bfe0d53946659ce, type: 2}
   startingPlayerCoordinatesX: 12.4
   startingPlayerCoordinatesY: 0
   backloggedCutsceneSequenceObject: {fileID: 11400000, guid: f96d38d4077373543b495af8da115029, type: 2}
   newGameCutscene: {fileID: 11400000, guid: baa9ead4310579347b457036187faf71, type: 2}
   newGameSceneName: JailScene
+  isCutscenePlayingOverworld: {fileID: 11400000, guid: b7f7d90f7d16626429b658c43d3bbc04, type: 2}
 --- !u!1 &2089553497
 GameObject:
   m_ObjectHideFlags: 0

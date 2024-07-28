@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3689e88f411f9dd449c94b5aab7a8830, type: 3}
-  m_Name: GoblinGuardApproachCutscene
+  m_Name: PrisonerApproachCutscene
   m_EditorClassIdentifier: 
   isCutscenePlayingOverworld: {fileID: 11400000, guid: b7f7d90f7d16626429b658c43d3bbc04, type: 2}
   cutsceneEventObjects:
-  - {fileID: 11400000, guid: 7ecaddda3711d214f8d831614b5e0a98, type: 2}
+  - {fileID: 11400000, guid: 61e58d2644733374cabb3a824c29b846, type: 2}
   isCutsceneFinished: 1
-  developerComments: Goblin Guard approaches and talks
+  developerComments: 

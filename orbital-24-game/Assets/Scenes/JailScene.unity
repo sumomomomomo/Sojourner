@@ -1216,14 +1216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f2ab8065ca9e04db94928820d86edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 03b6066d55f8939429bf1e02babb55ab, type: 2}
-  y:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: eea6827cfdfb78f46bfe0d53946659ce, type: 2}
+  x: {fileID: 11400000, guid: 00243b43371731249a9a6a65825c8a86, type: 2}
+  y: {fileID: 11400000, guid: eea6827cfdfb78f46bfe0d53946659ce, type: 2}
   playerObject: {fileID: 753465762}
 --- !u!1 &536940763
 GameObject:
@@ -13189,7 +13183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a7601e9010d90418bf88c8e406298d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: {fileID: 11400000, guid: 03b6066d55f8939429bf1e02babb55ab, type: 2}
+  x: {fileID: 11400000, guid: 00243b43371731249a9a6a65825c8a86, type: 2}
   y: {fileID: 11400000, guid: eea6827cfdfb78f46bfe0d53946659ce, type: 2}
   playerObject: {fileID: 753465762}
 --- !u!1 &1909392624
