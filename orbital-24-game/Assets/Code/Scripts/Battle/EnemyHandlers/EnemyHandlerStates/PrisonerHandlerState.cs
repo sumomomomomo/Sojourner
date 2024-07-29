@@ -250,7 +250,6 @@ public class PrisonerHandlerState : ScriptableObject, IEnemyHandlerState
             enemyObject.SetCurrHP(Mathf.Lerp(beforeHP, afterHP, t));
         });
         enemyObject.SetCurrHP(enemyHP.Value);
-        battleState.SetEnemyDamageAnimationPlaying(false);
         yield return new WaitForSeconds(1f);
 
         if (afterHP > 0)
@@ -265,6 +264,8 @@ public class PrisonerHandlerState : ScriptableObject, IEnemyHandlerState
                 ((IEnemyHandlerState) this).OnDisplayEnemyDialogue(monoBehaviour, "I'm not going to hold back any more.", enemyDialogueHandler);
             }
         }
+        
+        battleState.SetEnemyDamageAnimationPlaying(false);
     }
 
     private class LLMResponse

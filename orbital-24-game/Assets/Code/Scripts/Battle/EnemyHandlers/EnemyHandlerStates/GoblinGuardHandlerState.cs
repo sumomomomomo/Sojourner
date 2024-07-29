@@ -161,11 +161,11 @@ public class GoblinGuardHandlerState : ScriptableObject, IEnemyHandlerState
             enemyObject.SetCurrHP(Mathf.Lerp(beforeHP, afterHP, t));
         });
         enemyObject.SetCurrHP(enemyHP.Value);
-        battleState.SetEnemyDamageAnimationPlaying(false);
         yield return new WaitForSeconds(1f);
-
         if (enemyHealthBar != null && afterHP > 0)
             enemyHealthBar.Hide();
+            
+        battleState.SetEnemyDamageAnimationPlaying(false);
     }
 
     private class LLMResponse

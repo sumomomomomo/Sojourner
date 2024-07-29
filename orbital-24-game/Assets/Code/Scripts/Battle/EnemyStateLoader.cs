@@ -15,7 +15,7 @@ public class EnemyStateLoader : MonoBehaviour
     [SerializeField] private IntVariable enemyDef;
     [SerializeField] private FloatVariable enemyAgi;
     [SerializeField] private ChatMessageObjectsTracker chatMessageObjectsTracker;
-    void Start()
+    private void Start()
     {
         if (currentEnemy != null) 
         {

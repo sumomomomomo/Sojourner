@@ -17,8 +17,8 @@ MonoBehaviour:
   spritePrefab: {fileID: 5899040588695384566, guid: 17b98eddf0c36754c8ba801bdbfc9535, type: 3}
   healthBarPrefab: {fileID: 8968244387852400422, guid: 66ee5abcaef61604a85ec8cd94322858, type: 3}
   dialogueBoxPrefab: {fileID: 5487736092265790566, guid: 77520f072805dc84ea4aee90b1693f46, type: 3}
-  maxHP: 1
-  currHP: -13
+  maxHP: 50
+  currHP: 43
   def: 0
   atk: 5
   agility: 3
