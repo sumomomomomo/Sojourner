@@ -14,13 +14,15 @@ public class PrisonerTests : InputTestFixture
 {
     private BattleState battleState;
     private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
-    private EnemyObject goblinGuardEnemyObject;
+    private EnemyObject prisonerEnemyObject;
 
     private FloatVariable playerAgi;
     private IntVariable playerAtk;
     private IntVariable playerDef;
     private IntVariable playerHP;
     private IntVariable playerBaseMaxHP;
+
+    private StringVariable enemyEmotion;
 
     private BattleStrategyTrackerObject battleStrategyTrackerObject;
     private BattleStrategyObject attack;
@@ -33,7 +35,8 @@ public class PrisonerTests : InputTestFixture
     {
         battleState = Resources.Load<BattleState>("ScriptableObjects/Battle/BattleState");
         enemyLoadedTrackerObject = Resources.Load<EnemyLoadedTrackerObject>("ScriptableObjects/Battle/EnemyLoadedTrackerObject");
-        goblinGuardEnemyObject = Resources.Load<EnemyObject>("Prefabs/Battle/Prisoner/PrisonerObject");
+        prisonerEnemyObject = Resources.Load<EnemyObject>("Prefabs/Battle/Prisoner/PrisonerObject");
+        enemyEmotion = Resources.Load<StringVariable>("ScriptableObjects/Battle/EnemyEmotion");
 
         playerAgi = Resources.Load<FloatVariable>("ScriptableObjects/Player/PlayerAgility");
         playerAtk = Resources.Load<IntVariable>("ScriptableObjects/Player/PlayerBaseAtk");
@@ -45,7 +48,7 @@ public class PrisonerTests : InputTestFixture
         onBattleWin = Resources.Load<GameEventObject>("ScriptableObjects/Battle/GameEventObjects/OnBattleWin");
         battleStrategyTrackerObject = Resources.Load<BattleStrategyTrackerObject>("ScriptableObjects/Battle/CurrentStrategy");
 
-        enemyLoadedTrackerObject.LoadEnemy(goblinGuardEnemyObject);
+        enemyLoadedTrackerObject.LoadEnemy(prisonerEnemyObject);
     }
 
     public override void Setup()
@@ -76,6 +79,26 @@ public class PrisonerTests : InputTestFixture
         yield return new WaitForSeconds(5f);
 
         Assert.AreEqual(true, battleState.IsBattleWin());
+    }
+
+    [UnityTest]
+    public IEnumerator BeatPrisonerHalfDeadAndSeeHimGetSerious()
+    {
+        TurnHandler turnHandler = GameObject.FindObjectOfType<TurnHandler>();
+
+        playerAtk.Value = 37;
+
+        // force selection of attack
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+
+        turnHandler.ChangeTurn();
+
+        yield return new WaitForSeconds(5f);
+
+        Assert.AreEqual("angry", enemyEmotion.Value);
     }
 
     [UnityTest]

@@ -95,6 +95,73 @@ public class GoblinGuardTests : InputTestFixture
     }
 
     [UnityTest]
+    public IEnumerator DefendHeals4HP()
+    {
+        TurnHandler turnHandler = GameObject.FindObjectOfType<TurnHandler>();
+        playerHP.Value = 10;
+
+        // force selection of def
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToNextStrategy();
+
+        turnHandler.ChangeTurn();
+
+        yield return new WaitForSeconds(1f);
+
+        Assert.AreEqual(playerHP.Value, 14);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerDyingSetsBattleLoseToTrue()
+    {
+        TurnHandler turnHandler = GameObject.FindObjectOfType<TurnHandler>();
+        PlayerDamageTaker playerDamageTaker = GameObject.FindObjectOfType<PlayerDamageTaker>();
+
+        // force selection of def
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToNextStrategy();
+
+        turnHandler.ChangeTurn();
+
+        yield return new WaitForSeconds(3.5f);
+
+        playerDamageTaker.takeDamage(1000);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(battleState.IsBattleLose(), true);
+    }
+
+    [UnityTest]
+    public IEnumerator PlayerWhenDefendingTakes1Dmg()
+    {
+        TurnHandler turnHandler = GameObject.FindObjectOfType<TurnHandler>();
+        PlayerDamageTaker playerDamageTaker = GameObject.FindObjectOfType<PlayerDamageTaker>();
+        playerHP.Value = 20;
+
+        // force selection of def
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToPreviousStrategy();
+        battleStrategyTrackerObject.ToNextStrategy();
+
+        turnHandler.ChangeTurn();
+
+        playerDamageTaker.takeDamage(1);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(playerHP.Value, 19);
+    }
+
+    [UnityTest]
     public IEnumerator TestTalkWhereGoblinBecomesScaredAndSpareHim()
     {
         TurnHandler turnHandler = GameObject.FindObjectOfType<TurnHandler>();
