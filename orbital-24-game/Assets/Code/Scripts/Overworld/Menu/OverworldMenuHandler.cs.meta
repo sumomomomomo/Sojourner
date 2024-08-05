@@ -3,7 +3,12 @@ guid: d07ff69c0c2f813438c72575a962ab5e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - overworldMenuCanvas: {instanceID: 0}
+  - isOverworldMenuOpen: {fileID: 11400000, guid: c617284f430453d4b9cad028e4e363b7, type: 2}
+  - isInventoryOpen: {fileID: 11400000, guid: 0e72b97b5e275714f84828d46d8bec83, type: 2}
+  - isStatusOpen: {fileID: 11400000, guid: b3d4656186dfe02439a814f57ea13f7a, type: 2}
+  - overworldInputHandlerStateObject: {fileID: 11400000, guid: 02cf0854f55b6734baf70e7db10657e7, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

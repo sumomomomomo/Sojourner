@@ -28,6 +28,6 @@ public class UtilTests
             }
         }
 
-        Assert.AreEqual(isSameSoFar, false);
+        Assert.AreEqual(false, isSameSoFar);
     }
 }

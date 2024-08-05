@@ -10,7 +10,9 @@
         "EventScripts",
         "OpenAI.Runtime",
         "Unity.InputSystem",
-        "Unity.InputSystem.TestFramework"
+        "Unity.InputSystem.TestFramework",
+        "DialogueScripts",
+        "OverworldScripts"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

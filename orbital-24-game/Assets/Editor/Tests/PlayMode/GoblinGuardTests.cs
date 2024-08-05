@@ -23,10 +23,6 @@ public class GoblinGuardTests : InputTestFixture
     private IntVariable playerBaseMaxHP;
 
     private BattleStrategyTrackerObject battleStrategyTrackerObject;
-    private BattleStrategyObject attack;
-    private GameEventObject onBattleWin;
-
-    private InputTestFixture input = new InputTestFixture();
 
     [OneTimeSetUp]
     public void GetVars()
@@ -41,8 +37,6 @@ public class GoblinGuardTests : InputTestFixture
         playerHP = Resources.Load<IntVariable>("ScriptableObjects/Player/PlayerHP");
         playerBaseMaxHP = Resources.Load<IntVariable>("ScriptableObjects/Player/PlayerBaseMaxHP");
 
-        attack = Resources.Load<BattleStrategyObject>("ScriptableObjects/Battle/BattleStrategyObjects/Attack");
-        onBattleWin = Resources.Load<GameEventObject>("ScriptableObjects/Battle/GameEventObjects/OnBattleWin");
         battleStrategyTrackerObject = Resources.Load<BattleStrategyTrackerObject>("ScriptableObjects/Battle/CurrentStrategy");
 
         enemyLoadedTrackerObject.LoadEnemy(goblinGuardEnemyObject);
@@ -62,7 +56,7 @@ public class GoblinGuardTests : InputTestFixture
     public IEnumerator PlayerTurnOnSceneLoad()
     {
         yield return new WaitForSeconds(1f);
-        Assert.AreEqual(battleState.IsPlayerTurn(), true);
+        Assert.AreEqual(true, battleState.IsPlayerTurn());
     }
 
     [UnityTest]
@@ -111,7 +105,7 @@ public class GoblinGuardTests : InputTestFixture
 
         yield return new WaitForSeconds(1f);
 
-        Assert.AreEqual(playerHP.Value, 14);
+        Assert.AreEqual(14, playerHP.Value);
     }
 
     [UnityTest]
@@ -135,7 +129,7 @@ public class GoblinGuardTests : InputTestFixture
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.AreEqual(battleState.IsBattleLose(), true);
+        Assert.AreEqual(true, battleState.IsBattleLose());
     }
 
     [UnityTest]
@@ -158,7 +152,7 @@ public class GoblinGuardTests : InputTestFixture
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.AreEqual(playerHP.Value, 19);
+        Assert.AreEqual(19, playerHP.Value);
     }
 
     [UnityTest]
@@ -224,7 +218,7 @@ public class GoblinGuardTests : InputTestFixture
         turnHandler.ChangeTurn();
 
         yield return new WaitForSeconds(1f);
-        Assert.AreEqual(battleState.IsBattleWin(), true);
+        Assert.AreEqual(true, battleState.IsBattleWin());
 
     }
 }

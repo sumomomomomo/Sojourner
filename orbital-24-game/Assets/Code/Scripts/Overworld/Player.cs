@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private OverworldInputHandlerStateObject overworldInputHandlerStateObject;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (overworldInputHandlerStateObject.CanPlayerMove())
         {
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     }
 
     // Like update but runs 50 times per second only
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         playerRb.velocity = new Vector2 (input * speed, playerRb.velocity.y);
     }

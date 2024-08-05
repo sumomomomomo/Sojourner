@@ -33,6 +33,6 @@ public class MainMenuTests : InputTestFixture
     {
         onNewGame.Raise();
         yield return new WaitForSeconds(3f);
-        Assert.AreEqual(isCutscenePlayingOverworld.Value, true);
+        Assert.AreEqual(true, isCutscenePlayingOverworld.Value);
     }
 }

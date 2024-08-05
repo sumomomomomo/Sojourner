@@ -25,10 +25,6 @@ public class PrisonerTests : InputTestFixture
     private StringVariable enemyEmotion;
 
     private BattleStrategyTrackerObject battleStrategyTrackerObject;
-    private BattleStrategyObject attack;
-    private GameEventObject onBattleWin;
-
-    private InputTestFixture input = new InputTestFixture();
 
     [OneTimeSetUp]
     public void GetVars()
@@ -44,8 +40,6 @@ public class PrisonerTests : InputTestFixture
         playerHP = Resources.Load<IntVariable>("ScriptableObjects/Player/PlayerHP");
         playerBaseMaxHP = Resources.Load<IntVariable>("ScriptableObjects/Player/PlayerBaseMaxHP");
 
-        attack = Resources.Load<BattleStrategyObject>("ScriptableObjects/Battle/BattleStrategyObjects/Attack");
-        onBattleWin = Resources.Load<GameEventObject>("ScriptableObjects/Battle/GameEventObjects/OnBattleWin");
         battleStrategyTrackerObject = Resources.Load<BattleStrategyTrackerObject>("ScriptableObjects/Battle/CurrentStrategy");
 
         enemyLoadedTrackerObject.LoadEnemy(prisonerEnemyObject);
@@ -164,7 +158,7 @@ public class PrisonerTests : InputTestFixture
         turnHandler.ChangeTurn();
 
         yield return new WaitForSeconds(1f);
-        Assert.AreEqual(battleState.IsBattleWin(), true);
+        Assert.AreEqual(true, battleState.IsBattleWin());
 
     }
 }

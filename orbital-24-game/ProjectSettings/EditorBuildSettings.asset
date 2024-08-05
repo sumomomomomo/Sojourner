@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JailScene.unity
     guid: eaf6433cd5bc32643a8492d3993e3015
+  - enabled: 1
+    path: Assets/Scenes/Debug/DebugJailScene.unity
+    guid: 29dd190d240b6014aadc0e89ee8c3a4e
   m_configObjects: {}
