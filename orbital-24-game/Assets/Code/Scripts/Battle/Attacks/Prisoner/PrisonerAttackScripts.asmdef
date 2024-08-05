@@ -1,0 +1,17 @@
+{
+    "name": "PrisonerAttackScripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:796ccb6f3636ca34d82b42c0f5583c75",
+        "GUID:93b675b5d4f492b4ebdd60e5b7391d7f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

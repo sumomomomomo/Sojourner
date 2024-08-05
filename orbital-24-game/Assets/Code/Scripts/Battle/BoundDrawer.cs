@@ -11,6 +11,7 @@ public class BoundDrawer : MonoBehaviour
     [SerializeField] private GameObject bottomWall;
     [SerializeField] private GameObject leftWall;
     [SerializeField] private GameObject rightWall;
+    [SerializeField] private GameObject blackBase;
     [SerializeField] private FloatReference boundThickness;
     [SerializeField] private FloatReference boundWidth;
     [SerializeField] private FloatReference boundHeight;
@@ -41,5 +42,7 @@ public class BoundDrawer : MonoBehaviour
         leftWall.transform.localScale = new Vector3(boundThickness.Value, boundHeight.Value + boundThickness.Value, 1);
         rightWall.transform.localScale = new Vector3(boundThickness.Value, boundHeight.Value + boundThickness.Value, 1);
 
+        // update base
+        blackBase.transform.localScale = new Vector3(boundWidth.Value, boundHeight.Value, 0);
     }
 }

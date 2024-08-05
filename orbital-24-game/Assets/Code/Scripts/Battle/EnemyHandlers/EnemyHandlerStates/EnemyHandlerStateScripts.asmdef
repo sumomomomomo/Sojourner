@@ -1,0 +1,19 @@
+{
+    "name": "EnemyHandlerStateScripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3efd592b14041b345afda87d4a9efe99",
+        "GUID:17236773fa88fb744a9b7c8b0e16b3bb",
+        "GUID:93b675b5d4f492b4ebdd60e5b7391d7f",
+        "GUID:796ccb6f3636ca34d82b42c0f5583c75"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

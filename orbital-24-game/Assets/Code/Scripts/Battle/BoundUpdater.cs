@@ -11,7 +11,7 @@ public class BoundUpdater : MonoBehaviour
     [SerializeField] private FloatReference boundOriginXTranslation;
     [SerializeField] private FloatReference boundOriginYTranslation;
     [SerializeField] private FloatReference boundUpdateAnimationTime;
-    [SerializeField] private BoolReference isFreezeTurn;
+    [SerializeField] private BattleState battleState;
 
     public void UpdateBoundsNoAnimation()
     {
@@ -50,15 +50,15 @@ public class BoundUpdater : MonoBehaviour
 
         float buat = boundUpdateAnimationTime.Value;
 
-        isFreezeTurn.Value = true;
+        battleState.SetFreezeTurn(true);
 
-        yield return CoroutineUtils.Lerp(buat, t=> {
+        yield return CoroutineUtils.Lerp(buat, t => {
             boundWidth.Value = Mathf.Lerp(startBw, endBw, t);
             boundHeight.Value = Mathf.Lerp(startBh, endBh, t);
             boundOriginXTranslation.Value = Mathf.Lerp(startBOXT, endBOXT, t);
             boundOriginYTranslation.Value = Mathf.Lerp(startBOYT, endBOYT, t);
         });
 
-        isFreezeTurn.Value = false;
+        battleState.SetFreezeTurn(false);
     }
 }

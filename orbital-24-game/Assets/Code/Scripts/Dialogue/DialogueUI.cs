@@ -12,21 +12,27 @@ public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private GameObject dialogueBox;
-    public bool IsOpen { get; private set; }
+    [SerializeField] private BoolVariable isDialogueBoxOpen;
+    [SerializeField] private DialogueUIResponseHandler responseHandler;
+    [SerializeField] private DialogueUITypewriterEffect typewriterEffect;
+    [SerializeField] private DialogueUITypewriterEffectSound typewriterEffectSound;
+    [SerializeField] private DialogueUISpriteHandler spriteHandler;
 
-    private DialogueUIResponseHandler responseHandler;
-    private DialogueUITypewriterEffect typewriterEffect;
     void Start()
     {
-        typewriterEffect = GetComponent<DialogueUITypewriterEffect>();
-        responseHandler = GetComponent<DialogueUIResponseHandler>();
         CloseDialogueBox();
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
-        IsOpen = true;
+        if (dialogueObject == null)
+        {
+            CloseDialogueBox();
+            return;
+        }
+        isDialogueBoxOpen.Value = true;
         dialogueBox.SetActive(true);
+
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
@@ -34,20 +40,42 @@ public class DialogueUI : MonoBehaviour
     {
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
+            if (dialogueObject.HasSprites)
+            {
+                spriteHandler.ShowSprites(dialogueObject.DialogueSpritePairs[i]);
+            }
+
             string dialogue = dialogueObject.Dialogue[i];
-            yield return typewriterEffect.Run(dialogue, textLabel);
+            if (dialogueObject.HasTalkingSound)
+            {
+                typewriterEffectSound.SetAudioClip(dialogueObject.TalkingSound[i]);
+            }
+
+            yield return RunTypingEffect(dialogue, dialogueObject);
+
+            textLabel.text = dialogue;
 
             if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) 
             {
                 break;
             }
 
+            yield return null; // to guard against instant skipping to bottom line, when spacebar is pressed
+
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
 
         if (dialogueObject.HasResponses)
         {
-            responseHandler.ShowResponses(dialogueObject.Responses);
+            if (dialogueObject.Responses[0].ResponseText == "")
+            {
+                dialogueObject.Responses[0].OnPickedResponse.Invoke();
+                CloseDialogueBox();
+            }
+            else
+            {
+                responseHandler.ShowResponses(dialogueObject.Responses);
+            }
         }
         else
         {
@@ -55,9 +83,29 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
+    private IEnumerator RunTypingEffect(string dialogue, DialogueObject dialogueObject)
+    {
+        typewriterEffect.Run(dialogue, textLabel);
+        if (typewriterEffectSound != null && dialogueObject.HasTalkingSound)
+        {
+            typewriterEffectSound.Run();
+        }
+        
+        while (typewriterEffect.IsRunning)
+        {
+            yield return null;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                typewriterEffect.Stop();
+            }
+        }
+    }
+
     private void CloseDialogueBox()
     {
-        IsOpen = false;
+        spriteHandler.HideSprites();
+        isDialogueBoxOpen.Value = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
     }

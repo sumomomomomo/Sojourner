@@ -5,26 +5,38 @@ using UnityEngine;
 
 public class BattleWinWatcher : MonoBehaviour
 {
-    [SerializeField] private IntVariable enemyHP;
-    [SerializeField] private BoolVariable isBattleWin;
-    [SerializeField] private GameObject gameWinText;
+    [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
+    [SerializeField] private BattleState battleState;
     [SerializeField] private GameEventObject onBattleWin;
+    private bool hasRaised;
     void Start()
     {
-        gameWinText.SetActive(false);
-        isBattleWin.Value = false;
+        hasRaised = false;
+        battleState.SetBattleWin(false);
         StartCoroutine(WinEnum());
     }
 
     private IEnumerator WinEnum()
     {
         yield return new WaitForSeconds(1f);
-        while (enemyHP.Value > 0)
+        while (!ForceCheckBattleWin())
         {
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    public bool ForceCheckBattleWin()
+    {
+        if (hasRaised)
+        {
+            return true;
+        }
+        if (enemyLoadedTrackerObject.LoadedEnemy.CurrHP > 0 || battleState.IsEnemyDamageAnimationPlaying())
+        {
+            return false;
+        }
+        battleState.SetBattleWin(true);
         onBattleWin.Raise();
-        isBattleWin.Value = true;
-        gameWinText.SetActive(true);
+        return true;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
+/// Data structure representing information on how to handle decisions made during dialogue sequences.
 /// Compose within DialogueObject.
 /// </summary>
 [System.Serializable]

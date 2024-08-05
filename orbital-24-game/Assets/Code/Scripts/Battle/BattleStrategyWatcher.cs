@@ -6,7 +6,7 @@ using UnityEngine;
 public class BattleStrategyWatcher : MonoBehaviour
 {
     [SerializeField] private GameObject[] strategyTexts;
-    [SerializeField] private BoolVariable isFreezeTurn;
+    [SerializeField] private BattleState battleState;
     public void EnableStrategyTexts()
     {
         StartCoroutine(EnableStrategyTextsEnum());
@@ -14,7 +14,8 @@ public class BattleStrategyWatcher : MonoBehaviour
 
     private IEnumerator EnableStrategyTextsEnum()
     {
-        while (isFreezeTurn.Value) 
+        Debug.Log("strat texts enabled start");
+        while (!battleState.IsPlayerStrategySelectable()) 
         {
             yield return new WaitForSeconds(0.01f);
         }
@@ -23,6 +24,7 @@ public class BattleStrategyWatcher : MonoBehaviour
         {
             strategyTexts[i].SetActive(true);
         }
+        Debug.Log("start texts enabled end");
     }
 
     public void DisableStrategyTexts()
@@ -32,14 +34,12 @@ public class BattleStrategyWatcher : MonoBehaviour
 
     private IEnumerator DisableStrategyTextsEnum()
     {        
-        while (isFreezeTurn.Value) 
-        {
-            yield return new WaitForSeconds(0.01f);
-        }
-
+        Debug.Log("strat texts disabled start");
         for (int i = 0; i < strategyTexts.Length; i++)
         {
             strategyTexts[i].SetActive(false);
         }
+        Debug.Log("strat texts disabled end");
+        yield return null;
     }
 }

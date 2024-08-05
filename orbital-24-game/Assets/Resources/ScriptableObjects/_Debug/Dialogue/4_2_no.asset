@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2730ccfc0da9f4b98468244e346f67, type: 3}
+  m_Name: 4_2_no
+  m_EditorClassIdentifier: 
+  dialogue:
+  - '* You said no.'
+  dialogueSpritePairs:
+  - dialogueSpriteBehaviour: {fileID: 11400000, guid: 280d30920ebe4ce49be898a5effedf61, type: 2}
+    leftSprite: {fileID: 21300000, guid: cc0d72110bb5cc1438af938ed9ccb63f, type: 3}
+    rightSprite: {fileID: 21300000, guid: 7663cd2c84552be43ba6c55a19957cca, type: 3}
+  talkingSound:
+  - {fileID: 8300000, guid: 7331ee2eb57571e49868c40ed912dba7, type: 3}
+  responses: []

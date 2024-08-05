@@ -7,40 +7,47 @@ using UnityEngine.Events;
 
 public class TurnHandler : MonoBehaviour
 {
+    [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
+
     [SerializeField] private FloatReference minEnemyTurnTime;
-    [SerializeField] private FloatReference enemyAgility;
     [SerializeField] private FloatReference playerAgility;
+    [SerializeField] private FloatReference enemyAgility;
     [SerializeField] private FloatReference timeLeftToNextTurn;
-    [SerializeField] private BoolReference isPlayerTurn;
-    [SerializeField] private BoolReference isFreezeTurn;
-    [SerializeField] private BoolReference isBattleLose;
-    [SerializeField] private BoolReference isBattleWin;
+    [SerializeField] private FloatReference timeLeftToNextTurnMax;
+    [SerializeField] private BattleState battleState;
 
     [SerializeField] private GameEventObject onEnemyTurnStart;
     [SerializeField] private GameEventObject onEnemyTurnEnd;
     [SerializeField] private GameEventObject onPlayerTurnStart;
     [SerializeField] private GameEventObject onPlayerTurnEnd;
 
-    private float currTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
+    [SerializeField] private BattleWinWatcher battleWinWatcher;
+
+    private Coroutine changeTurnCoroutine;
+
+    private float CurrTurnLength(float playerAgility, float enemyAgility, bool isPlayerTurn)
     {
         if (isPlayerTurn)
         {
-            return 5;
+            return Math.Max(5, 5 + playerAgility - enemyAgility);
         }
-        return Math.Max(minEnemyTurnTime.Value, 10 + enemyAgility - playerAgility);
+        else
+        {
+            return Math.Max(3, Math.Max(minEnemyTurnTime.Value, 10 + enemyAgility - playerAgility));
+        }
     }
     void Start()
     {
         // Hardcoded
-        isPlayerTurn.Value = true;
-        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, false);
+        battleState.SetChangeTurnExecutingToFalse();
+        battleState.SetToPlayerTurn();
+        ChangeTimeLeftValues(10);
         onPlayerTurnStart.Raise();
-
     }
 
     void Update()
     {
-        if (!isFreezeTurn.Value && !isBattleLose.Value && !isBattleWin.Value)
+        if (battleState.IsTurnHandlerActive())
         {
             timeLeftToNextTurn.Value -= Time.deltaTime;
             if (timeLeftToNextTurn.Value <= 0)
@@ -50,40 +57,91 @@ public class TurnHandler : MonoBehaviour
         }
     }
 
+    private void ChangeTimeLeftValues(float time)
+    {
+        timeLeftToNextTurnMax.Value = time;
+        timeLeftToNextTurn.Value = time;
+    }
+
     public void ChangeTurn()
     {
-        StartCoroutine(ChangeTurnEnum());
+        Debug.Log("Change turn called");
+        battleState.SetChangeTurnExecutingToTrue();
+        timeLeftToNextTurn.Value = 0;
+        changeTurnCoroutine = StartCoroutine(ChangeTurnEnum());
     }
 
     private IEnumerator ChangeTurnEnum()
     {
-        if (isPlayerTurn.Value) // player -> enemy
+        Debug.Log("Change turn enum start");
+        if (battleState.IsPlayerTurn()) // player -> enemy
         {
             onPlayerTurnEnd.Raise();
-            yield return new WaitForSeconds(0.5f); // TODO redo this later
+            while (!battleState.CanStartEnemyTurn())
+            {
+                yield return new WaitForSeconds(0.01f);
+            }
             onEnemyTurnStart.Raise();
         }
         else // enemy -> player
         {
             onEnemyTurnEnd.Raise();
+            while (!battleState.CanStartPlayerTurn())
+            {
+                yield return new WaitForSeconds(0.01f);
+            }
             onPlayerTurnStart.Raise();
         }
-        isPlayerTurn.Value = !isPlayerTurn.Value;
-        timeLeftToNextTurn.Value = currTurnLength(playerAgility.Value, enemyAgility.Value, isPlayerTurn.Value);
+        battleState.FlipIsPlayerTurn();
+        ChangeTimeLeftValues(CurrTurnLength(playerAgility.Value, enemyAgility.Value, battleState.IsPlayerTurn()));
+        battleState.SetChangeTurnExecutingToFalse();
+        Debug.Log("Change turn enum end");
     }
 
     public void OnBattleLose()
     {
         Debug.Log("OnBattleLose");
-        onPlayerTurnEnd.Raise();
+        //onPlayerTurnEnd.Raise(); //buggy
         onEnemyTurnEnd.Raise();
     }
 
     public void OnBattleWin()
     {
         Debug.Log("OnBattleWin");
-        onPlayerTurnEnd.Raise();
+        //onPlayerTurnEnd.Raise(); //buggy
         onEnemyTurnEnd.Raise();
+    }
+
+    public void OnPlayerTalk()
+    {
+        // Force kill TurnChangeEnum
+        // Enum will be stuck as enemy cannot start turn
+        StartCoroutine(KillChangeTurnEnum());
+        // And set player turn time to 20s
+        ChangeTimeLeftValues(20f);
+    }
+
+    private IEnumerator KillChangeTurnEnum()
+    {
+        while (true)
+        {
+            if (changeTurnCoroutine != null)
+            {
+                Debug.Log("killed change turn enum");
+                StopCoroutine(changeTurnCoroutine);
+                battleState.SetChangeTurnExecutingToFalse();
+                break;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
+    public void SetTimeLeftValues(float timeLeft)
+    {
+        ChangeTimeLeftValues(timeLeft);
     }
 
 }

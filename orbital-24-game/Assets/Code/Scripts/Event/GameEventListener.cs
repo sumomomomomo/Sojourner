@@ -8,11 +8,17 @@ public class GameEventListener : MonoBehaviour
     [SerializeField] [TextArea] private string developerComments;
 
     private void OnEnable()
-    { Event.RegisterListener(this); }
+    { 
+        Event.RegisterListener(this); 
+    }
 
     private void OnDisable()
-    { Event.UnregisterListener(this); }
+    { 
+        Event.UnregisterListener(this); 
+    }
 
     public void OnEventRaised()
-    { Response.Invoke(); }
+    { 
+        Response.Invoke(); 
+    }
 }

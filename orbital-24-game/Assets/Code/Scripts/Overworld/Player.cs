@@ -11,28 +11,39 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float input; // keep track of which directional button
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private OverworldInputHandlerStateObject overworldInputHandlerStateObject;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        input = Input.GetAxisRaw("Horizontal");
-        if (input < 0) 
+        if (overworldInputHandlerStateObject.CanPlayerMove())
         {
-            spriteRenderer.flipX = true;
+            input = Input.GetAxisRaw("Horizontal");
+            if (input < 0) 
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (input > 0) 
+            {
+                spriteRenderer.flipX = false;
+            }
         }
-        else if (input > 0) 
+        else
         {
-            spriteRenderer.flipX = false;
+            input = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (overworldInputHandlerStateObject.CanPlayerInteract())
         {
-            Interactable?.Interact(this);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interactable?.Interact(this);
+            }
         }
     }
 
     // Like update but runs 50 times per second only
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         playerRb.velocity = new Vector2 (input * speed, playerRb.velocity.y);
     }

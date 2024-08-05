@@ -8,8 +8,7 @@ public class OverworldSceneManager : MonoBehaviour
 {
     [SerializeField] private string mainMenuSceneName = "MainMenuScene"; 
     [SerializeField] private string battleSceneName = "BattleScene"; 
-    [SerializeField] private IntReference enemyHP;
-    [SerializeField] private IntReference enemyMaxHP;
+    [SerializeField] private StringVariable currentOverworldScene;
     [SerializeField] private EnemyLoadedTrackerObject enemyLoadedTrackerObject;
     public void LoadBattle()
     {
@@ -19,6 +18,8 @@ public class OverworldSceneManager : MonoBehaviour
         // enemyMaxHP.Value = enemyObject.MaxHP;
         // Respective enemy battle handlers will do initialization for player bounds etc
 
+
+        currentOverworldScene.Value = SceneManager.GetActiveScene().name;
         // Fade to battle screen
         StartCoroutine(BattleSceneTransition(battleSceneName));
     }

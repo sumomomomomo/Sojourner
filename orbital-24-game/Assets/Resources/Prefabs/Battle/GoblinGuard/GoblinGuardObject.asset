@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51db3602bebaa3c4baefe6ee5a970d60, type: 3}
+  m_Name: GoblinGuardObject
+  m_EditorClassIdentifier: 
+  _enemyHandlerState: {fileID: 11400000, guid: 93033a065d26b6c43877b8f7aeff0961, type: 2}
+  enemyName: Goblin Guard
+  spritePrefab: {fileID: 5899040588695384566, guid: 94ef0f1fd541e1b48aabc4be8001f127, type: 3}
+  healthBarPrefab: {fileID: 8968244387852400422, guid: b1142e1c977d6974dab5aa2db0a4aaea, type: 3}
+  dialogueBoxPrefab: {fileID: 5487736092265790566, guid: f4737490055c1e447bf0152be21c62ca, type: 3}
+  maxHP: 10
+  currHP: 1
+  def: 5
+  atk: 5
+  agility: 3
+  expReward: 1
+  moneyReward: 1
+  winTextPrefab: {fileID: 4383072298393545317, guid: e8a2b9f11650eda41a3ff63d9103732a, type: 3}
+  attackPatterns:
+  - attackPrefab: {fileID: 8244151387994412328, guid: f24b38d08806fe84783e3617196d6e27, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: d8171dc38599f084e901a56681cc83ab, type: 2}
+  - attackPrefab: {fileID: 1249380028934948399, guid: 2fd9c384222cea94a83f41de076d2ff0, type: 3}
+    playerBoundsTarget: {fileID: 11400000, guid: b8c1d3b1ed0f8b34dba945751a07c9ea, type: 2}
+  - attackPrefab: {fileID: 0}
+    playerBoundsTarget: {fileID: 11400000, guid: d8171dc38599f084e901a56681cc83ab, type: 2}
+  defaultChatMessageObjects:
+  - role: system
+    content: "Roleplay as a goblin, named Goblin Guard. You are hot-tempered but
+      also extremely cowardly. \r\nYou are employed by the Goblin Leader to guard
+      the sole jail cell, located in the deepest depths of the Goblin Cave. \r\nThe
+      following conversation takes place after you spot Player walking out of his
+      jail cell. You are fighting the player right now.\r\nYou are intimidated by
+      the player's towering presence, and you are on the brink of running away.\r\nYour
+      responses should always be under 10 words long.\r\nAlways speak in the first
+      person. \r\nAnswer in JSON format. Always answer with your current emotion.\r\nYour
+      available emotions are {\"scared\", \"terrified\", \"angry\"}"
+  - role: assistant
+    content: '{"response":"Go back! Cell!","emotion":"angry"}'
+  availableEmotions:
+  - angry
+  - scared
+  - terrified
+  indexSensitiveSpritesForEachEmotion:
+  - {fileID: 21300000, guid: 19d73265148c1fb43b2b793fb6f8cfac, type: 3}
+  - {fileID: 21300000, guid: 19d73265148c1fb43b2b793fb6f8cfac, type: 3}
+  - {fileID: 21300000, guid: 7a2a883edeb07d9489b6a77a7a6d145a, type: 3}
+  enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
+  backloggedCutsceneSequenceObject: {fileID: 11400000, guid: f96d38d4077373543b495af8da115029, type: 2}
+  onWinCutsceneSequenceObject: {fileID: 11400000, guid: 2ef2b30ffaecb6545a7800fbb06e31da, type: 2}
+  onSpareCutsceneSequenceObject: {fileID: 11400000, guid: 0febfcc9862849543a531165fd07ad3d, type: 2}
+  developerComments: First goblin the player meets

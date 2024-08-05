@@ -8,16 +8,17 @@ public class PlayerDamageTaker : MonoBehaviour
 {
     [SerializeField] private IntReference playerHP;
     [SerializeField] private IntReference playerBaseDef;
-    [SerializeField] private BoolReference isPlayerDefending;
-    [SerializeField] private BoolReference isPlayerInvulnerable;
-    [SerializeField] private UnityEvent onPlayerTakeDamage;
+    [SerializeField] private BattleState battleState;
+    [SerializeField] private GameEventObject onPlayerTakeDamage;
     [SerializeField] private IntReference enemyAtk;
+    [SerializeField] private BoolVariable isPlayerMoving;
+    public BoolVariable IsPlayerMoving => isPlayerMoving;
     public void takeDamage(float damageModifier)
     {
-        if (isPlayerInvulnerable.Value) return;
-        int effDef = isPlayerDefending.Value ? playerBaseDef.Value * 2 : playerBaseDef.Value;
+        if (battleState.IsPlayerInvulnerable()) return;
+        int effDef = battleState.IsPlayerDefending() ? playerBaseDef.Value * 2 : playerBaseDef.Value;
         playerHP.Value = playerHP.Value - (int) Mathf.Floor(Mathf.Max(1, enemyAtk.Value * damageModifier - effDef));
-        onPlayerTakeDamage?.Invoke();
+        onPlayerTakeDamage.Raise();
     }
     public void takeDamage()
     {
