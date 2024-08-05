@@ -12,8 +12,13 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        slider.maxValue = playerMaxHP.Value; 
-        slider.value = playerHP.Value;
+        UpdateHealth(playerHP.Value, playerMaxHP.Value, slider);
+    }
+
+    private void UpdateHealth(int playerHP, int playerMaxHP, Slider slider)
+    {
+        slider.maxValue = playerMaxHP;
+        slider.value = playerHP;
     }
 
 }

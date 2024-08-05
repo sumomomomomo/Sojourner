@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EnemyDialogueHandler : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class EnemyDialogueHandler : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(1f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Keyboard.current[Key.Space].wasPressedThisFrame);
         isEnemySpeaking.Value = false;
         Hide();
     }

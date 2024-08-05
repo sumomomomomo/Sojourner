@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2b6d82d256f8740ac5476ce1589f9c, type: 3}
-  m_Name: PlayerBaseDef
+  m_Script: {fileID: 11500000, guid: ea512deb055f5c14d96ec67042cec650, type: 3}
+  m_Name: PlayerAgility
   m_EditorClassIdentifier: 
-  value: 4
-  developerComments: 
+  value: 5
+  developerComments: Default 5.0f

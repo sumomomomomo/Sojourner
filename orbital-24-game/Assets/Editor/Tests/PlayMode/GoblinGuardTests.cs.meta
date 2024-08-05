@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 23451b2b6fb087c4e849b482f185dd0d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - battleState: {fileID: 11400000, guid: 97289e3a2c5bb2745a1d1365ae778396, type: 2}
+  - enemyLoadedTrackerObject: {fileID: 11400000, guid: 921b3a75b9d631b4aa1d5610f1074baa, type: 2}
+  - enemyObjectToUse: {fileID: 11400000, guid: 7fb0f0c24c0ba654ab88340a8d71fe26, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

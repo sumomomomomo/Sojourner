@@ -100,6 +100,16 @@ public class BattleState : ScriptableObject
         return isEnemySpeaking.Value;
     }
 
+    public bool IsBattleWin()
+    {
+        return isBattleWin.Value;
+    }
+
+    public bool IsBattleLose()
+    {
+        return isBattleLose.Value;
+    }
+
     public void FlipIsPlayerTurn()
     {
         isPlayerTurn.Value = !isPlayerTurn.Value;

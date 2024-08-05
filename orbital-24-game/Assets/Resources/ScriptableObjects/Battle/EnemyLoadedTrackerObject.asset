@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37525715a3acdbe4ea66529868467afc, type: 3}
   m_Name: EnemyLoadedTrackerObject
   m_EditorClassIdentifier: 
-  loadedEnemy: {fileID: 11400000, guid: e16b036a374453949a826728d8d311fc, type: 2}
+  loadedEnemy: {fileID: 11400000, guid: ef7154384bb7b164dbc4730b64d4a717, type: 2}
   developerComments: 'Overworld scene should set this to the desired enemy
 
     EnemyLoader
