@@ -1,0 +1,16 @@
+{
+    "name": "EventScripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:93b675b5d4f492b4ebdd60e5b7391d7f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

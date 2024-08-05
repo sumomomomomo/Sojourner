@@ -1,0 +1,16 @@
+{
+    "name": "UtilsScripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0437d04145d432340be34960e6f19b74"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
