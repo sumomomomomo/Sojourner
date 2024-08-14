@@ -2086,6 +2086,150 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1121618081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1121618082}
+  - component: {fileID: 1121618083}
+  - component: {fileID: 1121618084}
+  m_Layer: 0
+  m_Name: BGMPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1121618082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121618081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08305597, y: 5.929371, z: -3.5830898}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1121618083
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121618081}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a2b92961ef09c5c4c89c61d7ab6031f2, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1121618084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121618081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71f5f36009e2324e97a0e90c7d913b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeGetter: {fileID: 11400000, guid: 25a9fe0659790ad4f94ab09e1e0ad71f, type: 2}
+  audioSource: {fileID: 1121618083}
+  isSfx: 0
 --- !u!1 &1163200475
 GameObject:
   m_ObjectHideFlags: 0
@@ -13735,12 +13879,12 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2095183026}
-          m_TargetAssemblyTypeName: DialogueUI, Assembly-CSharp
+          m_TargetAssemblyTypeName: DialogueUI, DialogueScripts
           m_MethodName: ShowDialogue
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: 75937dc8b5c28374eb475da321cb9dec, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, DialogueScripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -13761,12 +13905,12 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2095183026}
-          m_TargetAssemblyTypeName: DialogueUI, Assembly-CSharp
+          m_TargetAssemblyTypeName: DialogueUI, DialogueScripts
           m_MethodName: ShowDialogue
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: f1676ad17935ac240bf142dd3c880a2c, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, DialogueScripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -13787,12 +13931,12 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2095183026}
-          m_TargetAssemblyTypeName: DialogueUI, Assembly-CSharp
+          m_TargetAssemblyTypeName: DialogueUI, DialogueScripts
           m_MethodName: ShowDialogue
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: 3fbe0c98aef13c346be8e349322b55a5, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, DialogueScripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -13813,12 +13957,12 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2095183026}
-          m_TargetAssemblyTypeName: DialogueUI, Assembly-CSharp
+          m_TargetAssemblyTypeName: DialogueUI, DialogueScripts
           m_MethodName: ShowDialogue
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: 228c7dd028995cc46b3068d42935d922, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, DialogueScripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -13839,12 +13983,12 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2095183026}
-          m_TargetAssemblyTypeName: DialogueUI, Assembly-CSharp
+          m_TargetAssemblyTypeName: DialogueUI, DialogueScripts
           m_MethodName: ShowDialogue
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: 46ed15e3ba85ea143b5d9236e3c61464, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, DialogueScripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -13866,3 +14010,4 @@ SceneRoots:
   - {fileID: 2018559953}
   - {fileID: 436180416}
   - {fileID: 1163200478}
+  - {fileID: 1121618082}
